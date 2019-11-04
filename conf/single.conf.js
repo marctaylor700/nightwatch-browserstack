@@ -10,11 +10,14 @@ nightwatch_config = {
   test_settings: {
     default: {
       desiredCapabilities: {
-        'build': 'nightwatch-browserstack',
-        'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-        'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
-        'browserstack.debug': true,
-        'browser': 'chrome'
+        'browserstack.user': 'nick34',
+        'browserstack.key': 'SBukT13jtljJiBWoBpHw',
+        'os': 'OS X',
+        'os_version': 'Mojave',
+        'browser': 'Chrome',
+        'browser_version': '78.0',
+        'resolution': '1920x1080',
+        'elementScrollBehavior': '1'
       }
     }
   }
