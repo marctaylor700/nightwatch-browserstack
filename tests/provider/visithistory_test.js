@@ -1,8 +1,4 @@
 var env = "alpha";
-// var userEnrollData = {
-//   firstName: "Marc",
-//   lastName: "Taylor"
-// }
 
 async function goToPracticeLoginPage(browser, handle) {
   console.log("starting goToPracticeLoginPage");
@@ -10,8 +6,45 @@ async function goToPracticeLoginPage(browser, handle) {
   browser.pause(5000);
 }
 
+async function providerLogin(browser) {
+  console.log("starting provider login")
+  //use css selectors
+  browser.useCss()
+  //email field
+  browser.expect.element('#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(1) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000309 > input[type=text]').to.be.present;
+  browser.click("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(1) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000309 > input[type=text]")
+  //set email
+  browser.setValue("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(1) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000309 > input[type=text]", "physician+jacob@evisit.com")
+  //password field
+  browser.expect.element('#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(2) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000311 > input[type=password]').to.be.present;
+  browser.click("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(2) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000311 > input[type=password]")
+  //set password
+  browser.setValue("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(2) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000311 > input[type=password]", "provider123")
+  //login button
+  browser.expect.element('#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > div.raView.eVisitAppNavigationButtons.eVisitAppNavigationButtonsButtonContainer.eVisitAppNavigationButtonsVerticalButtonContainer.eVisitAppComponent_0000000000313 > div:nth-child(2) > div > div > span').to.be.present;
+  //click login
+  browser.click("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > div.raView.eVisitAppNavigationButtons.eVisitAppNavigationButtonsButtonContainer.eVisitAppNavigationButtonsVerticalButtonContainer.eVisitAppComponent_0000000000313 > div:nth-child(2) > div > div > span")
+  //wait for page to load
+  browser.pause(10000)
+  //switch back to xpath. 
+  browser.useXpath()
+  //visit history tab
+  browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[1]/div[3]/div/span').to.be.present;
+  //click tab
+  browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[1]/div[3]/div/span")
+  //wait for visit history tab to load
+  browser.pause(5000)
+  //dropdown field
+  browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/div[1]/div[1]/div/div/div[1]/div').to.be.present;
+  //click dropdown
+  browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/div[1]/div[1]/div/div/div[1]/div")
+  //expect all field
+  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[1]").to.be.present;
+  //click
+  browser.click("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[1]")
+  browser.pause(9000)
 
-
+}
 
 // Basically the below stuff runs everything. 
 module.exports = {
@@ -26,7 +59,7 @@ module.exports = {
 
 
     goToPracticeLoginPage(browser, "ewellness")
-      
+      .then(providerLogin(browser))
       .then(browser.end());
   }, 
 };
