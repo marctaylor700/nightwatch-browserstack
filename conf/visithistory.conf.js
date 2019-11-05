@@ -10,8 +10,8 @@ nightwatch_config = {
     test_settings: {
       default: {
         desiredCapabilities: {
-          'browserstack.user': 'marcetaylor1',
-          'browserstack.key': 'Y5SXv3UCarZxSadS6B27',
+          'browserstack.user': 'nick34',
+          'browserstack.key': 'SBukT13jtljJiBWoBpHw',
           'os': 'OS X',
           'os_version': 'Mojave',
           'browser': 'Chrome',

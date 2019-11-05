@@ -12,10 +12,15 @@ nightwatch_config = {
       desiredCapabilities: {
         'browserstack.user': 'nick34',
         'browserstack.key': 'SBukT13jtljJiBWoBpHw',
+        'browserstack.debug': true,
         'os': 'OS X',
+        'build' : '1.0',
+        'name' : 'Enroll a new patient logout then log back in',
         'os_version': 'Mojave',
         'browser': 'Chrome',
         'browser_version': '78.0',
+        'browserstack.console' : 'warnings',
+        'project' : 'Single Test',
         'resolution': '1920x1080',
         'elementScrollBehavior': '1'
       }

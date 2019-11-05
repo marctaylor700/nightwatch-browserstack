@@ -9,8 +9,8 @@ nightwatch_config = {
 
   common_capabilities: {
     'build': 'nightwatch-browserstack',
-    'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-    'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+    'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'nick34',
+    'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'SBukT13jtljJiBWoBpHw',
     'browserstack.debug': true
   },
 
@@ -19,11 +19,14 @@ nightwatch_config = {
     chrome: {
       desiredCapabilities: {
         browser: "chrome"
+        //resolution: '1024x768'
+        
       }
     },
     firefox: {
       desiredCapabilities: {
         browser: "firefox"
+        //resolution: '1024x768'
       }
     },
     safari: {
