@@ -28,7 +28,6 @@ async function providerLogin(browser) {
   browser.pause(10000)
 }
 
-
   async function visitHistoryTab(browser) {
     console.log("starting visit history tab test")
 
