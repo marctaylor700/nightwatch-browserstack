@@ -51,6 +51,21 @@ async function registerNewPatient(browser, newUserCredentials) {
   browser.pause(20000)
 }
 
+async function geoLocationPage(browser) {
+  console.log("starting geolocation page")
+  browser.expect.element("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[3]/div/div/div[1]/div").to.be.present;
+  browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[3]/div/div/div[1]/div")
+  browser.expect.element("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div/span").to.be.present;
+  browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div/span")
+  browser.pause(6000)
+}
+
+
+
+
+
+
+
 async function enrollNewPatient(browser, generateName) {
       console.log("starting enrollNewPatient");
 
@@ -329,11 +344,17 @@ async function providerLogin(browser) {
   browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/div/div').to.be.present;
   browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/div/div")
   browser.pause(20000)
-  //browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div[4]/div[2]/div/div/div/span').to.be.present;
+  browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div[4]/div[2]/div/div/div/span').to.be.present;
   browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div/div[2]/div/div[4]/div[2]/div/div/div/span")
   browser.pause(6000)
-  browser.expect.element('/html/body/div[1]/div/div/div/div[1]/div[3]/div[4]/div[2]/div/button/span').to.be.present;
-  browser.click("/html/body/div[1]/div/div/div/div[1]/div[3]/div[4]/div[2]/div/button/span")
+  // browser.expect.element('/html/body/div[1]/div/div/div/div[1]/div[3]/div[4]/div[2]/div/button/span').to.be.present;
+  // browser.click("/html/body/div[1]/div/div/div/div[1]/div[3]/div[4]/div[2]/div/button/span")
+  browser.execute("angular.element(document.body).injector().get('security').logout()", [], function(error) {
+    if (error)
+      console.error(error);
+    else
+      console.log('Done logging out!');
+  });
   browser.pause(9000)
 
 }
@@ -343,7 +364,7 @@ async function providerLogin(browser) {
 module.exports = {
   before : async function (browser) {
     browser.resizeWindow(1920, 1080);
-    //'@tags:' ['test']
+    '@tags:' ['test']
   },
   'Enroll a new patient logout then log back in' : async function(browser) {
     var newUserCredentials = await generateNewUserCredentials();
@@ -353,6 +374,7 @@ module.exports = {
 
     goToPracticeLoginPage(browser, "ewellness")
       .then(registerNewPatient(browser, newUserCredentials))
+      .then(geoLocationPage(browser))
       .then(enrollNewPatient(browser))
       .then(profilePicture(browser))
       .then(dependentPage(browser))

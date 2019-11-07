@@ -34,23 +34,18 @@ async function providerLogin(browser) {
   browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[1]/div[3]/div/span")
   //wait for visit history tab to load
   browser.pause(5000)
-  //dropdown field
-  browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/div[1]/div[1]/div/div/div[1]/div').to.be.present;
-  //click dropdown
-  browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/div[1]/div[1]/div/div/div[1]/div")
-  //expect all field
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[1]").to.be.present;
-  //click
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[1]")
+  browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div[3]/span[1]/span').text.to.equal('Graham Beltran');
   browser.pause(9000)
-
+  browser.expect.element("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div[5]/div[2]/div").to.be.present
+  browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div[5]/div[2]/div")
+  browser.pause(5000)
 }
 
 // Basically the below stuff runs everything. 
 module.exports = {
   before : async function (browser) {
     browser.resizeWindow(1920, 1080);
-    //'@tags:' ['test']
+    '@tags:' ['test']
   },
   'Provider Login - Verify Visit History Tab' : async function(browser) {
     //var newUserCredentials = await generateNewUserCredentials();
