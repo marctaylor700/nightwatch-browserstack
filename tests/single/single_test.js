@@ -349,13 +349,6 @@ async function providerLogin(browser) {
   browser.pause(6000)
   // browser.expect.element('/html/body/div[1]/div/div/div/div[1]/div[3]/div[4]/div[2]/div/button/span').to.be.present;
   // browser.click("/html/body/div[1]/div/div/div/div[1]/div[3]/div[4]/div[2]/div/button/span")
-  browser.execute("angular.element(document.body).injector().get('security').logout()", [], function(error) {
-    if (error)
-      console.error(error);
-    else
-      console.log('Done logging out!');
-  });
-  browser.pause(9000)
 
 }
 

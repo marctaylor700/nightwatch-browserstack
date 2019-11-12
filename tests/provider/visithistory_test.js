@@ -3,7 +3,7 @@ var env = "alpha";
 async function goToPracticeLoginPage(browser, handle) {
   console.log("starting goToPracticeLoginPage");
   browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
-  browser.pause(5000);
+  browser.pause(2000);
 }
 
 async function providerLogin(browser) {
@@ -25,7 +25,7 @@ async function providerLogin(browser) {
   //click login
   browser.click("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > div.raView.eVisitAppNavigationButtons.eVisitAppNavigationButtonsButtonContainer.eVisitAppNavigationButtonsVerticalButtonContainer.eVisitAppComponent_0000000000313 > div:nth-child(2) > div > div > span")
   //wait for page to load
-  browser.pause(10000)
+  browser.pause(5000)
 }
 
   async function visitHistoryTab(browser) {
@@ -40,9 +40,9 @@ async function providerLogin(browser) {
   //wait for visit history tab to load
   browser.pause(5000)
   //Look for latest completed visit with Graham
-  browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div[3]/span[1]/span').text.to.equal('Graham Beltran');
+  //browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div[3]/span[1]/span').text.to.equal('Graham Beltran');
   //pause
-  browser.pause(9000)
+  browser.pause(5000)
   //expect notification 
   browser.expect.element("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div/div[5]/div[2]/div/div/div/span").to.be.present
   //click notiication element that opens sidebar
