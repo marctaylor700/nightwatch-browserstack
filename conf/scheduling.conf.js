@@ -20,7 +20,7 @@ nightwatch_config = {
           'browser': 'Chrome',
           'browser_version': '78.0',
           'browserstack.console' : 'warnings',
-          'project' : 'Provider Tests',
+          'project' : 'Provider Scheduling Tests',
           'resolution': '1920x1080',
           'elementScrollBehavior': '1'
         }

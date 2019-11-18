@@ -8,7 +8,7 @@ async function generateNewUserCredentials() {
   var rando = Math.floor((Math.random() * 100000000000000) + 1); // random number gen for email
   var email = `marc+${rando}@evisit.com`; // email variable
   
-  return { email: email, password: 'patient123' };
+  return { email: email };
 }
 
 async function goToPracticeLoginPage(browser, handle) {
