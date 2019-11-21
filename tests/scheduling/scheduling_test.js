@@ -16,28 +16,26 @@ async function goToPracticeLoginPage(browser, handle) {
 async function providerLogin(browser) {
   console.log("starting provider login")
   //email field
-  browser.useXpath()
-  browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[1]/div/div[1]/input').to.be.present;
-  browser.click('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[1]/div/div[1]/input')
+  browser.expect.element(`input[name='email']`).to.be.present;
+  browser.click(`input[name='email']`)
   //set email
-  browser.setValue('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[1]/div/div[1]/input', "physician+nick@evisit.com")
+  browser.setValue(`input[name='email`, "physician+nick@evisit.com")
   //password field
-  browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[2]/div/div[1]/input').to.be.present;
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[2]/div/div[1]/input")
+  browser.expect.element(`input[name='current-password']`).to.be.present;
+  browser.click(`input[name='current-password']`)
   //set password
-  browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[2]/div/div[1]/input", "provider123")
+  browser.setValue(`input[name='current-password']`, "provider123")
   //login button
-  browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/div/div').to.be.present;
+  browser.expect.element(`div[class='raView eVisitAppButton eVisitAppButtonInternalContainer eVisitAppComponent_0000000000319']`).to.be.present;
   //click login
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/div/div")
+  browser.click(`div[class='raView eVisitAppButton eVisitAppButtonInternalContainer eVisitAppComponent_0000000000319']`)
   //wait for page to load
   browser.pause(7000)
 }
 
-
 async function schedulingTab(browser, newUserCredentials) {
   //console log test 
-  browser.useXpath()
+  browser.useCss()
   console.log("starting scheduling test")
   //expect scheduling tab
   browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[1]/div[4]/div").to.be.present;
