@@ -21,8 +21,8 @@ async function providerLogin(browser) {
   //set email
   browser.setValue(`input[name='email`, "physician+nick@evisit.com")
   //password field
-  browser.expect.element(`input[name='current-password']`).to.be.present;
-  browser.click(`input[name='current-password']`)
+  browser.expect.element(`input[id='input_1']`).to.be.present;
+  browser.click(`input[id='input_1']`)
   //set password
   browser.setValue(`input[name='current-password']`, "provider123")
   //login button
@@ -38,29 +38,32 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.useCss()
   console.log("starting scheduling test")
   //expect scheduling tab
-  browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[1]/div[4]/div").to.be.present;
+  browser.expect.element("div.raTouchable:nth-child(4)").to.be.present;
   //click scheduling tab
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[1]/div[4]/div")
+  browser.click("div.raTouchable:nth-child(4)")
   //pause
   browser.pause(5000)
   //expect visit type dropdown
-  browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[1]/div/div/div/div/div[1]").to.be.present;
+  browser.expect.element(".eVisitAppTextFieldIconContainer").to.be.present;
   //click visit type dropdown
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[1]/div/div/div/div/div[1]")
+  browser.click(".eVisitAppTextFieldIconContainer")
   //pause
   browser.pause(2000)
   //expect scheduled visit 
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[2]").to.be.present;
+  browser.expect.element("div.eVisitAppPopupMenuItem:nth-child(2)").to.be.present;
   //click scheduled visit
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[2]")
+  browser.click("div.eVisitAppPopupMenuItem:nth-child(2)")
+  browser.useXpath()
   //expect patient dropdown
-  browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[2]/div/div/div/div[1]").to.be.present;
+  browser.expect.element(`/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[2]/div/div/div/div[1]/input`).to.be.present;
   //click patient dropdown
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[2]/div/div/div/div[1]")
+  browser.click(`/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[2]/div/div/div/div[1]/input`)
+  browser.useCss()
   //expect create new patient
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div/div/span").to.be.present;
+  browser.expect.element(".eVisitAppPopupInternalContainer > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)").to.be.present;
   //click new patient
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div/div/span")
+  browser.click(".eVisitAppPopupInternalContainer > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)")
+  browser.useXpath()
   //expect first name
   browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[1]/div/div[1]/input").to.be.present;
   //click first name
@@ -105,16 +108,13 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[4]/div/div/div/div/div[1]/input").to.be.present;
   //click date field
   browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[4]/div/div/div/div/div[1]/input")
-  // had to remove the commented piece as browserstack never finds the arrow button and in turn just times out the test each time. 
-  //expect arrow to go to next month
-  // browser.expect.element('/html/body/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div/div[1]/div/div[2]/div/div/div/span')
-  // //click arrow to go to next month
-  // browser.click('/html/body/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div/div[1]/div/div[2]/div/div/div/span')
-  // //expect one date. need to figure out how to make this dynamic so the date can be called to any date we would want. 
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div/div[3]/div[4]/div[6]/span/span").to.be.present;
+  browser.useCss()
+  //expect one date. need to figure out how to make this dynamic so the date can be called to any date we would want. 
+  browser.expect.element(".eVisitAppPopupMenuContentContainer > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(5) > div:nth-child(6) > span:nth-child(1) > span:nth-child(1)").to.be.present;
   //click date
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div/div[3]/div[4]/div[6]/span/span")
+  browser.click(".eVisitAppPopupMenuContentContainer > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(5) > div:nth-child(6) > span:nth-child(1) > span:nth-child(1)")
   //expect time field
+  browser.useXpath()
   browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[5]/div/div/div/div/div[1]/input").to.be.present;
   //click time field
   browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[5]/div/div/div/div/div[1]/input")
@@ -127,12 +127,15 @@ async function schedulingTab(browser, newUserCredentials) {
   //click schedule visit 
   browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[6]/div/div")
   //pause
-  browser.pause(6000)
+  browser.pause(9000)
+  browser.useCss()
   //expect decline button to cancel the visit 
-  browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div[2]/div/div[6]/div/div[4]/div[1]/div/div/div/span").to.be.present;
+  browser.expect.element('div.eVisitAppIconButton:nth-child(1) > div:nth-child(1)').to.be.present;
   //click cancel button
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[2]/div[2]/div/div[6]/div/div[4]/div[1]/div/div/div/span")
+  browser.click("div.eVisitAppIconButton:nth-child(1) > div:nth-child(1)")
   //expect yes no option
+  browser.pause(2000)
+  browser.useXpath()
   browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div/div/div[3]/div[3]/div").to.be.present;
   //click yes
   browser.click("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div/div/div[3]/div[3]/div")
