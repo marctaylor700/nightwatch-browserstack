@@ -14,6 +14,8 @@ nightwatch_config = {
           'browserstack.key': 'SBukT13jtljJiBWoBpHw',
           'os': 'OS X',
           'os_version': 'Mojave',
+          'name' : 'Enroll a new patient',
+          'build' : '1.0',
           'browser': 'Chrome',
           'browser_version': '78.0 beta',
           'resolution': '1920x1080'
