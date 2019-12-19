@@ -8,29 +8,25 @@ async function goToPracticeLoginPage(browser, handle) {
 
 async function providerLogin(browser) {
   console.log("starting provider login")
-  //use css selectors
   browser.useCss()
-  //email field
-  browser.expect.element('#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(1) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000309 > input[type=text]').to.be.present;
-  browser.click("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(1) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000309 > input[type=text]")
+  //check for email field
+  browser.expect.element(`[data-field='email']`).to.be.present;
   //set email
-  browser.setValue("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(1) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000309 > input[type=text]", "physician+nick@evisit.com")
-  //password field
-  browser.expect.element('#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(2) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000311 > input[type=password]').to.be.present;
-  browser.click("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(2) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000311 > input[type=password]")
+  browser.setValue(`[data-field='email'] input`, "physician+nick@evisit.com")
+  //check for password field
+  browser.expect.element(`[data-field='password']`).to.be.present;
   //set password
-  browser.setValue("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > form > div:nth-child(2) > div > div.raView.eVisitAppTextField.eVisitAppTextFieldInputContainer.eVisitAppComponent_0000000000311 > input[type=password]", "provider123")
-  //login button
-  browser.expect.element('#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > div.raView.eVisitAppNavigationButtons.eVisitAppNavigationButtonsButtonContainer.eVisitAppNavigationButtonsVerticalButtonContainer.eVisitAppComponent_0000000000313 > div:nth-child(2) > div > div > span').to.be.present;
-  //click login
-  browser.click("#root > div > div > div.raView.eVisitApp > div.raView.eVisitAppMainView > div.raView.eVisitAppNavigator.eVisitAppComponent_0000000000289 > div.raView.eVisitAppTransitionGroup.eVisitAppTransitionGroupEVisitAppNavigatorPageContainer.eVisitAppNavigatorPageContainer.eVisitAppComponent_0000000000304 > div > div > div > div.raView.eVisitAppSlate.eVisitAppComponent_0000000000305 > div > div > div.raView.eVisitAppBasePageMainContainer > div > div > div > div.raView.eVisitAppLoginPageForm > div.raView.eVisitAppNavigationButtons.eVisitAppNavigationButtonsButtonContainer.eVisitAppNavigationButtonsVerticalButtonContainer.eVisitAppComponent_0000000000313 > div:nth-child(2) > div > div > span")
-  //wait for page to load
-  browser.pause(5000)
+  browser.setValue(`[data-field='password'] input`, "provider123")
+  // //login button
+  // browser.expect.element(`div[class='raTouchable raView eVisitAppButton eVisitAppButtonContainer eVisitAppButtonWithCaption eVisitAppComponent_0000000000321']`).to.be.present;
+  // //click login
+  // browser.click(`div[class='raTouchable raView eVisitAppButton eVisitAppButtonContainer eVisitAppButtonWithCaption eVisitAppComponent_0000000000321']`)
+  // //wait for page to load
+  // browser.pause(7000)
 }
 
   async function visitHistoryTab(browser) {
     console.log("starting visit history tab test")
-
   //switch back to xpath. 
   browser.useXpath()
   //visit history tab
@@ -58,10 +54,6 @@ async function providerLogin(browser) {
   browser.expect.element("/html/body/div/div/div/div[1]/div[1]/div[3]/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div[2]/div/div[1]/div/div/span/span").to.be.present;
   //click personal information in sidebar
   browser.click("/html/body/div/div/div/div[1]/div[1]/div[3]/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div[2]/div/div[1]/div/div/span/span")
-  //check to see if Graham is the patient
-  //this is broken for some reason right now. so fuck it. 
-  //browser.expect.element("/html/body/div/div/div/div[1]/div[1]/div[3]/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div[3]/div/div/form/div[1]/div/div/input").text.to.equal('Graham Beltran');
-  //expect back button
   browser.expect.element("/html/body/div/div/div/div[1]/div[1]/div[3]/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div[1]/div/div/div/span/span").to.be.present;
   //click back button
   browser.click("/html/body/div/div/div/div[1]/div[1]/div[3]/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div[1]/div/div/div/span/span")
@@ -141,7 +133,6 @@ async function providerLogin(browser) {
   browser.pause(4000)
 }
 
-
 // Basically the below stuff runs everything. 
 module.exports = {
   before : async function (browser) {
@@ -149,11 +140,6 @@ module.exports = {
     '@tags:' ['test']
   },
   'Provider Login - Verify Visit History Tab' : async function(browser) {
-    //var newUserCredentials = await generateNewUserCredentials();
-
-    //console.log(JSON.stringify(newUserCredentials));
-
-
     goToPracticeLoginPage(browser, "ewellness")
       .then(providerLogin(browser))
       .then(visitHistoryTab(browser))

@@ -15,22 +15,21 @@ async function goToPracticeLoginPage(browser, handle) {
 
 async function providerLogin(browser) {
   console.log("starting provider login")
-  //email field
-  browser.expect.element(`input[name='email']`).to.be.present;
-  browser.click(`input[name='email']`)
+  browser.useCss()
+  //check for email field
+  browser.expect.element(`[data-field='email']`).to.be.present;
   //set email
-  browser.setValue(`input[name='email`, "physician+nick@evisit.com")
-  //password field
-  browser.expect.element(`input[id='input_1']`).to.be.present;
-  browser.click(`input[id='input_1']`)
+  browser.setValue(`[data-field='email'] input`, "physician+nick@evisit.com")
+  //check for password field
+  browser.expect.element(`[data-field='password']`).to.be.present;
   //set password
-  browser.setValue(`input[name='current-password']`, "provider123")
-  //login button
-  browser.expect.element(`div[class='raView eVisitAppButton eVisitAppButtonInternalContainer eVisitAppComponent_0000000000319']`).to.be.present;
-  //click login
-  browser.click(`div[class='raView eVisitAppButton eVisitAppButtonInternalContainer eVisitAppComponent_0000000000319']`)
-  //wait for page to load
-  browser.pause(7000)
+  browser.setValue(`[data-field='password'] input`, "provider123")
+  // //login button
+  // browser.expect.element(`div[class='raTouchable raView eVisitAppButton eVisitAppButtonContainer eVisitAppButtonWithCaption eVisitAppComponent_0000000000321']`).to.be.present;
+  // //click login
+  // browser.click(`div[class='raTouchable raView eVisitAppButton eVisitAppButtonContainer eVisitAppButtonWithCaption eVisitAppComponent_0000000000321']`)
+  // //wait for page to load
+  // browser.pause(7000)
 }
 
 async function schedulingTab(browser, newUserCredentials) {

@@ -1,7 +1,10 @@
+// ALL css selectors will be given a class name to be more easily target for when they change dynamically
+
+
+//variable for the environment
 var env = "alpha";
 
-
-
+//generate new user credentials and store them
 async function generateNewUserCredentials() {
     var rando = Math.floor((Math.random() * 100000000000000) + 1); // random number gen for email
     var email = `marc+${rando}@evisit.com`; // email variable
@@ -9,12 +12,14 @@ async function generateNewUserCredentials() {
     return { email: email, password: 'patient123' };
   }
   
+  //go to practice login page 
   async function goToPracticeLoginPage(browser, handle) {
     console.log("starting goToPracticeLoginPage");
     browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
     browser.pause(5000);
   }
   
+  //register a new patient 
   async function registerNewPatient(browser, newUserCredentials) {
     console.log("starting registerNewPatient");
     browser.useCss()
@@ -45,7 +50,7 @@ async function generateNewUserCredentials() {
   }
 
 
-
+  //geolocation page
   async function geoLocationPage(browser) {
     console.log("starting geolocation page")
     browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[3]/div/div/div[1]/div").to.be.present;
@@ -55,7 +60,7 @@ async function generateNewUserCredentials() {
     browser.pause(6000)
   }
 
-
+  //start the enrollment task
   async function enrollNewPatient(browser, generateName) {
     console.log("starting enrollNewPatient");
     browser.useCss()
@@ -116,13 +121,15 @@ async function generateNewUserCredentials() {
 
 }
 
+//start the profile picture task
 async function profilePicture(browser) {
     console.log("starting profile picture page")
     browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[3]/div[3]/div/div/span').to.be.present;
     browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[3]/div[3]/div/div/span")
     browser.pause(5000)
   }
-
+  
+  //start the dependent page task
   async function dependentPage(browser) {
     console.log("starting dependent page")
     browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div').to.be.present;
@@ -131,6 +138,7 @@ async function profilePicture(browser) {
   
   }
 
+  //start the insurance page task
   async function insurancePage(browser) {
     console.log("starting insurance page")
     browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div').to.be.present;
@@ -138,6 +146,7 @@ async function profilePicture(browser) {
     browser.pause(5000)
   }
 
+  //start the welcome page task 
   async function welcomePage(browser) {
     console.log("starting welcome page")
     browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div/span').to.be.present;
@@ -145,10 +154,6 @@ async function profilePicture(browser) {
     browser.pause(10000)
   }
 
-
-
-
-// Basically the below stuff runs everything. 
 module.exports = {
     before : async function (browser) {
       browser.resizeWindow(1920, 1080);
@@ -156,10 +161,10 @@ module.exports = {
     },
     'Enroll a new patient' : async function(browser) {
       var newUserCredentials = await generateNewUserCredentials();
-  
+      //print out the user credentials 
       console.log(JSON.stringify(newUserCredentials));
   
-  
+      //these run everything
       goToPracticeLoginPage(browser, "ewellness")
         .then(registerNewPatient(browser, newUserCredentials))
         .then(geoLocationPage(browser))
@@ -168,15 +173,6 @@ module.exports = {
         .then(dependentPage(browser))
         .then(insurancePage(browser))
         .then(welcomePage(browser))
-        // .then(logoutUser(browser))
-        // .then(loginUser(browser, newUserCredentials))
-        // .then(requestVisit(browser))
-        // .then(intakeQuestions(browser))
-        // .then(pharmacyPage(browser))
-        // .then(creditCardPage(browser))
-        // .then(confirmationPage(browser))
-        // .then(patientLogout(browser))
-        // .then(providerLogin(browser))
         .then(browser.end());
     }, 
   };

@@ -8,7 +8,7 @@ async function generateNewUserCredentials() {
   var rando = Math.floor((Math.random() * 100000000000000) + 1); // random number gen for email
   var email = `marc+${rando}@evisit.com`; // email variable
   
-  return { email: email };
+  return { email: email, password: 'patient123' };
 }
 
 async function goToPracticeLoginPage(browser, handle) {
@@ -26,10 +26,6 @@ async function registerNewPatient(browser, newUserCredentials) {
   browser.click('//*[@id="root"]/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/div[2]/div[3]/div/div/span')  
   browser.pause(1000)
   browser.useXpath()
-  //browser.click("/html/body/div/div[2]/md-content/div/div[2]/div/div/div/div/div/md-content/div[4]/form/div[1]/ng-form[1]/md-input-container/ng-transclude/input")
-  //click email element. Use CSS selectors
-  //browser.useCss()
-  //click email
   browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[1]/div/div[1]/input').to.be.present;
   browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[1]/div/div[1]/input")
   //input email
@@ -59,11 +55,6 @@ async function geoLocationPage(browser) {
   browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div/span")
   browser.pause(6000)
 }
-
-
-
-
-
 
 
 async function enrollNewPatient(browser, generateName) {
@@ -140,15 +131,15 @@ async function dependentPage(browser) {
 
 async function insurancePage(browser) {
   console.log("starting insurance page")
-  browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div').to.be.present;
-  browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div")
+  browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div').to.be.present;
+  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div")
   browser.pause(5000)
 }
 
 async function welcomePage(browser) {
   console.log("starting welcome page")
-  browser.expect.element('/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div/span').to.be.present;
-  browser.click("/html/body/div/div/div/div[1]/div[1]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div/span")
+  browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div/span').to.be.present;
+  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div/span")
   browser.pause(10000)
 }
 
@@ -171,8 +162,6 @@ async function logoutUser(browser) {
   browser.expect.element('html/body/div[4]/md-dialog/md-dialog-content/div/div/button[2]/span').to.be.present;
   browser.click("/html/body/div[4]/md-dialog/md-dialog-content/div/div/button[2]/span")
   browser.pause(10000)
-
-
 
 }
 
@@ -239,7 +228,6 @@ async function intakeQuestions(browser) {
   browser.pause(5000)
   //Family Medical History
   browser.pause(5000)
-  //browser.expect.element('/html/body/div[1]/div[2]/md-content/div/div[2]/div/div/md-card[9]/form/div[2]/div[1]/md-checkbox/div[1').to.be.present;
   browser.click("/html/body/div[1]/div[2]/md-content/div/div[2]/div/div/md-card[9]/form/div[2]/div[1]/md-checkbox/div[1]")
   browser.expect.element('/html/body/div[1]/div[2]/md-content/div/div[2]/div/div/md-card[9]/form/div[4]/button[2]/span').to.be.present;
   browser.click("/html/body/div[1]/div[2]/md-content/div/div[2]/div/div/md-card[9]/form/div[4]/button[2]/span")

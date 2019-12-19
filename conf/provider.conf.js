@@ -1,5 +1,5 @@
 nightwatch_config = {
-    src_folders : [ "tests/help" ],
+    src_folders : [ "tests/provider" ],
   
     selenium : {
       "start_process" : false,
