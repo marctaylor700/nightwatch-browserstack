@@ -17,19 +17,19 @@ async function providerLogin(browser) {
   console.log("starting provider login")
   browser.useCss()
   //check for email field
-  browser.expect.element(`[data-field='email']`).to.be.present;
+  browser.expect.element(`[data-test-id='emailTestID']`).to.be.present;
   //set email
-  browser.setValue(`[data-field='email'] input`, "physician+nick@evisit.com")
+  browser.setValue(`[data-test-id='emailTestID']`, "physician+nick@evisit.com")
   //check for password field
-  browser.expect.element(`[data-field='password']`).to.be.present;
+  browser.expect.element(`[data-test-id='passwordTestID']`).to.be.present;
   //set password
-  browser.setValue(`[data-field='password'] input`, "provider123")
+  browser.setValue(`[data-test-id='passwordTestID']`, "provider123")
   // //login button
-  // browser.expect.element(`div[class='raTouchable raView eVisitAppButton eVisitAppButtonContainer eVisitAppButtonWithCaption eVisitAppComponent_0000000000321']`).to.be.present;
+  browser.expect.element(`[data-test-id='loginButtonTestID']`).to.be.present;
   // //click login
-  // browser.click(`div[class='raTouchable raView eVisitAppButton eVisitAppButtonContainer eVisitAppButtonWithCaption eVisitAppComponent_0000000000321']`)
+  browser.click(`[data-test-id='loginButtonTestID']`)
   // //wait for page to load
-  // browser.pause(7000)
+  browser.pause(7000)
 }
 
 async function schedulingTab(browser, newUserCredentials) {
