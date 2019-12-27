@@ -7,7 +7,7 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.pause(2000);
   }
 
-  async function providerLogin(browser) {
+  async function patientLogin(browser) {
     console.log("starting provider login")
     browser.useCss()
     //check for email field
@@ -36,7 +36,7 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.pause(6000)
   }
 
-//request visit
+    //request visit
   async function requestVisit(browser) {
     console.log("starting request visit")
     //expect See Now on Nick Provider

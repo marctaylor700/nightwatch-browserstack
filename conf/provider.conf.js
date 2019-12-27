@@ -14,6 +14,7 @@ nightwatch_config = {
           'browserstack.key': 'SBukT13jtljJiBWoBpHw',
           'os': 'OS X',
           'os_version': 'Mojave',
+          'build' : 'Provider Tests',
           'browser': 'Chrome',
           'browser_version': '78.0 beta',
           'resolution': '1920x1080'
