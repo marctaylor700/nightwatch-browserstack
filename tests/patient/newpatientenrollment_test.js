@@ -66,7 +66,7 @@ async function generateNewUserCredentials() {
     browser.useCss()
     //click first name field
     browser.expect.element(`[data-test-id='firstName']`).to.be.present;
-    browser.click(`[data-test-id='firstName']`).to.be.present;
+    browser.click(`[data-test-id='firstName']`)
     //input first name
     browser.setValue(`[data-test-id='firstName']`, "Marc")
     //Click last name field
@@ -81,7 +81,7 @@ async function generateNewUserCredentials() {
     browser.setValue(`[data-test-id='addressLine1']`, "715 s 54th street")
     //click city
     browser.expect.element(`[data-test-id='city']`).to.be.present;
-    browser.click(`[data-test-id='city']`).to.be.present;
+    browser.click(`[data-test-id='city']`)
     //set city
     browser.setValue(`[data-test-id='city']`, "Mesa")
     //state (wait for Ryan's update)
