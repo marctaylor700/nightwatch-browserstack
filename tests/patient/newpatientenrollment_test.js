@@ -85,11 +85,13 @@ async function generateNewUserCredentials() {
     //set city
     browser.setValue(`[data-test-id='city']`, "Mesa")
     //state (wait for Ryan's update)
+    browser.useXpath()
     browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[4]/div/div/div/div[1]/input').to.be.present;
     browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[4]/div/div/div/div[1]/input")
     //click Arizona
     browser.expect.element('/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[3]/span').to.be.present;
     browser.click("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[3]/span")
+    browser.useCss()
     //click zip code
     browser.expect.element(`[data-test-id='zipCode']`).to.be.present;
     browser.click(`[data-test-id='zipCode']`)
