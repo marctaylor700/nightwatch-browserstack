@@ -23,29 +23,29 @@ async function generateNewUserCredentials() {
   async function registerNewPatient(browser, newUserCredentials) {
     console.log("starting registerNewPatient");
     browser.useCss()
-    browser.expect.element('.eVisitAppNavigationButtons > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1)').to.be.present;
-    browser.click('.eVisitAppNavigationButtons > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1)')  
+    //i don't have an account
+    browser.expect.element(`[data-test-id='dontHaveAccount']`).to.be.present;
+    //click i don't have an account
+    browser.expect.element(`[data-test-id='dontHaveAccount']`).to.be.present;
     browser.pause(1000)
-    //click email
-    browser.expect.element(`input[name='email']`).to.be.present;
-    browser.click(`input[name='email']`)
-    //input email
-    browser.setValue(`input[name='email']`, newUserCredentials.email)
-    browser.useXpath()
-    //input pass
-    browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[2]/div/div[1]/input").to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[2]/div/div[1]/input")
-    browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[2]/div/div[1]/input", newUserCredentials.password)
-    //confirm pass
-    browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[3]/div/div[1]/input").to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[3]/div/div[1]/input")
-    browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[3]/div/div[1]/input", newUserCredentials.password)
+    //expect, click, and input email
+    browser.expect.element(`[data-test-id='email']`).to.be.present;
+    browser.click(`[data-test-id='email']`)
+    browser.setValue(`[data-test-id='email']`, newUserCredentials.email)
+    //expect, click, and input password
+    browser.expect.element(`[data-test-id='password']`).to.be.present;
+    browser.click(`[data-test-id='password']`)
+    browser.setValue(`[data-test-id='password']`, newUserCredentials.password)
+    //expect, click, and input password 
+    browser.expect.element(`[data-test-id='confirmPassword']`).to.be.present;
+    browser.click(`[data-test-id='confirmPassword']`)
+    browser.setValue(`[data-test-id='confirmPassword']`, newUserCredentials.password)
     //click on the terms checkbox
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[4]/div/div/div[1]/div').to.be.present;
-    browser.click('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[4]/div/div/div[1]/div')
+    browser.expect.element(`[data-test-id='tos0']`).to.be.present;
+    browser.click(`[data-test-id='tos0']`)
     //click on the register button
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[5]/div/div[1]/div/div').to.be.present;
-    browser.click('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div[2]/div/div/div/div[2]/form/div[5]/div/div[1]/div/div') 
+    browser.expect.element(`[data-test-id='tos0']`).to.be.present;
+    browser.click(`[data-test-id='tos0']`) 
     browser.pause(20000)
   }
 
@@ -53,10 +53,10 @@ async function generateNewUserCredentials() {
   //geolocation page
   async function geoLocationPage(browser) {
     console.log("starting geolocation page")
-    browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[3]/div/div/div[1]/div").to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[3]/div/div/div[1]/div")
-    browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div").to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div")
+    browser.expect.element(`[data-test-id='confirmCheckBox']`).to.be.present;
+    browser.click(`[data-test-id='confirmCheckBox']`)
+    browser.expect.element(`[data-test-id='continue']`).to.be.present;
+    browser.click(`[data-test-id='continue']`)
     browser.pause(6000)
   }
 
@@ -65,58 +65,58 @@ async function generateNewUserCredentials() {
     console.log("starting enrollNewPatient");
     browser.useCss()
     //click first name field
-    browser.expect.element(`input[name='given-name']`).to.be.present;
-    browser.click(`input[name='given-name']`)
+    browser.expect.element(`[data-test-id='firstName']`).to.be.present;
+    browser.click(`[data-test-id='firstName']`).to.be.present;
     //input first name
-    browser.setValue(`input[name='given-name']`, "Marc")
+    browser.setValue(`[data-test-id='firstName']`, "Marc")
     //Click last name field
-    browser.expect.element(`input[name='family-name']`).to.be.present;
-    browser.click(`input[name='family-name']`)
+    browser.expect.element(`[data-test-id='lastName']`).to.be.present;
+    browser.click(`[data-test-id='lastName']`)
     //input last name
-    browser.setValue(`input[name='family-name']`, "Taylor")
-    browser.useXpath()
+    browser.setValue(`[data-test-id='lastName']`, "Taylor")
     //click address field
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[1]/div/div/div[1]/input').to.be.present;
-    browser.click('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[1]/div/div/div[1]/input')
+    browser.expect.element(`[data-test-id='addressLine1']`).to.be.present;
+    browser.click(`[data-test-id='addressLine1']`)
     //input address
-    browser.setValue('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[1]/div/div/div[1]/input', "715 s 54th street")
+    browser.setValue(`[data-test-id='addressLine1']`, "715 s 54th street")
     //click city
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[3]/div/div[1]/input').to.be.present;
-    browser.click('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[3]/div/div[1]/input')
+    browser.expect.element(`[data-test-id='city']`).to.be.present;
+    browser.click(`[data-test-id='city']`).to.be.present;
     //set city
-    browser.setValue('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[3]/div/div[1]/input', "Mesa")
-    //state
+    browser.setValue(`[data-test-id='city']`, "Mesa")
+    //state (wait for Ryan's update)
     browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[4]/div/div/div/div[1]/input').to.be.present;
     browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[4]/div/div/div/div[1]/input")
     //click Arizona
     browser.expect.element('/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[3]/span').to.be.present;
     browser.click("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[3]/span")
     //click zip code
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[5]/div/div[1]/input').to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[5]/div/div[1]/input")
+    browser.expect.element(`[data-test-id='zipCode']`).to.be.present;
+    browser.click(`[data-test-id='zipCode']`)
     //set zip code
-    browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[4]/div/div/div[5]/div/div[1]/input" , "85206")
+    browser.setValue(`[data-test-id='zipCode']`, "85206")
     //click mobile phone
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[5]/div/div[1]/input').to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[5]/div/div[1]/input")
+    browser.expect.element(`[data-test-id='phoneCell']`).to.be.present;
+    browser.click(`[data-test-id='phoneCell']`)
     //set cell phone number
-    browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[5]/div/div[1]/input", "4802891576")
+    browser.setValue(`[data-test-id='phoneCell']`, "4802891576")
     //click date of birth
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[6]/div/div[1]/input').to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[6]/div/div[1]/input")
+    browser.expect.element(`[data-test-id='dob']`).to.be.present;
+    browser.click(`[data-test-id='dob']`)
     //set date of birth 
-    browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[6]/div/div[1]/input", "02141988")
-    //sex field
+    browser.setValue(`[data-test-id='dob']`, "02141988")
+    //sex field (wait for Ryan's update)
     browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[7]/div/div/div/div[1]/input').to.be.present;
     browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[7]/div/div/div/div[1]/input")
-    //click male sex
     browser.expect.element('/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[1]').to.be.present;
     browser.click("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[1]")
-    //browser.useCss()
     browser.pause(3000)
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div').to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div")
-    //browser.useXpath()
+    //family account check box (leaving commented until we need to enable it)
+    // browser.expect.element(`[data-test-id='familyAccountCheckBox']`).to.be.present;
+    // browser.click(`[data-test-id='dob']`)
+    //continue button
+    browser.expect.element(`[data-test-id='continue']`).to.be.present;
+    browser.click(`[data-test-id='continue']`)
     browser.pause(5000)
 
 }
@@ -124,16 +124,16 @@ async function generateNewUserCredentials() {
 //start the profile picture task
 async function profilePicture(browser) {
     console.log("starting profile picture page")
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[3]/div[3]/div/div/span').to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[3]/div[3]/div/div/span")
+    browser.expect.element(`[data-test-id='skip']`).to.be.present;
+    browser.click(`[data-test-id='skip']`)
     browser.pause(5000)
   }
   
   //start the dependent page task
   async function dependentPage(browser) {
     console.log("starting dependent page")
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div').to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div")
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
     browser.pause(5000)
   
   }
@@ -141,16 +141,16 @@ async function profilePicture(browser) {
   //start the insurance page task
   async function insurancePage(browser) {
     console.log("starting insurance page")
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div').to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div[2]/div/div/div[1]/div")
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
     browser.pause(5000)
   }
 
   //start the welcome page task 
   async function welcomePage(browser) {
     console.log("starting welcome page")
-    browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div/span').to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[3]/div/div/div/span")
+    browser.expect.element(`[data-test-id='continue']`).to.be.present;
+    browser.click(`[data-test-id='continue']`)
     browser.pause(10000)
   }
 
