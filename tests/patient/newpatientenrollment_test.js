@@ -44,8 +44,8 @@ async function generateNewUserCredentials() {
     browser.expect.element(`[data-test-id='tos0']`).to.be.present;
     browser.click(`[data-test-id='tos0']`)
     //click on the register button
-    browser.expect.element(`[data-test-id='tos0']`).to.be.present;
-    browser.click(`[data-test-id='tos0']`) 
+    browser.expect.element(`[data-test-id='register']`).to.be.present;
+    browser.click(`[data-test-id='register']`) 
     browser.pause(20000)
   }
 
