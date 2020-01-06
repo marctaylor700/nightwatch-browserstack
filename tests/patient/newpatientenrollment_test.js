@@ -36,6 +36,7 @@ async function generateNewUserCredentials() {
     browser.expect.element(`[data-test-id='password']`).to.be.present;
     browser.click(`[data-test-id='password']`)
     browser.setValue(`[data-test-id='password']`, newUserCredentials.password)
+    browser.pause(3000)
     //expect, click, and input password 
     browser.expect.element(`[data-test-id='confirmPassword']`).to.be.present;
     browser.click(`[data-test-id='confirmPassword']`)
