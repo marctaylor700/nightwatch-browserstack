@@ -25,6 +25,7 @@ async function generateNewUserCredentials() {
     browser.useCss()
     //i don't have an account
     browser.expect.element(`[data-test-id='dontHaveAccount']`).to.be.present;
+    browser.click(`[data-test-id='dontHaveAccount']`)
     //click i don't have an account
     browser.expect.element(`[data-test-id='dontHaveAccount']`).to.be.present;
     browser.pause(1000)
