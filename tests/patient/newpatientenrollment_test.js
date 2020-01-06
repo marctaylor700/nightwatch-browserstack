@@ -108,6 +108,7 @@ async function generateNewUserCredentials() {
     //set date of birth 
     browser.setValue(`[data-test-id='dob']`, "02141988")
     //sex field (wait for Ryan's update)
+    browser.useXpath()
     browser.expect.element('/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[7]/div/div/div/div[1]/input').to.be.present;
     browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[7]/div/div/div/div[1]/input")
     browser.expect.element('/html/body/div/div/div/div[2]/div/div/div/div/div/div/div[1]').to.be.present;
@@ -117,6 +118,7 @@ async function generateNewUserCredentials() {
     // browser.expect.element(`[data-test-id='familyAccountCheckBox']`).to.be.present;
     // browser.click(`[data-test-id='dob']`)
     //continue button
+    browser.useCss()
     browser.expect.element(`[data-test-id='continue']`).to.be.present;
     browser.click(`[data-test-id='continue']`)
     browser.pause(5000)
