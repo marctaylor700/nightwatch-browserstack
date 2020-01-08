@@ -10,29 +10,28 @@ async function goToPracticeLoginPage(browser, handle) {
   async function patientLogin(browser) {
     console.log("starting provider login")
     browser.useCss()
-    //check for email field
-    browser.expect.element(`[data-test-id='emailTestID']`).to.be.present;
-    //set email
-    browser.setValue(`[data-test-id='emailTestID']`, "physician+nick@evisit.com")
-    //check for password field
-    browser.expect.element(`[data-test-id='passwordTestID']`).to.be.present;
-    //set password
-    browser.setValue(`[data-test-id='passwordTestID']`, "provider123")
-    // //login button
-    browser.expect.element(`[data-test-id='loginButtonTestID']`).to.be.present;
-    // //click login
-    browser.click(`[data-test-id='loginButtonTestID']`)
+    //check and set email
+    browser.expect.element(`[data-test-id='email']`).to.be.present;
+    browser.setValue(`[data-test-id='email']`, "marc+patient@evisit.com")
+    //check and set password
+    browser.expect.element(`[data-test-id='password']`).to.be.present;
+    browser.setValue(`[data-test-id='password']`, "patient123")
+    //expect and click login button
+    browser.expect.element(`[data-test-id='loginButton']`).to.be.present;
+    browser.click(`[data-test-id='loginButton']`)
     // //wait for page to load
     browser.pause(7000)
   }
-    //geolocation page
+  //geolocation page
   async function geoLocationPage(browser) {
     console.log("starting geolocation page")
-    browser.useXpath()
-    browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[3]/div/div/div[1]/div").to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[3]/div/div/div[1]/div")
-    browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div").to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[2]/div/div/div")
+    //check and click confirm checkbox
+    browser.expect.element(`[data-test-id='confirmCheckBox']`).to.be.present;
+    browser.click(`[data-test-id='confirmCheckBox']`)
+    //check and click continue button
+    browser.expect.element(`[data-test-id='continue']`).to.be.present;
+    browser.click(`[data-test-id='continue']`)
+    //pause
     browser.pause(6000)
   }
 
@@ -41,24 +40,26 @@ async function goToPracticeLoginPage(browser, handle) {
     console.log("starting request visit")
     //expect See Now on Nick Provider
     browser.useCss()
-    browser.expect.element("div.raTouchable:nth-child(5) > div:nth-child(4)").to.be.present;
-    browser.click("div.raTouchable:nth-child(5) > div:nth-child(4)")
+    browser.expect.element(`[data-test-id='seeNow2']`).to.be.present;
+    browser.click(`[data-test-id='seeNow2']`)
     browser.pause(6000)
     //short reason for request
-    browser.expect.element("div.eVisitAppFormFieldWrapper:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)").to.be.present;
-    browser.click("div.eVisitAppFormFieldWrapper:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)")
-    browser.setValue("div.eVisitAppFormFieldWrapper:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)", "test")
+    browser.expect.element(`[data-test-id='question0']`).to.be.present;
+    browser.click(`[data-test-id='question0']`)
+    browser.setValue(`[data-test-id='question0']`, "test")
     //description of illness
-    browser.expect.element("div.eVisitAppFormFieldWrapper:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)").to.be.present;
-    browser.click("div.eVisitAppFormFieldWrapper:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)")
-    browser.setValue("div.eVisitAppFormFieldWrapper:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)", "test")
-    browser.expect.element("div.raView:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)").to.be.present;
-    //click next
-    browser.click("div.raView:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)")
+    browser.expect.element(`[data-test-id='question1']`).to.be.present;
+    browser.click(`[data-test-id='question1']`)
+    browser.setValue(`[data-test-id='question1']`, "test")
+    //next button
+    browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
+    browser.click(`[data-test-id='submitNext']`)
     //pharmacy
     browser.pause(5000)
-    browser.expect.element(".eVisitAppNavigationButtons > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)").to.be.present;
-    browser.click(".eVisitAppNavigationButtons > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)")
+    browser.expect.element(`[data-test-id='pharmacyRow0']`).to.be.present;
+    browser.click(`[data-test-id='pharmacyRow0']`)
+    browser.expect.element(`[data-test-id='savePharmacy']`).to.be.present;
+    browser.click(`[data-test-id='savePharmacy']`)
     //cc page
     browser.pause(5000)
     browser.useXpath()
@@ -83,10 +84,10 @@ module.exports = {
       '@tags:' ['test']
     },
     'Visit request by current patient' : async function(browser) {
-      // goToPracticeLoginPage(browser, "ewellness")
-      //   .then(patientLogin(browser))
-      //   .then(geoLocationPage(browser))
-      //   .then(requestVisit(browser))
-      //   .then(browser.end());
+      goToPracticeLoginPage(browser, "ewellness")
+        .then(patientLogin(browser))
+        .then(geoLocationPage(browser))
+        .then(requestVisit(browser))
+        .then(browser.end());
     }, 
   };

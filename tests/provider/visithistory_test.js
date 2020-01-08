@@ -140,9 +140,9 @@ module.exports = {
     '@tags:' ['test']
   },
   'Provider Login - Verify Visit History Tab' : async function(browser) {
-    goToPracticeLoginPage(browser, "ewellness")
-      .then(providerLogin(browser))
-      .then(visitHistoryTab(browser))
-      .then(browser.end());
+    // goToPracticeLoginPage(browser, "ewellness")
+    //   .then(providerLogin(browser))
+    //   .then(visitHistoryTab(browser))
+    //   .then(browser.end());
   }, 
 };

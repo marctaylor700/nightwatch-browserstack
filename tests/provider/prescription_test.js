@@ -11,17 +11,17 @@ async function providerLogin(browser) {
     console.log("starting provider login")
     browser.useCss()
     //check for email field
-    browser.expect.element(`[data-test-id='emailTestID']`).to.be.present;
+    browser.expect.element(`[data-test-id='email']`).to.be.present;
     //set email
-    browser.setValue(`[data-test-id='emailTestID']`, "physician+nick@evisit.com")
+    browser.setValue(`[data-test-id='email']`, "physician+nick@evisit.com")
     //check for password field
-    browser.expect.element(`[data-test-id='passwordTestID']`).to.be.present;
+    browser.expect.element(`[data-test-id='password']`).to.be.present;
     //set password
-    browser.setValue(`[data-test-id='passwordTestID']`, "provider123")
+    browser.setValue(`[data-test-id='password']`, "provider123")
     // //login button
-    browser.expect.element(`[data-test-id='loginButtonTestID']`).to.be.present;
+    browser.expect.element(`[data-test-id='loginButton']`).to.be.present;
     // //click login
-    browser.click(`[data-test-id='loginButtonTestID']`)
+    browser.click(`[data-test-id='loginButton']`)
     // //wait for page to load
     browser.pause(7000)
   }
@@ -30,18 +30,22 @@ async function providerLogin(browser) {
     console.log("starting visit history tab test")
   browser.useCss()
   //visit history tab
-  browser.expect.element(`[data-test-id='visitHistoryTabTestID']`).to.be.present;
+  browser.expect.element(`[data-test-id='visitHistoryTab']`).to.be.present;
   //click tab
-  browser.click(`[data-test-id='visitHistoryTabTestID']`)
+  browser.click(`[data-test-id='visitHistoryTab']`)
   //wait for visit history tab to load
   browser.pause(5000)
   //click on visit state
-  // browser.expect.element(`input[name='completedStatus']`).to.be.present;
-  // browser.click(`input[name='completedStatus']`)
-  // browser.pause(2000)
-  // browser.expect.element(".eVisitAppComponent_0000000000362").to.be.present;
-  // //browser.expect.element(`span[class='RAText']`).text.to.equal('All');
-  // browser.click(`div[class='raView eVisitAppPopupMenuItem eVisitAppCo`)
+  browser.expect.element(`[data-test-id='visitCompletedStatusFilterTestID']`).to.be.present;
+  //click on all visit state
+  browser.click(`[data-test-id='allCompletedStatusOptionTestID']`)
+  //pause
+  browser.pause(2000)
+  //expect and click date range field
+  browser.expect.element(`[data-test-id='visitDateRangeFilterTestID']`).to.be.present;
+  browser.click(`[data-test-id='visitDateRangeFilterTestID']`)
+  //click last 30 days
+  browser.click(`[data-test-id='lastThirtyDays']`)
   // browser.pause(5000)
   }
 

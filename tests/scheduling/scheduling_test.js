@@ -17,17 +17,17 @@ async function providerLogin(browser) {
   console.log("starting provider login")
   browser.useCss()
   //check for email field
-  browser.expect.element(`[data-test-id='emailTestID']`).to.be.present;
+  browser.expect.element(`[data-test-id='email']`).to.be.present;
   //set email
-  browser.setValue(`[data-test-id='emailTestID']`, "physician+nick@evisit.com")
+  browser.setValue(`[data-test-id='email']`, "physician+nick@evisit.com")
   //check for password field
-  browser.expect.element(`[data-test-id='passwordTestID']`).to.be.present;
+  browser.expect.element(`[data-test-id='password']`).to.be.present;
   //set password
-  browser.setValue(`[data-test-id='passwordTestID']`, "provider123")
+  browser.setValue(`[data-test-id='password']`, "provider123")
   // //login button
-  browser.expect.element(`[data-test-id='loginButtonTestID']`).to.be.present;
+  browser.expect.element(`[data-test-id='loginButton']`).to.be.present;
   // //click login
-  browser.click(`[data-test-id='loginButtonTestID']`)
+  browser.click(`[data-test-id='loginButton']`)
   // //wait for page to load
   browser.pause(7000)
 }
@@ -37,9 +37,9 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.useCss()
   console.log("starting scheduling test")
   //expect scheduling tab
-  browser.expect.element("div.raTouchable:nth-child(4)").to.be.present;
+  browser.expect.element(`[data-test-id='schedulingTab']`).to.be.present;
   //click scheduling tab
-  browser.click("div.raTouchable:nth-child(4)")
+  browser.click(`[data-test-id='schedulingTab']`)
   //pause
   browser.pause(5000)
   //expect visit type dropdown
