@@ -64,10 +64,10 @@ module.exports = {
       browser.resizeWindow(1920, 1080);
       '@tags:' ['test']
     },
-    'Provider Login - Verify Visit History Tab' : async function(browser) {
-      goToPracticeLoginPage(browser, "ewellness")
-        .then(providerLogin(browser))
-        .then(visitHistoryTab(browser))
-        // .then(browser.end());
+    // 'Provider Login - Verify Visit History Tab' : async function(browser) {
+    //   goToPracticeLoginPage(browser, "ewellness")
+    //     .then(providerLogin(browser))
+    //     .then(visitHistoryTab(browser))
+    //     // .then(browser.end());
     }, 
   };
