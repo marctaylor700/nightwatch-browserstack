@@ -47,7 +47,11 @@ async function providerLogin(browser) {
   browser.click(`[data-test-id='visitDateRangeFilterTestID']`)
   //click last 30 days
   browser.click(`[data-test-id='lastThirtyDays']`)
-  // browser.pause(5000)
+  browser.pause(5000)
+  //expect patient row
+  browser.expect.element(`[data-test-id='rowClick0']`).to.be.present;
+  browser.click(`[data-test-id='rowClick0']`)
+  browser.pause(5000)
   }
 
 
