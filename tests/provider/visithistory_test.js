@@ -52,6 +52,33 @@ async function providerLogin(browser) {
   browser.expect.element(`[data-test-id='rowClick0']`).to.be.present;
   browser.click(`[data-test-id='rowClick0']`)
   browser.pause(5000)
+  //visit details tab
+  browser.expect.element(`[data-test-id='visitDetailsSideBarTab']`).to.be.present;
+  browser.click(`[data-test-id='visitDetailsSideBarTab']`)
+  //paitient profile tab
+  browser.expect.element(`[data-test-id='patientProfileSideBarTab']`).to.be.present;
+  browser.click(`[data-test-id='patientProfileSideBarTab']`)
+  //attachment tab 
+  browser.expect.element(`[data-test-id='attachmentsSideBarTab']`).to.be.present;
+  browser.click(`[data-test-id='attachmentsSideBarTab']`)
+  //chat tab
+  browser.expect.element(`[data-test-id='chatSideBarTab']`).to.be.present;
+  browser.click(`[data-test-id='chatSideBarTab']`)
+  //click out of sidebare
+  browser.click(`[data-test-id='rowClick0']`)
+  //click my account 
+  browser.click(`[data-test-id='userProfileButton']`)
+  //click logout
+  browser.click(`[data-test-id='logoutMenuItem']`)
+  //confirm logout
+  browser.click(`[data-test-id='confirmModalConfirm']`)
+  //pause
+  browser.pause(5000)
+  
+
+  
+  
+
   }
 
 
