@@ -37,6 +37,7 @@ async function providerLogin(browser) {
   browser.pause(5000)
   //click on visit state
   browser.expect.element(`[data-test-id='visitCompletedStatusFilterTestID']`).to.be.present;
+  browser.click(`[data-test-id='visitCompletedStatusFilterTestID']`)
   //click on all visit state
   browser.click(`[data-test-id='allCompletedStatusOptionTestID']`)
   //pause
