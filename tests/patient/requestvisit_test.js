@@ -62,17 +62,36 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.click(`[data-test-id='savePharmacy']`)
     //cc page
     browser.pause(5000)
-    browser.useXpath()
-    browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[2]/div/div[2]/div/div[1]/input").to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[2]/div/div[2]/div/div[1]/input")
-    browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[2]/div/div[2]/div/div[1]/input","4242424242424242")
-    browser.useCss()
-    browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[2]/div/div[3]/div/div[1]/input").to.be.present;
-    browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[2]/div/div[3]/div/div[1]/input")
-    browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div/div[1]/div/div/div/div/div/form/div[2]/div/div[3]/div/div[1]/input", "022020")
-    browser.expect.element("div.eVisitAppComponent_0000000007209:nth-child(2) > input:nth-child(1)").to.be.present;
-    browser.click("div.eVisitAppComponent_0000000007209:nth-child(2) > input:nth-child(1)")
-    browser.setValue("div.eVisitAppComponent_0000000007209:nth-child(2) > input:nth-child(1)", "424")
+    //expect and enter cc number
+    browser.expect.element(`[data-test-id='ccNumber']`).to.be.present;
+    browser.click(`[data-test-id='ccNumber']`)
+    browser.setValue(`[data-test-id='ccNumber']`,"4242424242424242")
+    //expect and enter expiration
+    browser.expect.element(`[data-test-id='expiryDate']`).to.be.present;
+    browser.click(`[data-test-id='expiryDate']`)
+    browser.setValue(`[data-test-id='expiryDate']`, "022020")
+    //expect and set cvc for cc
+    browser.expect.element(`[data-test-id='cvcField']`).to.be.present;
+    browser.click(`[data-test-id='cvcField']`)
+    browser.setValue(`[data-test-id='cvcField']`, "424")
+    //expect and click submit button on cc page
+    browser.expect.element(`[data-test-id='saveCreditCard']`).to.be.present;
+    browser.click(`[data-test-id='saveCreditCard']`)
+    browser.pause(2000)
+    //expect and click agreement checkbox
+    browser.expect.element(`[data-test-id='agreementCheckbox']`).to.be.present;
+    browser.click(`[data-test-id='agreementCheckbox']`)
+    //expect and click next button on confirmation page
+    browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
+    browser.click(`[data-test-id='submitNext']`)
+    browser.pause(5000)
+    //expect and click cancel button 
+    browser.expect.element(`[data-test-id='cancelRequeueVisit']`).to.be.present;
+    browser.click(`[data-test-id='cancelRequeueVisit']`)
+    //expect and click yes to cancel visit
+    browser.expect.element(`[data-test-id='confirmModalConfirm']`).to.be.present;
+    browser.click(`[data-test-id='confirmModalConfirm']`)
+    browser.pause(2000)
 
 
   }
