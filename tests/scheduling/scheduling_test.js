@@ -100,6 +100,7 @@ async function schedulingTab(browser, newUserCredentials) {
   //click time field
   browser.expect.element(`[data-test-id='editAppointmentTime']`).to.be.present;
   browser.click(`[data-test-id='editAppointmentTime']`)
+  browser.pause(2000)
   //set time
   browser.expect.element(`[data-test-id='timeSlot8:15am']`).to.be.present;
   browser.click(`[data-test-id='timeSlot8:15am']`)
