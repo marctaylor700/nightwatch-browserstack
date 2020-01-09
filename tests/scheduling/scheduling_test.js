@@ -109,7 +109,7 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.expect.element(`[data-test-id='scheduleEditedAppointment']`).to.be.present;
   browser.click(`[data-test-id='scheduleEditedAppointment']`)
   //pause
-  browser.pause(3000)
+  browser.pause(10000)
   browser.expect.element(`[data-test-id='visitRowDecline0']`).to.be.present;
   browser.click(`[data-test-id='visitRowDecline0']`)
   //click yes on modal to cancel
