@@ -85,6 +85,8 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
     browser.click(`[data-test-id='submitNext']`)
     browser.pause(5000)
+    //send esc key (workaround)
+    browse.setValue(ESC)
     //expect and click cancel button 
     browser.expect.element(`[data-test-id='cancelRequeueVisit']`).to.be.present;
     browser.click(`[data-test-id='cancelRequeueVisit']`)
