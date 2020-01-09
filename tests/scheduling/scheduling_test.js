@@ -81,13 +81,13 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.expect.element(`[data-test-id='editAppointmentProvider']`).to.be.present;
   browser.click(`[data-test-id='editAppointmentProvider']`)
   //input nick
-  browser.setValue(`[data-test-id='editAppointmentProvider']`, "Nick")
+  //browser.setValue(`[data-test-id='editAppointmentProvider']`, "Nick")
   //pause
   browser.pause(1000)
   //expect nick's provider
-  browser.expect.element(`[data-test-id='rowClick0']`).to.be.present;
+  browser.expect.element(`[data-test-id='rowClick3']`).to.be.present;
   //click nick
-  browser.click(`[data-test-id='rowClick0']`)
+  browser.click(`[data-test-id='rowClick3']`)
   //expect date field
   browser.expect.element(`[data-test-id='editAppointmentDate']`).to.be.present;
   browser.click(`[data-test-id='editAppointmentDate']`)
