@@ -178,6 +178,30 @@ async function profilePicture(browser) {
     browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
     browser.click(`[data-test-id='submitNext']`)
     browser.pause(5000)
+    //known allergies page
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
+    //medication allergies page
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
+    //medical conditions page
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
+    //family medical history
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
+    browser.pause(2000)
+    //medications page
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
+    //medical procedures page
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
+    //smoking alcohol page
+    browser.expect.element(`[data-test-id='no']`).to.be.present;
+    browser.click(`[data-test-id='no']`)
+    browser.expect.element(`$$('[data-test-id='no']')[1]`).to.be.present;
+    browser.click(`[data-test-id='no']`)
     //expect and click agreement checkbox
     browser.expect.element(`[data-test-id='agreementCheckbox']`).to.be.present;
     browser.click(`[data-test-id='agreementCheckbox']`)

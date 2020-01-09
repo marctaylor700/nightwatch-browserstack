@@ -37,72 +37,57 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.useCss()
   console.log("starting scheduling test")
   //expect scheduling tab
-  browser.expect.element(`[data-test-id='schedulingTab']`).to.be.present;
+  browser.expect.element(`[data-test-id='appointmentsTab']`).to.be.present;
   //click scheduling tab
-  browser.click(`[data-test-id='schedulingTab']`)
+  browser.click(`[data-test-id='appointmentsTab']`)
   //pause
   browser.pause(5000)
-  //expect visit type dropdown
-  browser.expect.element(".eVisitAppTextFieldIconContainer").to.be.present;
-  //click visit type dropdown
-  browser.click(".eVisitAppTextFieldIconContainer")
+  //expect and click visit type dropdown
+  browser.expect.element(`[data-test-id='editAppointmentVisitType']`).to.be.present;
+  browser.click(`[data-test-id='editAppointmentVisitType']`)
   //pause
   browser.pause(2000)
-  //expect scheduled visit 
-  browser.expect.element("div.eVisitAppPopupMenuItem:nth-child(2)").to.be.present;
-  //click scheduled visit
-  browser.click("div.eVisitAppPopupMenuItem:nth-child(2)")
-  browser.useXpath()
-  //expect patient dropdown
-  browser.expect.element(`/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[2]/div/div/div/div[1]/input`).to.be.present;
-  //click patient dropdown
-  browser.click(`/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[2]/div/div/div/div[1]/input`)
-  browser.useCss()
-  //expect create new patient
-  browser.expect.element(".eVisitAppPopupInternalContainer > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)").to.be.present;
-  //click new patient
-  browser.click(".eVisitAppPopupInternalContainer > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)")
-  browser.useXpath()
-  //expect first name
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[1]/div/div[1]/input").to.be.present;
-  //click first name
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[1]/div/div[1]/input")
-  //insert first name
-  browser.setValue("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[1]/div/div[1]/input", "Marc")
-  //expect last name
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[2]/div/div[1]/input").to.be.present;
-  //click last name
-  browser.setValue("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[2]/div/div[1]/input", "Taylor")
-  //expect date of birth field
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[3]/div/div[1]/input").to.be.present;
-  //click dob field
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[3]/div/div[1]/input")
-  //set dob
-  browser.setValue("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[3]/div/div[1]/input", "02141988")
-  //expect email field
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[4]/div/div[1]/input").to.be.present;
-  //click email field
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[4]/div/div[1]/input")
-  //set email
-  browser.setValue("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[1]/div/form/div[4]/div/div[1]/input", newUserCredentials.email)
-  //expect create patient 
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[1]/div").to.be.present;
-  //click create patient
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[1]/div")
+  //expect and click schedule visit
+  browser.expect.element(`[data-test-id='ScheduleVisitOption']`).to.be.present;
+  browser.click(`[data-test-id='ScheduleVisitOption']`)
+  //expect and click patient dropdown
+  browser.expect.element(`[data-test-id='editAppointmentPatient']`).to.be.present;
+  browser.click(`[data-test-id='editAppointmentPatient']`)
+  //expect and click create new patient
+  browser.expect.element(`[data-test-id='createPatient']`).to.be.present;
+  browser.click(`[data-test-id='createPatient']`)
+  //expect click and set first name
+  browser.expect.element(`[data-test-id='formFirstName']`).to.be.present;
+  browser.click(`[data-test-id='formFirstName']`)
+  browser.setValue(`[data-test-id='formFirstName']`, "Marc")
+  //expect click and set last name
+  browser.expect.element(`[data-test-id='formLastName']`).to.be.present;
+  browser.click(`[data-test-id='formLastName']`)
+  browser.setValue(`[data-test-id='formLastName']`, "Taylor")
+  //expect click and set dob field
+  browser.expect.element(`[data-test-id='formDOB']`).to.be.present;
+  browser.click(`[data-test-id='formDOB']`)
+  browser.setValue(`[data-test-id='formDOB']`, "02141988")
+  //expect click and set email
+  browser.expect.element(`[data-test-id='formEmail']`).to.be.present;
+  browser.click(`[data-test-id='formEmail']`)
+  browser.setValue(`[data-test-id='formEmail']`, newUserCredentials.email)
+  //expect create patient and click 
+  browser.expect.element(`[data-test-id='createPatient']`).to.be.present;
+  browser.click(`[data-test-id='createPatient']`)
   //pause
-  browser.pause(5000)
-  //expect provider field
-  browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[3]/div/div/div/div[1]").to.be.present;
-  //click provider field
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[3]/div/div/div/div[1]")
+  browser.pause(2000)
+  //expect provider field and click
+  browser.expect.element(`[data-test-id='editAppointmentProvider']`).to.be.present;
+  browser.click(`[data-test-id='editAppointmentProvider']`)
   //input nick
-  //browser.setValue("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[3]/div/div/div/div[1]", "Nick")
+  browser.setValue(`[data-test-id='editAppointmentProvider']`, "Nick")
   //pause
-  browser.pause(3000)
+  browser.pause(2000)
   //expect nick's provider
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div[2]/span[2]").to.be.present;
+  browser.expect.element(`[data-test-id='rowClick0']`).to.be.present;
   //click nick
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div[2]/span[2]")
+  browser.click(`[data-test-id='rowClick0']`)
   //expect date field
   browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[4]/div/div/div/div/div[1]/input").to.be.present;
   //click date field
