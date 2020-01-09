@@ -96,8 +96,8 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.click(`[data-test-id='calendarNextMonth']`)
   //click a date
   browser.pause(2000)
-  browser.expect.element(`[data-test-id='calendarDay14']`).to.be.present;
-  browser.click(`[data-test-id='calendarDay14']`)
+  browser.expect.element(`[data-test-id='calendarDay7']`).to.be.present;
+  browser.click(`[data-test-id='calendarDay7']`)
   //click time field
   browser.expect.element(`[data-test-id='editAppointmentTime']`).to.be.present;
   browser.click(`[data-test-id='editAppointmentTime']`)
@@ -109,6 +109,8 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.expect.element(`[data-test-id='scheduleEditedAppointment']`).to.be.present;
   browser.click(`[data-test-id='scheduleEditedAppointment']`)
   //pause
+  browser.pause(10000)
+  browser.refresh()
   browser.pause(10000)
   //date filter
   browser.expect.element(`[data-test-id='visitDateRangeFilterTestID']`).to.be.present;
