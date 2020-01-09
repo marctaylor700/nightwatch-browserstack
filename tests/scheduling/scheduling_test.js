@@ -76,58 +76,45 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.expect.element(`[data-test-id='createPatient']`).to.be.present;
   browser.click(`[data-test-id='createPatient']`)
   //pause
-  browser.pause(2000)
+  browser.pause(1000)
   //expect provider field and click
   browser.expect.element(`[data-test-id='editAppointmentProvider']`).to.be.present;
   browser.click(`[data-test-id='editAppointmentProvider']`)
   //input nick
   browser.setValue(`[data-test-id='editAppointmentProvider']`, "Nick")
   //pause
-  browser.pause(2000)
+  browser.pause(1000)
   //expect nick's provider
   browser.expect.element(`[data-test-id='rowClick0']`).to.be.present;
   //click nick
   browser.click(`[data-test-id='rowClick0']`)
   //expect date field
-  browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[4]/div/div/div/div/div[1]/input").to.be.present;
-  //click date field
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[4]/div/div/div/div/div[1]/input")
-  browser.useCss()
-  //expect one date. need to figure out how to make this dynamic so the date can be called to any date we would want. 
-  browser.expect.element(".eVisitAppPopupMenuContentContainer > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(5) > div:nth-child(6) > span:nth-child(1) > span:nth-child(1)").to.be.present;
-  //click date
-  browser.click(".eVisitAppPopupMenuContentContainer > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(5) > div:nth-child(6) > span:nth-child(1) > span:nth-child(1)")
-  //expect time field
-  browser.useXpath()
-  browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[5]/div/div/div/div/div[1]/input").to.be.present;
+  browser.expect.element(`[data-test-id='editAppointmentDate']`).to.be.present;
+  browser.click(`[data-test-id='editAppointmentDate']`)
+  //click next month
+  browser.expect.element(`[data-test-id='calendarNextMonth']`).to.be.present;
+  browser.click(`[data-test-id='calendarNextMonth']`)
+  //click a date
+  browser.expect.element(`[data-test-id='calendarDay14']`).to.be.present;
+  browser.click(`[data-test-id='calendarDay14']`)
   //click time field
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[5]/div/div/div/div/div[1]/input")
-  //expect 8am time
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div[5]/div").to.be.present;
-  //click 8am time
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div[5]/div")
-  //expect schedule visit button
-  browser.expect.element("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[6]/div/div").to.be.present;
-  //click schedule visit 
-  browser.click("/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div[1]/form/div[6]/div/div")
+  browser.expect.element(`[data-test-id='editAppointmentTime']`).to.be.present;
+  browser.click(`[data-test-id='editAppointmentTime']`)
+  //set time
+  browser.expect.element(`[data-test-id='timeSlot8:15am']`).to.be.present;
+  browser.click(`[data-test-id='timeSlot8:15am']`)
+  //schedule appointment
+  browser.expect.element(`[data-test-id='scheduleEditedAppointment']`).to.be.present;
+  browser.click(`[data-test-id='scheduleEditedAppointment']`)
   //pause
-  browser.pause(9000)
-  browser.useCss()
-  //expect decline button to cancel the visit 
-  browser.expect.element('div.eVisitAppIconButton:nth-child(1) > div:nth-child(1)').to.be.present;
-  //click cancel button
-  browser.click("div.eVisitAppIconButton:nth-child(1) > div:nth-child(1)")
-  //expect yes no option
-  browser.pause(2000)
-  browser.useXpath()
-  browser.expect.element("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div/div/div[3]/div[3]/div").to.be.present;
-  //click yes
-  browser.click("/html/body/div/div/div/div[2]/div/div/div/div/div/div/div/div/div[3]/div[3]/div")
+  browser.pause(3000)
+  browser.expect.element(`[data-test-id='visitRowDecline0']`).to.be.present;
+  browser.click(`[data-test-id='visitRowDecline0']`)
+  //click yes on modal to cancel
+  browser.expect.element(`[data-test-id='confirmModalConfirm']`).to.be.present;
+  browser.click(`[data-test-id='confirmModalConfirm']`)
   //pause
-  browser.pause(9000)
-
-  
-
+  browser.pause(5000)
 }
 
 // Basically the below stuff runs everything. 
