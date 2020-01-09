@@ -37,9 +37,9 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.useCss()
   console.log("starting scheduling test")
   //expect scheduling tab
-  browser.expect.element(`[data-test-id='appointmentsTab']`).to.be.present;
+  browser.expect.element(`[data-test-id='schedulingTab']`).to.be.present;
   //click scheduling tab
-  browser.click(`[data-test-id='appointmentsTab']`)
+  browser.click(`[data-test-id='schedulingTab']`)
   //pause
   browser.pause(5000)
   //expect and click visit type dropdown
