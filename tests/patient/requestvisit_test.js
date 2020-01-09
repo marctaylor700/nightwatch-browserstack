@@ -98,8 +98,6 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.expect.element(`[data-test-id='confirmModalConfirm']`).to.be.present;
     browser.click(`[data-test-id='confirmModalConfirm']`)
     browser.pause(2000)
-
-
   }
 
   // Basically the below stuff runs everything. 
