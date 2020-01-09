@@ -95,6 +95,7 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.expect.element(`[data-test-id='calendarNextMonth']`).to.be.present;
   browser.click(`[data-test-id='calendarNextMonth']`)
   //click a date
+  browser.pause(2000)
   browser.expect.element(`[data-test-id='calendarDay14']`).to.be.present;
   browser.click(`[data-test-id='calendarDay14']`)
   //click time field
