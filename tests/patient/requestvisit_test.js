@@ -55,11 +55,11 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
     browser.click(`[data-test-id='submitNext']`)
     //pharmacy
-    browser.pause(5000)
-    browser.expect.element(`[data-test-id='pharmacyRow0']`).to.be.present;
-    browser.click(`[data-test-id='pharmacyRow0']`)
-    browser.expect.element(`[data-test-id='savePharmacy']`).to.be.present;
-    browser.click(`[data-test-id='savePharmacy']`)
+    // browser.pause(5000)
+    // browser.expect.element(`[data-test-id='pharmacyRow0']`).to.be.present;
+    // browser.click(`[data-test-id='pharmacyRow0']`)
+    // browser.expect.element(`[data-test-id='savePharmacy']`).to.be.present;
+    // browser.click(`[data-test-id='savePharmacy']`)
     //cc page
     browser.pause(5000)
     //expect and enter cc number
