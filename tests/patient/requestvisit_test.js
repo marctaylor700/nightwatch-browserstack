@@ -8,7 +8,7 @@ async function goToPracticeLoginPage(browser, handle) {
   }
 
   async function patientLogin(browser) {
-    console.log("starting provider login")
+    console.log("starting patient login")
     browser.useCss()
     //check and set email
     browser.expect.element(`[data-test-id='email']`).to.be.present;
