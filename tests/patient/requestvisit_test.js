@@ -87,6 +87,10 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.pause(5000)
     //send esc key (workaround)
     browser.keys([browser.Keys.ESCAPE])
+    browser.pause(2000)
+    //close notification modal
+    browser.expect.element(`[data-test-id='visitNotificationPreferencesModalConfirm']`).to.be.present;
+    browser.click(`[data-test-id='visitNotificationPreferencesModalConfirm']`)
     //expect and click cancel button 
     browser.expect.element(`[data-test-id='cancelRequeueVisit']`).to.be.present;
     browser.click(`[data-test-id='cancelRequeueVisit']`)
