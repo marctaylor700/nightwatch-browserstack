@@ -114,6 +114,7 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.expect.element(`[data-test-id='visitDateRangeFilterTestID']`).to.be.present;
   browser.click(`[data-test-id='visitDateRangeFilterTestID']`)
   browser.click(`[data-test-id='nextThirtyDays']`)
+  browser.pause(3000)
   //cancel visit
   browser.expect.element(`[data-test-id='visitRowDecline0']`).to.be.present;
   browser.click(`[data-test-id='visitRowDecline0']`)
