@@ -158,6 +158,48 @@ async function profilePicture(browser) {
     browser.pause(10000)
   }
 
+   //request visit
+   async function requestVisit(browser) {
+    console.log("starting request visit")
+    //expect See Now on Nick Provider
+    browser.useCss()
+    browser.expect.element(`[data-test-id='seeNow2']`).to.be.present;
+    browser.click(`[data-test-id='seeNow2']`)
+    browser.pause(6000)
+    //short reason for request
+    browser.expect.element(`[data-test-id='question0']`).to.be.present;
+    browser.click(`[data-test-id='question0']`)
+    browser.setValue(`[data-test-id='question0']`, "test")
+    //description of illness
+    browser.expect.element(`[data-test-id='question1']`).to.be.present;
+    browser.click(`[data-test-id='question1']`)
+    browser.setValue(`[data-test-id='question1']`, "test")
+    //next button
+    browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
+    browser.click(`[data-test-id='submitNext']`)
+    browser.pause(5000)
+    //expect and click agreement checkbox
+    browser.expect.element(`[data-test-id='agreementCheckbox']`).to.be.present;
+    browser.click(`[data-test-id='agreementCheckbox']`)
+    //expect and click next button on confirmation page
+    browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
+    browser.click(`[data-test-id='submitNext']`)
+    browser.pause(5000)
+    //send esc key (workaround)
+    browser.keys([browser.Keys.ESCAPE])
+    browser.pause(2000)
+    //close notification modal
+    browser.expect.element(`[data-test-id='visitNotificationPreferencesModalConfirm']`).to.be.present;
+    browser.click(`[data-test-id='visitNotificationPreferencesModalConfirm']`)
+    //expect and click cancel button 
+    browser.expect.element(`[data-test-id='cancelRequeueVisit']`).to.be.present;
+    browser.click(`[data-test-id='cancelRequeueVisit']`)
+    //expect and click yes to cancel visit
+    browser.expect.element(`[data-test-id='confirmModalConfirm']`).to.be.present;
+    browser.click(`[data-test-id='confirmModalConfirm']`)
+    browser.pause(2000)
+  }
+
 module.exports = {
     before : async function (browser) {
       browser.resizeWindow(1920, 1080);
@@ -177,6 +219,7 @@ module.exports = {
         .then(dependentPage(browser))
         .then(insurancePage(browser))
         .then(welcomePage(browser))
+        .then(requestVisit(browser))
         .then(browser.end());
     }, 
   };
