@@ -197,7 +197,7 @@ async function profilePicture(browser) {
     //medical procedures page
     browser.expect.element(`[data-test-id='no']`).to.be.present;
     browser.click(`[data-test-id='no']`)
-    //smoking alcohol page
+    //smoking alcohol page TODO (waiting update from Ryan)
     browser.expect.element(`[data-test-id='no']`).to.be.present;
     browser.click(`[data-test-id='no']`)
     browser.expect.element(`$$('[data-test-id='no']')[1]`).to.be.present;
