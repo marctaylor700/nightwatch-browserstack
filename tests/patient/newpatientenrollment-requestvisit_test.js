@@ -236,15 +236,15 @@ module.exports = {
   
       //these run everything
       goToPracticeLoginPage(browser, "ewellness")
-        .then(registerNewPatient(browser, newUserCredentials))
-        .then(geoLocationPage(browser))
-        .then(enrollNewPatient(browser))
-        .then(profilePicture(browser))
-        .then(dependentPage(browser))
-        .then(insurancePage(browser))
-        .then(welcomePage(browser))
-        .then(requestVisit(browser))
-        .then(browser.end());
+        // .then(registerNewPatient(browser, newUserCredentials))
+        // .then(geoLocationPage(browser))
+        // .then(enrollNewPatient(browser))
+        // .then(profilePicture(browser))
+        // .then(dependentPage(browser))
+        // .then(insurancePage(browser))
+        // .then(welcomePage(browser))
+        // .then(requestVisit(browser))
+        // .then(browser.end());
     }, 
   };
   
