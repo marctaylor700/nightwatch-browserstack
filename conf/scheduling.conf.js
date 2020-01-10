@@ -14,7 +14,7 @@ nightwatch_config = {
           'browserstack.key': 'SBukT13jtljJiBWoBpHw',
           'browserstack.debug': true,
           'os': 'OS X',
-          'build' : '1.0',
+          'build' : 'Provider Scheduling Test',
           'name' : 'Scheduling tab test',
           'os_version': 'Mojave',
           'browser': 'Chrome',
