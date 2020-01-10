@@ -54,30 +54,7 @@ async function goToPracticeLoginPage(browser, handle) {
     //next button
     browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
     browser.click(`[data-test-id='submitNext']`)
-    //pharmacy
-    // browser.pause(5000)
-    // browser.expect.element(`[data-test-id='pharmacyRow0']`).to.be.present;
-    // browser.click(`[data-test-id='pharmacyRow0']`)
-    // browser.expect.element(`[data-test-id='savePharmacy']`).to.be.present;
-    // browser.click(`[data-test-id='savePharmacy']`)
-    //cc page
     browser.pause(5000)
-    //expect and enter cc number
-    // browser.expect.element(`[data-test-id='ccNumber']`).to.be.present;
-    // browser.click(`[data-test-id='ccNumber']`)
-    // browser.setValue(`[data-test-id='ccNumber']`,"4242424242424242")
-    // //expect and enter expiration
-    // browser.expect.element(`[data-test-id='expiryDate']`).to.be.present;
-    // browser.click(`[data-test-id='expiryDate']`)
-    // browser.setValue(`[data-test-id='expiryDate']`, "022020")
-    // //expect and set cvc for cc
-    // browser.expect.element(`[data-test-id='cvcField']`).to.be.present;
-    // browser.click(`[data-test-id='cvcField']`)
-    // browser.setValue(`[data-test-id='cvcField']`, "424")
-    // //expect and click submit button on cc page
-    // browser.expect.element(`[data-test-id='saveCreditCard']`).to.be.present;
-    // browser.click(`[data-test-id='saveCreditCard']`)
-    // browser.pause(2000)
     //expect and click agreement checkbox
     browser.expect.element(`[data-test-id='agreementCheckbox']`).to.be.present;
     browser.click(`[data-test-id='agreementCheckbox']`)
@@ -98,7 +75,17 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.expect.element(`[data-test-id='confirmModalConfirm']`).to.be.present;
     browser.click(`[data-test-id='confirmModalConfirm']`)
     browser.pause(2000)
+    //click my account 
+    browser.click(`[data-test-id='userProfileButton']`)
+    //click logout
+    browser.click(`[data-test-id='logoutMenuItem']`)
+    //confirm logout
+    browser.click(`[data-test-id='confirmModalConfirm']`)
+    //pause
+    browser.pause(5000)
   }
+
+  
 
   // Basically the below stuff runs everything. 
 module.exports = {
