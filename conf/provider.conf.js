@@ -15,6 +15,7 @@ nightwatch_config = {
           'os': 'OS X',
           'os_version': 'Mojave',
           'build' : 'Provider Tests',
+          'project' : 'eVisit Nightwatch',
           'browser': 'Chrome',
           'browser_version': '78.0 beta',
           'resolution': '1920x1080'
