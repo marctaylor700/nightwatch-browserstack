@@ -167,26 +167,29 @@ async function profilePicture(browser) {
     browser.click(`[data-test-id='seeNow2']`)
     browser.pause(6000)
     //short reason for request
-    browser.expect.element(`[data-test-id='question0']`).to.be.present;
-    browser.click(`[data-test-id='question0']`)
-    browser.setValue(`[data-test-id='question0']`, "test")
-    //description of illness
     browser.expect.element(`[data-test-id='question1']`).to.be.present;
     browser.click(`[data-test-id='question1']`)
     browser.setValue(`[data-test-id='question1']`, "test")
+    //description of illness
+    browser.expect.element(`[data-test-id='question2']`).to.be.present;
+    browser.click(`[data-test-id='question2']`)
+    browser.setValue(`[data-test-id='question2']`, "test")
     //next button
-    browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
-    browser.click(`[data-test-id='submitNext']`)
+    browser.expect.element(`[data-test-id='visitDetailsNext']`).to.be.present;
+    browser.click(`[data-test-id='visitDetailsNext']`)
     browser.pause(5000)
     //known allergies page
     browser.expect.element(`[data-test-id='no']`).to.be.present;
     browser.click(`[data-test-id='no']`)
+    browser.pause(2000)
     //medication allergies page
     browser.expect.element(`[data-test-id='no']`).to.be.present;
     browser.click(`[data-test-id='no']`)
+    browser.pause(2000)
     //medical conditions page
     browser.expect.element(`[data-test-id='no']`).to.be.present;
     browser.click(`[data-test-id='no']`)
+    browser.pause(2000)
     //family medical history
     browser.expect.element(`[data-test-id='no']`).to.be.present;
     browser.click(`[data-test-id='no']`)
@@ -194,20 +197,48 @@ async function profilePicture(browser) {
     //medications page
     browser.expect.element(`[data-test-id='no']`).to.be.present;
     browser.click(`[data-test-id='no']`)
+    browser.pause(2000)
     //medical procedures page
     browser.expect.element(`[data-test-id='no']`).to.be.present;
     browser.click(`[data-test-id='no']`)
-    //smoking alcohol page TODO (waiting update from Ryan)
-    browser.expect.element(`[data-test-id='no']`).to.be.present;
-    browser.click(`[data-test-id='no']`)
-    browser.expect.element(`$$('[data-test-id='no']')[1]`).to.be.present;
-    browser.click(`[data-test-id='no']`)
+    browser.pause(2000)
+    //smoking alcohol page TODO (WAITING ON RYANS UPDATES)
+    browser.expect.element(`[data-test-id='question1No']`).to.be.present;
+    browser.click(`[data-test-id='question1No']`)
+    browser.expect.element(`[data-test-id='question2No']`).to.be.present;
+    browser.click(`[data-test-id='question2No']`)
+    //click next on smoking alcohol page
+    browser.expect.element(`[data-test-id='next']`).to.be.present;
+    browser.click(`[data-test-id='next']`)
+    browser.pause(2000)
+    //pharmacy page
+    browser.expect.element(`[data-test-id='pharmacyRow0']`).to.be.present;
+    browser.click(`[data-test-id='pharmacyRow0']`)
+    browser.pause(2000)
+    browser.expect.element(`[data-test-id='savePharmacy']`).to.be.present;
+    browser.click(`[data-test-id='savePharmacy']`)
+    //credit card page
+    browser.expect.element(`[data-test-id='ccNumber']`).to.be.present;
+    browser.click(`[data-test-id='ccNumber']`)
+    browser.setValue(`[data-test-id='ccNumber']`, "4242424242424242")
+    browser.expect.element(`[data-test-id='expiryDate']`).to.be.present;
+    browser.click(`[data-test-id='expiryDate']`)
+    browser.setValue(`[data-test-id='expiryDate']`, "022020")
+    browser.expect.element(`[data-test-id='expiryDate']`).to.be.present;
+    browser.click(`[data-test-id='expiryDate']`)
+    browser.setValue(`[data-test-id='expiryDate']`, "424")
+    browser.expect.element(`[data-test-id='cvcField']`).to.be.present;
+    browser.click(`[data-test-id='cvcField']`)
+    browser.setValue(`[data-test-id='cvcField']`, "424")
+    browser.expect.element(`[data-test-id='saveCreditCard']`).to.be.present;
+    browser.click(`[data-test-id='saveCreditCard']`)
+    browser.pause(2000)
     //expect and click agreement checkbox
     browser.expect.element(`[data-test-id='agreementCheckbox']`).to.be.present;
     browser.click(`[data-test-id='agreementCheckbox']`)
     //expect and click next button on confirmation page
-    browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
-    browser.click(`[data-test-id='submitNext']`)
+    browser.expect.element(`[data-test-id='visitSubmit']`).to.be.present;
+    browser.click(`[data-test-id='visitSubmit']`)
     browser.pause(5000)
     //send esc key (workaround)
     browser.keys([browser.Keys.ESCAPE])
@@ -215,7 +246,7 @@ async function profilePicture(browser) {
     //close notification modal
     browser.expect.element(`[data-test-id='visitNotificationPreferencesModalConfirm']`).to.be.present;
     browser.click(`[data-test-id='visitNotificationPreferencesModalConfirm']`)
-    //expect and click cancel button 
+    //expect and click cancel button
     browser.expect.element(`[data-test-id='cancelRequeueVisit']`).to.be.present;
     browser.click(`[data-test-id='cancelRequeueVisit']`)
     //expect and click yes to cancel visit
@@ -236,15 +267,15 @@ module.exports = {
   
       //these run everything
       goToPracticeLoginPage(browser, "ewellness")
-        // .then(registerNewPatient(browser, newUserCredentials))
-        // .then(geoLocationPage(browser))
-        // .then(enrollNewPatient(browser))
-        // .then(profilePicture(browser))
-        // .then(dependentPage(browser))
-        // .then(insurancePage(browser))
-        // .then(welcomePage(browser))
-        // .then(requestVisit(browser))
-        // .then(browser.end());
+        .then(registerNewPatient(browser, newUserCredentials))
+        .then(geoLocationPage(browser))
+        .then(enrollNewPatient(browser))
+        .then(profilePicture(browser))
+        .then(dependentPage(browser))
+        .then(insurancePage(browser))
+        .then(welcomePage(browser))
+        .then(requestVisit(browser))
+        .then(browser.end());
     }, 
   };
   

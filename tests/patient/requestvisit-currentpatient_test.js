@@ -44,23 +44,23 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.click(`[data-test-id='seeNow2']`)
     browser.pause(6000)
     //short reason for request
-    browser.expect.element(`[data-test-id='question0']`).to.be.present;
-    browser.click(`[data-test-id='question0']`)
-    browser.setValue(`[data-test-id='question0']`, "test")
-    //description of illness
     browser.expect.element(`[data-test-id='question1']`).to.be.present;
     browser.click(`[data-test-id='question1']`)
     browser.setValue(`[data-test-id='question1']`, "test")
+    //description of illness
+    browser.expect.element(`[data-test-id='question2']`).to.be.present;
+    browser.click(`[data-test-id='question2']`)
+    browser.setValue(`[data-test-id='question2']`, "test")
     //next button
-    browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
-    browser.click(`[data-test-id='submitNext']`)
+    browser.expect.element(`[data-test-id='visitDetailsNext']`).to.be.present;
+    browser.click(`[data-test-id='visitDetailsNext']`)
     browser.pause(5000)
     //expect and click agreement checkbox
     browser.expect.element(`[data-test-id='agreementCheckbox']`).to.be.present;
     browser.click(`[data-test-id='agreementCheckbox']`)
     //expect and click next button on confirmation page
-    browser.expect.element(`[data-test-id='submitNext']`).to.be.present;
-    browser.click(`[data-test-id='submitNext']`)
+    browser.expect.element(`[data-test-id='visitSubmit']`).to.be.present;
+    browser.click(`[data-test-id='visitSubmit']`)
     browser.pause(5000)
     //send esc key (workaround)
     browser.keys([browser.Keys.ESCAPE])
