@@ -37,9 +37,9 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.useCss()
   console.log("starting scheduling test")
   //expect scheduling tab
-  browser.expect.element(`[data-test-id='schedulingTab']`).to.be.present;
+  browser.expect.element(`[data-test-id='appointmentsTab']`).to.be.present;
   //click scheduling tab
-  browser.click(`[data-test-id='schedulingTab']`)
+  browser.click(`[data-test-id='appointmentsTab']`)
   //pause
   browser.pause(5000)
   //expect and click visit type dropdown
@@ -76,7 +76,7 @@ async function schedulingTab(browser, newUserCredentials) {
   browser.expect.element(`[data-test-id='createPatient']`).to.be.present;
   browser.click(`[data-test-id='createPatient']`)
   //pause
-  browser.pause(1000)
+  browser.pause(3000)
   //expect provider field and click
   browser.expect.element(`[data-test-id='editAppointmentProvider']`).to.be.present;
   browser.click(`[data-test-id='editAppointmentProvider']`)

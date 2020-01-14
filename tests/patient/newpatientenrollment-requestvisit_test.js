@@ -1,6 +1,3 @@
-// ALL css selectors will be given a class name to be more easily target for when they change dynamically
-
-
 //variable for the environment
 var env = "alpha";
 
@@ -220,7 +217,7 @@ async function profilePicture(browser) {
     //credit card page
     browser.expect.element(`[data-test-id='ccNumber']`).to.be.present;
     browser.click(`[data-test-id='ccNumber']`)
-    browser.setValue(`[data-test-id='ccNumber']`, "4242424242424242")
+    browser.setValue(`[data-test-id='ccNumber']`, "4111111111111111111")
     browser.expect.element(`[data-test-id='expiryDate']`).to.be.present;
     browser.click(`[data-test-id='expiryDate']`)
     browser.setValue(`[data-test-id='expiryDate']`, "022020")

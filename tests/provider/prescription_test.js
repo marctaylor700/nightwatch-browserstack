@@ -62,7 +62,7 @@ async function providerLogin(browser) {
 module.exports = {
     before : async function (browser) {
       browser.resizeWindow(1920, 1080);
-      '@tags:' ['test']
+      '@tags:' ['test'] 
     },
     'Provider Login - Prescription Test' : async function(browser) {
     //   goToPracticeLoginPage(browser, "ewellness")

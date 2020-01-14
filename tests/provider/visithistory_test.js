@@ -66,6 +66,7 @@ async function providerLogin(browser) {
   browser.click(`[data-test-id='chatSideBarTab']`)
   //click out of sidebar
   browser.click(`[data-test-id='rowClick0']`)
+  browser.pause(2000)
   //click my account 
   browser.click(`[data-test-id='userProfileButton']`)
   //click logout
