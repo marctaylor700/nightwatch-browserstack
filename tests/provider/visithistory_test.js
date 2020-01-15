@@ -36,25 +36,25 @@ async function providerLogin(browser) {
   //wait for visit history tab to load
   browser.pause(5000)
   //click on visit state
-  //browser.expect.element(`[data-test-id='visitCompletedStatusFilterTestID']`).to.be.present;
-  //browser.click(`[data-test-id='visitCompletedStatusFilterTestID']`)
-  //click on all visit state
-  //browser.click(`[data-test-id='allCompletedStatusOptionTestID']`)
+  // browser.expect.element(`[data-test-id='visitCompletedStatusFilterTestID']`).to.be.present;
+  // browser.click(`[data-test-id='visitCompletedStatusFilterTestID']`)
+  // //click on all visit state
+  // browser.click(`[data-test-id='allCompletedStatusOptionTestID']`)
   //pause
-  //browser.pause(2000)
+  browser.pause(2000)
   //expect and click date range field
-  //browser.expect.element(`[data-test-id='visitDateRangeFilterTestID']`).to.be.present;
-  //browser.click(`[data-test-id='visitDateRangeFilterTestID']`)
+  browser.expect.element(`[data-test-id='visitDateRangeFilterTestID']`).to.be.present;
+  browser.click(`[data-test-id='visitDateRangeFilterTestID']`)
   //click last 30 days
-  //browser.click(`[data-test-id='lastThirtyDays']`)
-  //browser.pause(5000)
+  browser.click(`[data-test-id='lastThirtyDays']`)
+  browser.pause(5000)
   //expect patient row
   browser.expect.element(`[data-test-id='rowClick0']`).to.be.present;
   browser.click(`[data-test-id='rowClick0']`)
   browser.pause(2000)
   //visit details tab
-  browser.expect.element(`[data-test-id='visitDetailsSideBarTab']`).to.be.present;
-  browser.pause(2000)
+  // browser.expect.element(`[data-test-id='visitDetailsSideBarTab']`).to.be.present;
+  // browser.pause(2000)
   //paitient profile tab
   browser.expect.element(`[data-test-id='patientProfileSideBarTab']`).to.be.present;
   browser.click(`[data-test-id='patientProfileSideBarTab']`)
