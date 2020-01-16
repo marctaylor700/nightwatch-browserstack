@@ -111,6 +111,9 @@ async function schedulingTab(browser, newUserCredentials) {
   //pause
   browser.pause(10000)
   browser.refresh()
+  //pause
+  browser.pause(5000)
+  browser.acceptAlert()
   browser.pause(10000)
   //date filter
   browser.expect.element(`[data-test-id='visitDateRangeFilterTestID']`).to.be.present;

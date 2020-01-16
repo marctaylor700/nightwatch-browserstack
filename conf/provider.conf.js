@@ -23,6 +23,7 @@ nightwatch_config = {
       }
     }
   };
+
   
   // Code to copy seleniumhost/port into test settings
   for(var i in nightwatch_config.test_settings){
