@@ -7,15 +7,13 @@ async function generateNewUserCredentials() {
     var email = `marc+${rando}@evisit.com`; // email variable
     
     return { email: email, password: 'patient123' };
-  }
-  
+  }  
   //go to practice login page 
   async function goToPracticeLoginPage(browser, handle) {
     console.log("starting goToPracticeLoginPage");
     browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
     browser.pause(5000);
   }
-  
   //register a new patient 
   async function registerNewPatient(browser, newUserCredentials) {
     console.log("starting registerNewPatient");
@@ -45,8 +43,6 @@ async function generateNewUserCredentials() {
     browser.click(`[data-test-id='register']`) 
     browser.pause(20000)
   }
-
-
   //geolocation page
   async function geoLocationPage(browser) {
     console.log("starting geolocation page")
@@ -56,7 +52,6 @@ async function generateNewUserCredentials() {
     browser.click(`[data-test-id='continue']`)
     browser.pause(6000)
   }
-
   //start the enrollment task
   async function enrollNewPatient(browser, generateName) {
     console.log("starting enrollNewPatient");
@@ -121,15 +116,13 @@ async function generateNewUserCredentials() {
     browser.pause(5000)
 
 }
-
 //start the profile picture task
 async function profilePicture(browser) {
     console.log("starting profile picture page")
     browser.expect.element(`[data-test-id='skip']`).to.be.present;
     browser.click(`[data-test-id='skip']`)
     browser.pause(5000)
-  }
-  
+  } 
   //start the dependent page task
   async function dependentPage(browser) {
     console.log("starting dependent page")
@@ -138,7 +131,6 @@ async function profilePicture(browser) {
     browser.pause(5000)
   
   }
-
   //start the insurance page task
   async function insurancePage(browser) {
     console.log("starting insurance page")
@@ -146,7 +138,6 @@ async function profilePicture(browser) {
     browser.click(`[data-test-id='no']`)
     browser.pause(5000)
   }
-
   //start the welcome page task 
   async function welcomePage(browser) {
     console.log("starting welcome page")
@@ -154,7 +145,6 @@ async function profilePicture(browser) {
     browser.click(`[data-test-id='continue']`)
     browser.pause(10000)
   }
-
    //request visit
    async function requestVisit(browser) {
     console.log("starting request visit")
@@ -251,7 +241,6 @@ async function profilePicture(browser) {
     browser.click(`[data-test-id='confirmModalConfirm']`)
     browser.pause(2000)
   }
-
 module.exports = {
     before : async function (browser) {
       browser.resizeWindow(1920, 1080);

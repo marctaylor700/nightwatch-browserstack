@@ -1,12 +1,10 @@
 var env = "alpha"
 
-
 async function goToPracticeLoginPage(browser, handle) {
     console.log("starting goToPracticeLoginPage");
     browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
     browser.pause(2000);
   }
-
   async function patientLogin(browser) {
     console.log("starting patient login")
     browser.useCss()
@@ -34,9 +32,7 @@ async function goToPracticeLoginPage(browser, handle) {
     //pause
     browser.pause(6000)
   }
-
   //my account drop down
-
   async function userDropDown(browser) {
       console.log("starting user profile check")
       //expect and click user profile button
@@ -75,7 +71,6 @@ async function goToPracticeLoginPage(browser, handle) {
       browser.expect.element(`[data-test-id='settingsSection']`).to.be.present;
       browser.click(`[data-test-id='settingsSection']`)
   }
-
   // Basically the below stuff runs everything. 
 module.exports = {
     before : async function (browser) {

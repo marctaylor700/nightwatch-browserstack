@@ -6,13 +6,11 @@ async function generateNewUserCredentials() {
   
   return { email: email};
 }
-
 async function goToPracticeLoginPage(browser, handle) {
   console.log("starting goToPracticeLoginPage");
   browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
   browser.pause(2000);
 }
-
 async function providerLogin(browser) {
   console.log("starting provider login")
   browser.useCss()
@@ -31,7 +29,6 @@ async function providerLogin(browser) {
   // //wait for page to load
   browser.pause(7000)
 }
-
 async function schedulingTab(browser, newUserCredentials) {
   //console log test 
   browser.useCss()
@@ -129,7 +126,6 @@ async function schedulingTab(browser, newUserCredentials) {
   //pause
   browser.pause(5000)
 }
-
 // Basically the below stuff runs everything. 
 module.exports = {
   before : async function (browser) {
@@ -140,8 +136,6 @@ module.exports = {
     var newUserCredentials = await generateNewUserCredentials();
 
     console.log(JSON.stringify(newUserCredentials));
-
-
     goToPracticeLoginPage(browser, "ewellness")
       .then(providerLogin(browser))
       .then(schedulingTab(browser, newUserCredentials))

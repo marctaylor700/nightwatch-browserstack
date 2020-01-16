@@ -6,7 +6,6 @@ async function goToPracticeLoginPage(browser, handle) {
   browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
   browser.pause(2000);
 }
-
 async function providerLogin(browser) {
     console.log("starting provider login")
     browser.useCss()
@@ -25,7 +24,6 @@ async function providerLogin(browser) {
     // //wait for page to load
     browser.pause(7000)
   }
-
   async function patientTab(browser) {
     console.log("starting patient tab test")
     //expect and click patients tab
@@ -113,11 +111,6 @@ async function providerLogin(browser) {
     //pause
     browser.pause(5000)
   }
-
-
-
-
-
   // Basically the below stuff runs everything. 
 module.exports = {
     before : async function (browser) {

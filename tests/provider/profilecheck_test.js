@@ -1,18 +1,10 @@
 var env = "alpha";
 
-// async function generateNewUserCredentials() {
-//   var rando = Math.floor((Math.random() * 100000000000000) + 1); // random number gen for email
-//   var email = `marc+${rando}@evisit.com`; // email variable
-  
-//   return { email: email};
-// }
-
 async function goToPracticeLoginPage(browser, handle) {
   console.log("starting goToPracticeLoginPage");
   browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
   browser.pause(2000);
 }
-
 async function providerLogin(browser) {
   console.log("starting provider login")
   browser.useCss()
@@ -31,7 +23,6 @@ async function providerLogin(browser) {
   // //wait for page to load
   browser.pause(7000)
 }
-
 async function profileCheck(browser) {
     console.log("starting provider profile check")
     //expect and click user profile button
@@ -59,7 +50,6 @@ async function profileCheck(browser) {
     browser.expect.element(`[data-test-id='settingsSection']`).to.be.present;
     browser.click(`[data-test-id='settingsSection']`)
 }
-
 // Basically the below stuff runs everything. 
 module.exports = {
   before : async function (browser) {
@@ -67,11 +57,6 @@ module.exports = {
     '@tags:' ['test']
   },
   'Provider Login - Profile Check' : async function(browser) {
-    // var newUserCredentials = await generateNewUserCredentials();
-
-    //console.log(JSON.stringify(newUserCredentials));
-
-
     goToPracticeLoginPage(browser, "ewellness")
       .then(providerLogin(browser))
       .then(profileCheck(browser))
