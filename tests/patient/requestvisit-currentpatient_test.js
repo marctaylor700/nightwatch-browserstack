@@ -1,9 +1,11 @@
-var env = "alpha"
+var env = "release"
 
 
 async function goToPracticeLoginPage(browser, handle) {
     console.log("starting goToPracticeLoginPage");
-    browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
+    browser.url(`https://${env}.evisit.com/r/${handle}/auth/LoginPage`);
+    //updated link for login page
+    //https://release.evisit.com/r/handle/auth/LoginPage
     browser.pause(2000);
   }
   async function patientLogin(browser) {
@@ -36,6 +38,8 @@ async function goToPracticeLoginPage(browser, handle) {
     //request visit
   async function requestVisit(browser) {
     console.log("starting request visit")
+    //Select a visit type
+    //browser.expect.element(`[data-test-id='selectVisitTypeRow0']`).to.be.present;
     //expect See Now on Nick Provider
     browser.useCss()
     browser.expect.element(`[data-test-id='seeNow2']`).to.be.present;
@@ -66,7 +70,13 @@ async function goToPracticeLoginPage(browser, handle) {
     //close notification modal
     browser.expect.element(`[data-test-id='visitNotificationPreferencesModalConfirm']`).to.be.present;
     browser.click(`[data-test-id='visitNotificationPreferencesModalConfirm']`)
-    //expect and click cancel button 
+    //esc again
+    browser.keys([browser.Keys.ESCAPE])
+    browser.pause(2000)
+    //expect and click cancel button
+    // browser.refresh()
+    browser.pause(5000)
+    browser.keys([browser.Keys.ESCAPE]) 
     browser.expect.element(`[data-test-id='cancelRequeueVisit']`).to.be.present;
     browser.click(`[data-test-id='cancelRequeueVisit']`)
     //expect and click yes to cancel visit

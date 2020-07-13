@@ -1,8 +1,10 @@
-var env = "alpha"
+var env = "release"
 
 async function goToPracticeLoginPage(browser, handle) {
     console.log("starting goToPracticeLoginPage");
-    browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
+    browser.url(`https://${env}.evisit.com/r/${handle}/auth/LoginPage`);
+    //updated link for login page
+    //https://release.evisit.com/r/handle/auth/LoginPage
     browser.pause(2000);
   }
   async function patientLogin(browser) {
@@ -30,7 +32,7 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.expect.element(`[data-test-id='continue']`).to.be.present;
     browser.click(`[data-test-id='continue']`)
     //pause
-    browser.pause(6000)
+    browser.pause(10000)
   }
   //my account drop down
   async function userDropDown(browser) {
@@ -77,7 +79,7 @@ module.exports = {
       browser.resizeWindow(1920, 1080);
       '@tags:' ['test']
     },
-    'Visit request by current patient' : async function(browser) {
+    'Current Patient - My Account Check' : async function(browser) {
       goToPracticeLoginPage(browser, "ewellness")
         .then(patientLogin(browser))
         .then(geoLocationPage(browser))
