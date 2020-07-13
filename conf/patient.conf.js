@@ -1,3 +1,4 @@
+
 nightwatch_config = {
     src_folders : [ "tests/patient" ],
   
@@ -18,7 +19,12 @@ nightwatch_config = {
           'project' : 'eVisit Nightwatch',
           'browser': 'Chrome',
           'browser_version': '78.0 beta',
-          'resolution': '1920x1080'
+          'resolution': '1920x1080',
+          'goog:chromeOptions': {
+            'args': ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"]
+          }
+
+
         }
       }
     }
@@ -32,4 +38,3 @@ nightwatch_config = {
   }
   
   module.exports = nightwatch_config;
-  
