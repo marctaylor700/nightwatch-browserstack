@@ -256,7 +256,7 @@ async function profilePicture(browser) {
     //expect and click next button on confirmation page
     browser.expect.element(`[data-test-id='visitSubmit']`).to.be.present;
     browser.click(`[data-test-id='visitSubmit']`)
-    browser.pause(5000)
+    browser.pause(8000)
     //send esc key (workaround for camera permissions pop up)
     browser.keys([browser.Keys.ESCAPE])
     // browser.pause(2000)
