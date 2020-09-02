@@ -12,7 +12,7 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.useCss()
     //check and set email
     browser.expect.element(`[data-test-id='email']`).to.be.present;
-    browser.setValue(`[data-test-id='email']`, "marc+patient@evisit.com")
+    browser.setValue(`[data-test-id='email']`, "taylor+o14@evisit.com")
     //check and set password
     browser.expect.element(`[data-test-id='password']`).to.be.present;
     browser.setValue(`[data-test-id='password']`, "patient123")
@@ -46,8 +46,8 @@ async function goToPracticeLoginPage(browser, handle) {
       //expect personal info section
       browser.expect.element(`[data-test-id='personalInfoSection']`).to.be.present;
       //expect and click insurance info section
-      browser.expect.element(`[data-test-id='insuranceSection']`).to.be.present;
-      browser.click(`[data-test-id='insuranceSection']`)
+      //browser.expect.element(`[data-test-id='insuranceSection']`).to.be.present;
+      //browser.click(`[data-test-id='insuranceSection']`)
       //expect and click allergies info section
       browser.expect.element(`[data-test-id='allergiesSection']`).to.be.present;
       browser.click(`[data-test-id='allergiesSection']`)
@@ -80,9 +80,9 @@ module.exports = {
       '@tags:' ['test']
     },
     'Current Patient - My Account Check' : async function(browser) {
-      goToPracticeLoginPage(browser, "ewellness")
+      goToPracticeLoginPage(browser, "omega")
         .then(patientLogin(browser))
-        .then(geoLocationPage(browser))
+        //.then(geoLocationPage(browser))
         .then(userDropDown(browser))
         .then(browser.end());
     }, 
