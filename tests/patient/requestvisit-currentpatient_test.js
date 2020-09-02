@@ -13,7 +13,7 @@ async function goToPracticeLoginPage(browser, handle) {
     browser.useCss()
     //check and set email
     browser.expect.element(`[data-test-id='email']`).to.be.present;
-    browser.setValue(`[data-test-id='email']`, "marc+patient@evisit.com")
+    browser.setValue(`[data-test-id='email']`, "taylor+o14@evisit.com")
     //check and set password
     browser.expect.element(`[data-test-id='password']`).to.be.present;
     browser.setValue(`[data-test-id='password']`, "patient123")
@@ -35,15 +35,26 @@ async function goToPracticeLoginPage(browser, handle) {
     //pause
     browser.pause(6000)
   }
+
+    //start the welcome page task 
+    async function selectPatient(browser) {
+      console.log("starting select a patient page")
+      browser.useXpath()
+      browser.expect.element(`/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]`).to.be.present;
+      browser.click(`/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]`)
+      browser.pause(10000)
+    }
+
     //request visit
   async function requestVisit(browser) {
     console.log("starting request visit")
     //Select a visit type
-    //browser.expect.element(`[data-test-id='selectVisitTypeRow0']`).to.be.present;
+    // browser.useCss()
+    // browser.expect.element(`[data-test-id='selectVisitTypeRow0']`).to.be.present;
     //expect See Now on Nick Provider
     browser.useCss()
-    browser.expect.element(`[data-test-id='seeNow2']`).to.be.present;
-    browser.click(`[data-test-id='seeNow2']`)
+    browser.expect.element(`[data-test-id='seeNow9']`).to.be.present;
+    browser.click(`[data-test-id='seeNow9']`)
     browser.pause(6000)
     //short reason for request
     browser.expect.element(`[data-test-id='question1']`).to.be.present;
@@ -99,9 +110,10 @@ module.exports = {
       '@tags:' ['test']
     },
     'Visit request by current patient' : async function(browser) {
-      goToPracticeLoginPage(browser, "ewellness")
+      goToPracticeLoginPage(browser, "omega")
         .then(patientLogin(browser))
-        .then(geoLocationPage(browser))
+        //.then(geoLocationPage(browser))
+        .then(selectPatient(browser))
         .then(requestVisit(browser))
         .then(browser.end());
     }, 
