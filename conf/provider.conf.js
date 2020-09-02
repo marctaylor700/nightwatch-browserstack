@@ -12,6 +12,8 @@ nightwatch_config = {
         desiredCapabilities: {
           'browserstack.user': 'nick34',
           'browserstack.key': 'SBukT13jtljJiBWoBpHw',
+          'browserstack.debug': true,
+          'browserstack.networkLogs': true,
           'os': 'OS X',
           'os_version': 'Mojave',
           'build' : 'Provider Tests',
