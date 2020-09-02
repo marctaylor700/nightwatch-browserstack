@@ -6,7 +6,7 @@ async function generateNewUserCredentials() {
     var rando = Math.floor((Math.random() * 100000000000000) + 1); // random number gen for email
     var email = `marc+${rando}@evisit.com`; // email variable
     
-    return { email: email, password: 'patient123' };
+    return { email: email, password: 'IBM4youmm@' };
   }  
   //go to practice login page 
   async function goToPracticeLoginPage(browser, handle) {
@@ -135,13 +135,14 @@ async function profilePicture(browser) {
     browser.pause(5000)
   } 
   //start the dependent page task
-  async function dependentPage(browser) {
-    console.log("starting dependent page")
-    browser.expect.element(`[data-test-id='no']`).to.be.present;
-    browser.click(`[data-test-id='no']`)
-    browser.pause(5000)
+  //dep page was removed
+  // async function dependentPage(browser) {
+  //   console.log("starting dependent page")
+  //   browser.expect.element(`[data-test-id='no']`).to.be.present;
+  //   browser.click(`[data-test-id='no']`)
+  //   browser.pause(5000)
   
-  }
+  // }
   //start the insurance page task 
   async function insurancePage(browser) {
     console.log("starting insurance page")
@@ -156,29 +157,40 @@ async function profilePicture(browser) {
     browser.click(`[data-test-id='continue']`)
     browser.pause(10000)
   }
+
+    //start the welcome page task 
+    async function selectPatient(browser) {
+      console.log("starting select a patient page")
+      browser.useXpath()
+      browser.expect.element(`/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]`).to.be.present;
+      browser.click(`/html/body/div/div/div/div[1]/div[2]/div[1]/div[2]`)
+      browser.pause(10000)
+    }
+    
    //request visit
    async function requestVisit(browser) {
     console.log("starting request visit")
     //Select a visit type
-    browser.expect.element(`[data-test-id='selectVisitTypeRow0']`).to.be.present;
-    browser.click(`[data-test-id='selectVisitTypeRow0']`)
-    browser.pause(5000)
+    // browser.expect.element(`[data-test-id='selectVisitTypeRow0']`).to.be.present;
+    // browser.click(`[data-test-id='selectVisitTypeRow0']`)
+    // browser.pause(5000)
     //expect See Now on Nick Provider
     browser.useCss()
-    browser.expect.element(`[data-test-id="seeNow6"]`).to.be.present;
-    browser.click(`[data-test-id="seeNow6"]`)
+    browser.expect.element(`[data-test-id="seeNow9"]`).to.be.present;
+    browser.click(`[data-test-id="seeNow9"]`)
     browser.pause(6000)
     //short reason for request
-    browser.expect.element(`[data-test-id='question1']`).to.be.present;
-    browser.click(`[data-test-id='question1']`)
-    browser.click(`[data-test-id='testOption']`)
+    browser.expect.element(`[data-field='reason']`).to.be.present;
+    browser.click(`[data-field='reason']`)
+    browser.click(`[data-field='reason']`)
+    browser.setValue(`[data-field='reason']`, "I am sick. Can you read this.")
     //description of illness
     browser.expect.element(`[data-test-id='question2']`).to.be.present;
     browser.click(`[data-test-id='question2']`)
-    browser.setValue(`[data-test-id='question2']`, "test")
+    browser.setValue(`[data-test-id='question2']`, "This is a test")
     //next button
     browser.expect.element(`[data-test-id='visitDetailsNext']`).to.be.present;
-    browser.click(`[data-test-id='visitDetailsNext']`)
+    browser.click(`[data-test-id='visitDetailsNext']`) 
     browser.pause(5000)
     //known allergies page
     browser.expect.element(`[data-test-id='no']`).to.be.present;
@@ -267,15 +279,16 @@ module.exports = {
       console.log(JSON.stringify(newUserCredentials));
   
       //these run everything
-      goToPracticeLoginPage(browser, "ewellness")
+      goToPracticeLoginPage(browser, "omega")
         .then(registerNewPatient(browser, newUserCredentials))
-        .then(geoLocationPage(browser))
+        //.then(geoLocationPage(browser))
         .then(enrollNewPatient(browser))
         //.then(practiceSelection(browser))
         .then(profilePicture(browser))
-        .then(dependentPage(browser))
+        //.then(dependentPage(browser))
         .then(insurancePage(browser))
         .then(welcomePage(browser))
+        .then(selectPatient(browser))
         .then(requestVisit(browser))
         .then(browser.end());
     }, 
