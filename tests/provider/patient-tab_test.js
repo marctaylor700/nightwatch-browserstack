@@ -3,7 +3,7 @@ var email;
 
 async function goToPracticeLoginPage(browser, handle) {
   console.log("starting goToPracticeLoginPage");
-  browser.url(`https://${env}.evisit.com/r/auth/LoginPage?practice=${handle}`);
+  browser.url(`https://${env}.evisit.com/r/${handle}/auth/LoginPage`);
   browser.pause(2000);
 }
 async function providerLogin(browser) {
@@ -12,7 +12,7 @@ async function providerLogin(browser) {
     //check for email field
     browser.expect.element(`[data-test-id='email']`).to.be.present;
     //set email
-    browser.setValue(`[data-test-id='email']`, "physician+nick@evisit.com")
+    browser.setValue(`[data-test-id='email']`, "taylor+provider@evisit.com")
     //check for password field
     browser.expect.element(`[data-test-id='password']`).to.be.present;
     //set password
@@ -30,9 +30,14 @@ async function providerLogin(browser) {
     browser.expect.element(`[data-test-id='patientsTab']`).to.be.present;
     browser.click(`[data-test-id='patientsTab']`)
     browser.pause(2000)
+    //search for known patient
+    browser.expect.element(`[data-test-id='patientSearchFilterTestID']`).to.be.present;
+    browser.click(`[data-test-id='patientSearchFilterTestID']`)
+    browser.setValue(`[data-test-id='patientSearchFilterTestID']`, "Jelly Bean")
+    browser.pause(5000)
     //expect and click first patient row
-    browser.expect.element(`[data-test-id='rowClick0']`).to.be.present;
-    browser.click(`[data-test-id='rowClick0']`)
+    browser.expect.element(`[data-test-id='patientRowMoreLess0']`).to.be.present;
+    browser.click(`[data-test-id='patientRowMoreLess0']`)
     //expect and click personal info
     browser.expect.element(`[data-test-id='personalInfo']`).to.be.present;
     browser.click(`[data-test-id='personalInfo']`)
@@ -52,12 +57,13 @@ async function providerLogin(browser) {
     browser.pause(2000)
     //expect and click general allergies
     browser.expect.element(`[data-test-id='allergiesGeneral']`).to.be.present;
-    browser.click(`[data-test-id='allergiesGeneral']`) 
+    browser.click(`[data-test-id='allergiesGeneral']`)
     browser.pause(2000)
     //expect and click back button
     browser.expect.element(`[data-test-id='panelBack']`).to.be.present;
     browser.click(`[data-test-id='panelBack']`)
     //expect and click medication allergies
+    browser.click(`[data-test-id='healthRecords']`)
     browser.expect.element(`[data-test-id='allergiesMedications']`).to.be.present;
     browser.click(`[data-test-id='allergiesMedications']`)
     browser.pause(2000)
@@ -65,6 +71,7 @@ async function providerLogin(browser) {
     browser.expect.element(`[data-test-id='panelBack']`).to.be.present;
     browser.click(`[data-test-id='panelBack']`)
     //expect and click medications
+    browser.click(`[data-test-id='healthRecords']`)
     browser.expect.element(`[data-test-id='medications']`).to.be.present;
     browser.click(`[data-test-id='medications']`)
     browser.pause(2000)
@@ -72,6 +79,7 @@ async function providerLogin(browser) {
     browser.expect.element(`[data-test-id='panelBack']`).to.be.present;
     browser.click(`[data-test-id='panelBack']`)
     //expect and click conditions
+    browser.click(`[data-test-id='healthRecords']`)
     browser.expect.element(`[data-test-id='conditions']`).to.be.present;
     browser.click(`[data-test-id='conditions']`)
     browser.pause(2000)
@@ -79,6 +87,7 @@ async function providerLogin(browser) {
     browser.expect.element(`[data-test-id='panelBack']`).to.be.present;
     browser.click(`[data-test-id='panelBack']`)
     //expect and click procedures
+    browser.click(`[data-test-id='healthRecords']`)
     browser.expect.element(`[data-test-id='procedures']`).to.be.present;
     browser.click(`[data-test-id='procedures']`)
     browser.pause(2000)
@@ -86,6 +95,7 @@ async function providerLogin(browser) {
     browser.expect.element(`[data-test-id='panelBack']`).to.be.present;
     browser.click(`[data-test-id='panelBack']`)
     //expect and click family history
+    browser.click(`[data-test-id='healthRecords']`)
     browser.expect.element(`[data-test-id='familyHistory']`).to.be.present;
     browser.click(`[data-test-id='familyHistory']`)
     browser.pause(2000)
@@ -93,6 +103,7 @@ async function providerLogin(browser) {
     browser.expect.element(`[data-test-id='panelBack']`).to.be.present;
     browser.click(`[data-test-id='panelBack']`)
     //expect and click questionnaire
+    browser.click(`[data-test-id='healthRecords']`)
     browser.expect.element(`[data-test-id='questionnaire']`).to.be.present;
     browser.click(`[data-test-id='questionnaire']`)
     browser.pause(2000)
@@ -100,7 +111,7 @@ async function providerLogin(browser) {
     browser.expect.element(`[data-test-id='panelBack']`).to.be.present;
     browser.click(`[data-test-id='panelBack']`)
     //expect and click first patient row
-    browser.expect.element(`[data-test-id='rowClick0']`).to.be.present;
+    browser.expect.element(`[data-test-id='patientRowMoreLess0']`).to.be.present;
     browser.click(`[data-test-id='rowClick0']`)
     //click my account 
     browser.click(`[data-test-id='userProfileButton']`)
