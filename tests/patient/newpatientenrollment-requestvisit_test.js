@@ -655,7 +655,7 @@ module.exports = {
   },
 
   '@tags': ['test'],
-  'Enroll a new patient without health records entries': async function (browser) {
+  'Enroll a new patient with health records entries': async function (browser) {
     var newUserCredentials = await generateNewUserCredentials();
 
     //false: All health records questions will be answered with NO
