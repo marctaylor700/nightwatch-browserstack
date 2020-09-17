@@ -8,7 +8,7 @@ module.exports = {
         const loginPage = browser.page.loginPage()
         const geolocationPage = browser.page.geolocationPage()
         const landingPage = browser.page.landingPage()
-        const personalInfoPage = browser.page.personalInfoPage()
+        const personalInfoPage = browser.page.patient.my_account.personalInfoPage()
 
         loginPage
             .goToPracticeLoginPage()
