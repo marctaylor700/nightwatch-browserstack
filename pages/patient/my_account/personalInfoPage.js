@@ -21,6 +21,20 @@ const elements = {
 };
 
 const commands = [{
+    accessPersonalInfoPage(){
+        this
+            const loginPage = this.api.page.loginPage()
+            const geolocationPage = this.api.page.geolocationPage()
+            const landingPage = this.api.page.landingPage()
+
+            loginPage
+                .goToPracticeLoginPage()
+                .patientLogin(this.api.globals.email, this.api.globals.password)
+            geolocationPage.confirmGeolocation()
+            landingPage.selectMyAccount();
+        return this
+    },
+
     editPersonalInfo(firstNameValue, middleNameValue, lastNameValue, addressLine1Value, addressLine2Value, cityValue, stateValue,
                         zipCodeValue, phoneCellValue, dateOfBirthValue, genderValue, timeZoneValue) {
         this

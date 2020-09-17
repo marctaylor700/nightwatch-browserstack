@@ -5,16 +5,9 @@ module.exports = {
     },
     //This test edit all fiedls of Personal Info considering the happy path
     "Edit Personal Info Successfully": function (browser) {
-        const loginPage = browser.page.loginPage()
-        const geolocationPage = browser.page.geolocationPage()
-        const landingPage = browser.page.landingPage()
         const personalInfoPage = browser.page.patient.my_account.personalInfoPage()
 
-        loginPage
-            .goToPracticeLoginPage()
-            .patientLogin()
-        geolocationPage.confirmGeolocation()
-        landingPage.selectMyAccount()
+        personalInfoPage.accessPersonalInfoPage()
         personalInfoPage.verify.elementPresent('@personalInfoSection')
         //edit fields in Personal Info form according to parameters values
         personalInfoPage.editPersonalInfo("First Name Edited", "Middle Name Edited","Last Name Edited", "Address 1 Edited",
