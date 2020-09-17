@@ -1,6 +1,7 @@
 const elements = {
     confirmCheckBox: `[data-test-id='confirmCheckBox']`,
-    btnContinue: `[data-test-id='continue']`
+    btnContinue: `[data-test-id='continue']`,
+    btnUserProfile: `[data-test-id='userProfileButton']`,
 };
 
 const commands = [{
@@ -8,6 +9,7 @@ const commands = [{
     confirmGeolocation() {
         let self = this;
         this
+            .waitForElementVisible(`@btnUserProfile`, 15000)
             .api.element('@confirmCheckBox', function (result) {
                 //check if geolocation is requested
                 if (result.status != -1) {
@@ -20,15 +22,12 @@ const commands = [{
                         .verify.elementPresent('@btnContinue')
                         .click('@btnContinue')
                         //pause
-                        .pause(6000)
                 } else {
                     console.log("Skipping Geolocation Page")
-                    self.pause(6000)
                 }
             })
         return this
     }
-
 }];
 
 module.exports = {

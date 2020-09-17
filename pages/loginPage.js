@@ -25,8 +25,6 @@ const commands = [{
             //expect and click login button
             .waitForElementVisible('@password')
             .click('@btnLogin')
-            // //wait for page to load
-            .pause(7000)
 
         return this
     }

@@ -23,12 +23,18 @@ nightwatch_config = {
           'goog:chromeOptions': {
             'args': ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"]
           }
-
-
-        }
-      }
+      },
+      globals: {
+          env: "release",
+          handle: "omega",
+          email:"taylor+o13@evisit.com",
+          password:"patient123"
+        },
     }
-  };
+  },
+  custom_commands_path: ["./commands"],
+  page_objects_path: ["pages"]
+};
   
   // Code to copy seleniumhost/port into test settings
   for(var i in nightwatch_config.test_settings){
