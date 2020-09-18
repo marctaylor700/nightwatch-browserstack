@@ -1,6 +1,7 @@
 const elements = {
     btnUserProfile: `[data-test-id='userProfileButton']`,
-    myAccountMenuItem: `[data-test-id='myAccountMenuItem']`
+    myAccountMenuItem: `[data-test-id='myAccountMenuItem']`,
+    SelectPatient: `[data-test-id='rowClick']`
 };
 
 const commands = [{
@@ -9,13 +10,14 @@ const commands = [{
         console.log("Accessing My Account")
         this
             //verify and click user profile button
-            .waitForElementVisible('@btnUserProfile')
+            .waitForElementVisible('@SelectPatient')
             .verify.elementPresent('@btnUserProfile')
             .click('@btnUserProfile')
+            .pause(500)
             //expect and click my account menu item
+            .waitForElementVisible('@myAccountMenuItem')
             .verify.elementPresent('@myAccountMenuItem')
             .click('@myAccountMenuItem')
-            .pause(3000)
         return this
     }
 
