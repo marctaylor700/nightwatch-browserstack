@@ -17,13 +17,12 @@ const commands = [{
         this
             //check and set email
             .waitForElementVisible('@email')
-            .verify.elementPresent('@email')
             .setValue('@email', user_email)
             //check and set password
             .waitForElementVisible('@password')
             .setValue('@password', user_password)
             //expect and click login button
-            .waitForElementVisible('@password')
+            .waitForElementVisible('@btnLogin')
             .click('@btnLogin')
             // //wait for page to load
             .pause(7000)

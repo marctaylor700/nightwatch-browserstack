@@ -56,7 +56,6 @@ const commands = [{
     editTextField(locator, value) {
         return this
             .waitForElementVisible(locator)
-            //.click(locator)
             .clearValue2(locator)
             .setValue(locator, value)
     },
