@@ -2,3 +2,5 @@ tests_output
 local.log
 node_modules
 .DS_Store
+nightwatch.conf.js
+chromedriver.log

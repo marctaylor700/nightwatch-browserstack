@@ -1,4 +1,5 @@
 const elements = {
+    //all menu items
     personalInfoSection: `[data-test-id='personalInfoSection']`,
     insuranceSection: `[data-test-id='insuranceSection']`,
     allergiesSection: `[data-test-id='allergiesSection']`,
@@ -11,40 +12,15 @@ const elements = {
     paymentsSection: `[data-test-id='paymentsSection']`,
     settingsSection: `[data-test-id='settingsSection']`,
 
-    firstName: `[data-test-id='firstName']`,
-    middleName: `[data-test-id='middleName']`,
-    lastName: `[data-test-id='lastName']`,
-    addressLine1: `[data-test-id='addressLine1']`,
-    addressLine2: `[data-test-id='addressLine2']`,
-    city: `[data-test-id='city']`,
-    state: `[data-test-id="state"]`,
-    zipCode: `[data-test-id="zipCode"]`,
-    phoneCell: `[data-test-id="phoneCell"]`,
-    state: `input[data-test-id="state"]`,
-    dateOfBirth: `[data-test-id="dob"]`,
-    gender: `[data-test-id="gender"][name="sex"]`,
-    timeZone: `[data-test-id="timeZoneSelect"][name="timezone"]`,
+    //request a visit button
+    btnRequestVisit: `data-test-id=['requestVisit']`,
+
     
-    btnUpdate: `div.eVisitAppNavigationButtons:nth-child(3) > div:nth-child(1) > div:nth-child(1)`,
-    
-    toast: `[data-test-id='toast']`
+
+
 };
 
 const commands = [{
-    accessPersonalInfoPage(){
-        this
-            const loginPage = this.api.page.loginPage()
-            const geolocationPage = this.api.page.geolocationPage()
-            const landingPage = this.api.page.landingPage()
-
-            loginPage
-                .goToPracticeLoginPage()
-                .patientLogin(this.api.globals.email, this.api.globals.password)
-            geolocationPage.confirmGeolocation()
-            landingPage.selectMyAccount();
-        return this
-    },
-
     editPersonalInfo(firstNameValue, middleNameValue, lastNameValue, addressLine1Value, addressLine2Value, cityValue, stateValue,
                         zipCodeValue, phoneCellValue, dateOfBirthValue, genderValue, timeZoneValue) {
         this
@@ -66,6 +42,7 @@ const commands = [{
     editTextField(locator, value) {
         return this
             .waitForElementVisible(locator)
+            //.click(locator)
             .clearValue2(locator)
             .setValue(locator, value)
     },
