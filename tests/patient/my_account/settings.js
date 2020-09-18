@@ -13,7 +13,6 @@ module.exports = {
         const personalInfoPage = browser.page.patient.my_account.personalInfoPage()
 
         settingsPage.accessSettingsPage(browser.globals.email, browser.globals.password)
-            .verify.elementPresent('@settingsSection')
             .changeEmail(temp_email, browser.globals.password)
         personalInfoPage.checkToastMessage("Email updated successfully.")
         settingsPage.changePassword(temp_password, browser.globals.password)
@@ -25,7 +24,6 @@ module.exports = {
         
         //log in with changed credentials
         settingsPage.accessSettingsPage(temp_email, temp_password)
-            .verify.elementPresent('@settingsSection')
             //change back to default email
             .changeEmail(browser.globals.email, temp_password)
         personalInfoPage.checkToastMessage("Email updated successfully.")

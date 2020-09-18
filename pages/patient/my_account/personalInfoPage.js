@@ -1,15 +1,5 @@
 const elements = {
     personalInfoSection: `[data-test-id='personalInfoSection']`,
-    insuranceSection: `[data-test-id='insuranceSection']`,
-    allergiesSection: `[data-test-id='allergiesSection']`,
-    medicationsSection: `[data-test-id='medicationsSection']`,
-    conditionsSection: `[data-test-id='conditionsSection']`,
-    proceduresSection: `[data-test-id='proceduresSection']`,
-    familyHistorySection: `[data-test-id='familyHistorySection']`,
-    questionnaireSection: `[data-test-id='questionnaireSection']`,
-    pharmacySection: `[data-test-id='pharmacySection']`,
-    paymentsSection: `[data-test-id='paymentsSection']`,
-    settingsSection: `[data-test-id='settingsSection']`,
 
     firstName: `[data-test-id='firstName']`,
     middleName: `[data-test-id='middleName']`,

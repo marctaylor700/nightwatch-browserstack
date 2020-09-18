@@ -1,5 +1,6 @@
 const elements = {
     settingsSection: `[data-test-id="settingsSection"]`,
+    settingsSectionSelected: `[data-test-id="settingsSection"][class*='Active']`,
 
     emailField: `[data-test-id="email"]`,
     currentPasswordForEmailField: `[data-test-id="currentPasswordForEmail"]`,
@@ -23,22 +24,25 @@ const commands = [{
                 .goToPracticeLoginPage()
                 .patientLogin(email, password)
             geolocationPage.confirmGeolocation()
-            landingPage.selectMyAccount();
+            landingPage.selectMyAccount()
         this
             .waitForElementVisible('@settingsSection')
+            .pause(3000)
             .click('@settingsSection')
+            .waitForElementVisible('@settingsSectionSelected')
         return this
     },
     changeEmail(new_email, password){
         this
             const personalInfoPage = this.api.page.patient.my_account.personalInfoPage()
 
-            //this.elements.<page_object_element> references a local page object element when using other page object context
+            //this.elements.<page_object_element> references a LOCAL page object element when using OTHER page object context
             personalInfoPage.editTextField(this.elements.emailField, new_email);
         this
             .setValue('@currentPasswordForEmailField', password)
             .waitForElementVisible('@UpdateEmailButton')
             .click('@UpdateEmailButton')
+
         return this
     },
     changePassword(new_password, old_password){
