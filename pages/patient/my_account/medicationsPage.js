@@ -53,21 +53,31 @@ const commands = [{
     /*
     *    This function make sure the page is completelly loaded before continuing, using any specified element as a trait
     */
-    accessMedicationsPage(){
+    accessMedicationsPage(email, password){
         this
             const loginPage = this.api.page.loginPage()
             const geolocationPage = this.api.page.geolocationPage()
             const landingPage = this.api.page.landingPage()
             loginPage
                 .goToPracticeLoginPage()
-                .patientLogin()
+                .patientLogin(email, password)
             geolocationPage.confirmGeolocation()
             landingPage.selectMyAccount();
         this
             .waitForElementVisible('@medicationsSection')
+            .pause(1000)
             .click('@medicationsSection')
             .waitForElementVisible('@btnEdit')
         return this
+    },
+
+    /*
+    *   This function allows the test to continue without the need of login
+    */
+   openSectionfromMenu(){
+    return this.waitForElementVisible('@medicationsSection')
+    .click('@medicationsSection')
+    .waitForElementVisible('@btnEdit')
     },
 
     /*
@@ -80,7 +90,6 @@ const commands = [{
             if (numElements > 0) {
                 this.click(`@btnEdit`)
                 this.waitForElementVisible(`@removeEntry`)
-                console.log(numElements)
                 for (i = 1; i <= numElements; i++) {
                     this.click('@removeEntry')
                 }
