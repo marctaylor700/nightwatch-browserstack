@@ -1,15 +1,5 @@
 const elements = {
     personalInfoSection: `[data-test-id='personalInfoSection']`,
-    insuranceSection: `[data-test-id='insuranceSection']`,
-    allergiesSection: `[data-test-id='allergiesSection']`,
-    medicationsSection: `[data-test-id='medicationsSection']`,
-    conditionsSection: `[data-test-id='conditionsSection']`,
-    proceduresSection: `[data-test-id='proceduresSection']`,
-    familyHistorySection: `[data-test-id='familyHistorySection']`,
-    questionnaireSection: `[data-test-id='questionnaireSection']`,
-    pharmacySection: `[data-test-id='pharmacySection']`,
-    paymentsSection: `[data-test-id='paymentsSection']`,
-    settingsSection: `[data-test-id='settingsSection']`,
 
     firstName: `[data-test-id='firstName']`,
     middleName: `[data-test-id='middleName']`,
@@ -31,6 +21,20 @@ const elements = {
 };
 
 const commands = [{
+    accessPersonalInfoPage(){
+        this
+            const loginPage = this.api.page.loginPage()
+            const geolocationPage = this.api.page.geolocationPage()
+            const landingPage = this.api.page.landingPage()
+
+            loginPage
+                .goToPracticeLoginPage()
+                .patientLogin(this.api.globals.email, this.api.globals.password)
+            geolocationPage.confirmGeolocation()
+            landingPage.selectMyAccount();
+        return this
+    },
+
     editPersonalInfo(firstNameValue, middleNameValue, lastNameValue, addressLine1Value, addressLine2Value, cityValue, stateValue,
                         zipCodeValue, phoneCellValue, dateOfBirthValue, genderValue, timeZoneValue) {
         this
@@ -52,7 +56,6 @@ const commands = [{
     editTextField(locator, value) {
         return this
             .waitForElementVisible(locator)
-            //.click(locator)
             .clearValue2(locator)
             .setValue(locator, value)
     },

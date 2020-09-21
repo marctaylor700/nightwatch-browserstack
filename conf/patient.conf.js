@@ -1,4 +1,3 @@
-
 nightwatch_config = {
     src_folders : [ "tests/patient" ],
   
@@ -21,14 +20,19 @@ nightwatch_config = {
           'browser_version': '78.0 beta',
           'resolution': '1920x1080',
           'goog:chromeOptions': {
-            'args': ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"]
+            'args': ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"],
+            prefs: {
+              // disable geolocation  - only required for browserstack
+              // 0 - Default, 1 - Allow, 2 - Block
+              'profile.managed_default_content_settings.geolocation' : 1
+            }
           }
       },
       globals: {
           env: "release",
           handle: "omega",
-          email:"taylor+o13@evisit.com",
-          password:"patient123"
+          email:"taylor+o14@evisit.com",
+          password:"Patient123!"
         },
     }
   },

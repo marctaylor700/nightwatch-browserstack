@@ -21,7 +21,6 @@ const commands = [{
                         //check and click continue button
                         .verify.elementPresent('@btnContinue')
                         .click('@btnContinue')
-                        //pause
                 } else {
                     console.log("Skipping Geolocation Page")
                 }
