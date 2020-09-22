@@ -56,8 +56,8 @@ const commands = [{
     accessMedicationsPage(email, password){
         this
             const loginPage = this.api.page.loginPage()
-            const geolocationPage = this.api.page.geolocationPage()
-            const landingPage = this.api.page.landingPage()
+            const geolocationPage = this.api.page.patient.geolocationPage()
+            const landingPage = this.api.page.patient.landingPage()
             loginPage
                 .goToPracticeLoginPage()
                 .patientLogin(email, password)
