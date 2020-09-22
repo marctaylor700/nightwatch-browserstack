@@ -9,7 +9,14 @@ const elements = {
     confirmNewPasswordField: `[data-test-id="confirmNewPassword"]`,
     currentPasswordForPasswordField: `[data-test-id="currentPasswordForPassword"]`,
     updatePasswordButton: `[data-test-id="updatePassword"]`,
-    
+
+    emailNotifField: `[name*="default.email"]`,
+    phoneNotifField: `[name*="default.voice"]`,
+    textNotifField: `[name*="default.sms"]`,
+    emailNotifToggle: `[data-test-id="emailToggle"]`,
+    phoneNotifToggle: `[data-test-id="voiceToggle"]`,
+    textNotifToggle: `[data-test-id="smsToggle"]`,
+    saveChangesButton: `[data-test-id="saveNotificationChanges"]`
 };
 
 const commands = [{
@@ -32,35 +39,38 @@ const commands = [{
             .waitForElementVisible('@settingsSectionSelected')
         return this
     },
-    changeEmail(new_email, password){
-        this
-            const personalInfoPage = this.api.page.patient.my_account.personalInfoPage()
 
-            //this.elements.<page_object_element> references a LOCAL page object element when using OTHER page object context
-            personalInfoPage.editTextField(this.elements.emailField, new_email);
-        this
+    changeEmail(new_email, password){
+        return this
+            .editTextField('@emailField', new_email)
             .setValue('@currentPasswordForEmailField', password)
             .waitForElementVisible('@UpdateEmailButton')
             .click('@UpdateEmailButton')
-
-        return this
     },
-    changePassword(new_password, old_password){
-        this
-            const personalInfoPage = this.api.page.patient.my_account.personalInfoPage()
 
-            personalInfoPage.editTextField(this.elements.newPasswordField, new_password)
-                .editTextField(this.elements.confirmNewPasswordField, new_password);
-        this
+    changePassword(new_password, old_password){
+        return this
+            .editTextField('@newPasswordField', new_password)
+            .editTextField('@confirmNewPasswordField', new_password)
             .setValue('@currentPasswordForPasswordField', old_password)
             .waitForElementVisible('@updatePasswordButton')
             .click('@updatePasswordButton')
-        return this
     },
 
-
+    checkNotificationPersistence(emailNotifValue, phoneNotifValue, textNotifValue){
+        return this
+            .verify.attributeEquals('@emailNotifField', 'value', emailNotifValue)
+            .verify.attributeEquals('@phoneNotifField', 'value', phoneNotifValue)
+            .verify.attributeEquals('@textNotifField', 'value', textNotifValue)
+    },
     
-    
+    toggleNotifChannels(){
+        return this
+            .click('@emailNotifToggle')
+            .click('@phoneNotifToggle')
+            .click('@textNotifToggle')
+            .click('@saveChangesButton')
+    }
 }];
 
 module.exports = {
