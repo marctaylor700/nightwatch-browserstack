@@ -53,7 +53,7 @@ const commands = [{
     /*
     *    This function make sure the page is completelly loaded before continuing, using any specified element as a trait
     */
-    accessMedicationsPage(email, password){
+    accessConditionsPage(email, password){
         this
             const loginPage = this.api.page.loginPage()
             const geolocationPage = this.api.page.geolocationPage()
@@ -64,9 +64,9 @@ const commands = [{
             geolocationPage.confirmGeolocation()
             landingPage.selectMyAccount();
         this
-            .waitForElementVisible('@medicationsSection')
+            .waitForElementVisible('@conditionsSection')
             .pause(1000)
-            .click('@medicationsSection')
+            .click('@conditionsSection')
             .waitForElementVisible('@btnEdit')
         return this
     },
@@ -74,10 +74,10 @@ const commands = [{
     /*
     *   This function allows the test to continue without the need of login
     */
-   openSectionfromMenu(){
-    return this.waitForElementVisible('@medicationsSection')
-    .click('@medicationsSection')
-    .waitForElementVisible('@btnEdit')
+    openSectionfromMenu(){
+        return this.waitForElementVisible('@conditionsSection')
+        .click('@conditionsSection')
+        .waitForElementVisible('@btnEdit')
     },
 
     /*
@@ -96,7 +96,7 @@ const commands = [{
                 this.expect.element(`@btnToggle`).text.to.contain('Show list')
                 this.click('@btnSave')
             }
-            this.expect.element('@list').text.to.contain('No known medications')
+            this.expect.element('@list').text.to.contain('No known conditions')
         });
     },
 
@@ -113,10 +113,10 @@ const commands = [{
     },
 
     /*
-    *    This function adds custom entry with text "Medication - Automation"
+    *    This function adds custom entry with text "Conditions - Automation"
     */
     addCustomEntry() {
-        var newCustomText = "Medication - Automation"
+        var newCustomText = "Conditions - Automation"
         return this.click(`@btnEdit`)
             .waitForElementVisible(`@btnToggle`)
             .setValue('@inputField', newCustomText)

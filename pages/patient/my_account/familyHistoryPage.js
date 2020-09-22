@@ -53,7 +53,7 @@ const commands = [{
     /*
     *    This function make sure the page is completelly loaded before continuing, using any specified element as a trait
     */
-    accessMedicationsPage(email, password){
+   accessFamilyHistoryPage(email, password){
         this
             const loginPage = this.api.page.loginPage()
             const geolocationPage = this.api.page.geolocationPage()
@@ -64,9 +64,9 @@ const commands = [{
             geolocationPage.confirmGeolocation()
             landingPage.selectMyAccount();
         this
-            .waitForElementVisible('@medicationsSection')
+            .waitForElementVisible('@familyHistorySection')
             .pause(1000)
-            .click('@medicationsSection')
+            .click('@familyHistorySection')
             .waitForElementVisible('@btnEdit')
         return this
     },
@@ -75,8 +75,8 @@ const commands = [{
     *   This function allows the test to continue without the need of login
     */
    openSectionfromMenu(){
-    return this.waitForElementVisible('@medicationsSection')
-    .click('@medicationsSection')
+    return this.waitForElementVisible('@familyHistorySection')
+    .click('@familyHistorySection')
     .waitForElementVisible('@btnEdit')
     },
 
@@ -96,7 +96,7 @@ const commands = [{
                 this.expect.element(`@btnToggle`).text.to.contain('Show list')
                 this.click('@btnSave')
             }
-            this.expect.element('@list').text.to.contain('No known medications')
+            this.expect.element('@list').text.to.contain('No known family history')
         });
     },
 
@@ -113,10 +113,10 @@ const commands = [{
     },
 
     /*
-    *    This function adds custom entry with text "Medication - Automation"
+    *    This function adds custom entry with text "Family History - Automation"
     */
     addCustomEntry() {
-        var newCustomText = "Medication - Automation"
+        var newCustomText = "Family History - Automation"
         return this.click(`@btnEdit`)
             .waitForElementVisible(`@btnToggle`)
             .setValue('@inputField', newCustomText)
