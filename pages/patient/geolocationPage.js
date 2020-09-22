@@ -18,6 +18,7 @@ const commands = [{
                     self
                         .verify.elementPresent('@confirmCheckBox')
                         .click('@confirmCheckBox')
+                        .pause(500)
                         //check and click continue button
                         .verify.elementPresent('@btnContinue')
                         .click('@btnContinue')

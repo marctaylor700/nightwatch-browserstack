@@ -14,7 +14,7 @@ const elements = {
     //request a visit button
     btnRequestVisit: `data-test-id=['requestVisit']`,
 
-    //page title : "Medications"
+    //page title : "Conditions"
     title: '.eVisitAppPanelBaseTitle',
 
     //main list of items
@@ -26,7 +26,7 @@ const elements = {
     //Edit button
     btnEdit: `[data-test-id='editMedicalRecord']`,
 
-    //Input textfield caption : "Please list any known medications"
+    //Input textfield caption : "Please list any known conditions"
     inputCaption: '.eVisitAppTextFieldCaption',
 
     //Input field to add new entries
@@ -56,8 +56,8 @@ const commands = [{
     accessConditionsPage(email, password){
         this
             const loginPage = this.api.page.loginPage()
-            const geolocationPage = this.api.page.geolocationPage()
-            const landingPage = this.api.page.landingPage()
+            const geolocationPage = this.api.page.patient.geolocationPage()
+            const landingPage = this.api.page.patient.landingPage()
             loginPage
                 .goToPracticeLoginPage()
                 .patientLogin(email, password)

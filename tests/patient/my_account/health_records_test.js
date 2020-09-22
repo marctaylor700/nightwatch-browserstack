@@ -3,6 +3,7 @@ module.exports = {
         browser.resizeWindow(1920, 1080);
         '@tags:'['test']
     },
+
     "Edit Medications - Health Records Successfully": function (browser) {
         const medicationsPage = browser.page.patient.my_account.medicationsPage()
 
@@ -57,6 +58,21 @@ module.exports = {
         familyHistoryPage.addCustomEntry()
         //make sure the number of items in the list correspond to the amount added
         familyHistoryPage.count(2)
+    },
+
+    "Edit Miscellaneous Questions - Health Records Successfully": function (browser) {
+        const questionnairePage = browser.page.patient.my_account.questionnairePage()
+
+        //Open medications page
+        questionnairePage.accessQuestionnairePage(browser.globals.email, browser.globals.password)
+        //Check toats message in case there is no questions answered yet
+        questionnairePage.checkToastMessage()
+        //Change all answers to "YES"
+        questionnairePage.setAnswersToYes()
+        questionnairePage.verifyAnswersAreYes()
+        //Change all answers to "NO"
+        questionnairePage.setAnswersToNo()
+        questionnairePage.verifyAnswersAreNo()
     },
 
     afterEach: function (browser) {
