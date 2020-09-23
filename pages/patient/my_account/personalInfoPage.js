@@ -16,8 +16,6 @@ const elements = {
     timeZone: `[data-test-id="timeZoneSelect"][name="timezone"]`,
     
     btnUpdate: `div.eVisitAppNavigationButtons:nth-child(3) > div:nth-child(1) > div:nth-child(1)`,
-    
-    toast: `[data-test-id='toast']`
 };
 
 const commands = [{
@@ -53,12 +51,6 @@ const commands = [{
             .clickUpdateButton()
         return this
     },
-    editTextField(locator, value) {
-        return this
-            .waitForElementVisible(locator)
-            .clearValue2(locator)
-            .setValue(locator, value)
-    },
     editComboboxField(locator, value) {
         return this
             .click(locator)
@@ -70,12 +62,6 @@ const commands = [{
             .pause(2000)
             .click('@btnUpdate')
             .pause(2000)
-    },
-    checkToastMessage(message) {
-        return this
-            //.pause(3000)
-            .waitForElementVisible('@toast')
-            .verify.containsText('@toast', message)
     },
     checkPersistence(firstNameValue, middleNameValue, lastNameValue, addressLine1Value, addressLine2Value, cityValue, stateValue,
         zipCodeValue, phoneCellValue, dateOfBirthValue, genderValue, timeZoneValue){
