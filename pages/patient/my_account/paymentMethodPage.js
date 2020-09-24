@@ -69,15 +69,14 @@ const commands = [{
     *    This function will make sure there is no card registered
     */
     eraseRegisteredCard() {
-        let self = this;
         this
-            .api.element(`@btnUpdateBilling`, function (result) {
+            .api.element(`@btnUpdateBilling`, (result) => {
                 if (result.status != -1) {
-                    self.click('@btnUpdateBilling')
-                    self.waitForElementVisible('@modal')
-                    self.click('@btnConfirmModal')
-                    self.waitForElementVisible('@ccName')
-                    self.pause(2000)
+                    this.click('@btnUpdateBilling')
+                    this.waitForElementVisible('@modal')
+                    this.click('@btnConfirmModal')
+                    this.waitForElementVisible('@ccName')
+                    this.pause(2000)
                 }
             })
         return this
