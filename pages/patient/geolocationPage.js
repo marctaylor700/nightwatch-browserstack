@@ -23,7 +23,7 @@ const commands = [{
                         .verify.elementPresent('@btnContinue')
                         .click('@btnContinue')
                 } else {
-                    console.log("Skipping Geolocation Page")
+                    console.log("- Skipping Geolocation Page")
                 }
             })
         return this

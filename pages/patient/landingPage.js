@@ -11,12 +11,14 @@ const commands = [{
         this
             //verify and click user profile button
             .waitForElementVisible('@SelectPatient')
+            .waitForElementVisible('@btnUserProfile')
             .verify.elementPresent('@btnUserProfile')
+            .pause(500)
             .click('@btnUserProfile')
-            .pause(800)
+            .pause(500)
             //expect and click my account menu item
             .waitForElementVisible('@myAccountMenuItem')
-            .pause(1000)
+            .pause(500)
             .verify.elementPresent('@myAccountMenuItem')
             .click('@myAccountMenuItem')
         return this
