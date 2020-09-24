@@ -49,7 +49,6 @@ const commands = [{
     *    This function make sure the page is completelly loaded before continuing, using any specified element as a trait
     */
     accessPaymentMethodPage(email, password) {
-        this
         const loginPage = this.api.page.loginPage()
         const geolocationPage = this.api.page.patient.geolocationPage()
         const landingPage = this.api.page.patient.landingPage()
