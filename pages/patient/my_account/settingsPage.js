@@ -39,6 +39,15 @@ const commands = [{
             .waitForElementVisible('@settingsSectionSelected')
         return this
     },
+    //Access Settings Section considering that My Account page is opened
+    accessSettingsSection(){
+        this
+            .waitForElementVisible('@settingsSection')
+            .pause(3000)
+            .click('@settingsSection')
+            .waitForElementVisible('@settingsSectionSelected')
+        return this
+    },
 
     changeEmail(new_email, password){
         return this

@@ -30,6 +30,7 @@ const commands = [{
                 .patientLogin(this.api.globals.email, this.api.globals.password)
             geolocationPage.confirmGeolocation()
             landingPage.selectMyAccount();
+        this.verify.elementPresent('@personalInfoSection')
         return this
     },
 
