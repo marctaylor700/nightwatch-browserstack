@@ -43,6 +43,22 @@ const commands = [{
         return this
     },
 
+    providerLogin(user_email, user_password) {
+        console.log("Starting Provider Login")
+        this
+            //check and set email
+            .waitForElementVisible('@email')
+            .setValue('@email', user_email)
+            //check and set password
+            .waitForElementVisible('@password')
+            .setValue('@password', user_password)
+            //expect and click login button
+            .waitForElementVisible('@btnLogin')
+            .click('@btnLogin')
+
+        return this
+    },
+
     forgotPasswordKnownEmail(user_email) {
         this
             .waitForElementVisible('@email')
