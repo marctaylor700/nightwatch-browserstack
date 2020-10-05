@@ -32,7 +32,9 @@ nightwatch_config = {
           env: "release",
           handle: "omega",
           email:"taylor+o14@evisit.com",
-          password:"Patient123!"
+          password:"Patient123!",
+          providerEmail: "taylor+provider@evisit.com",
+          providerPassword: "provider123"
         },
     }
   },

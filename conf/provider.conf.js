@@ -18,11 +18,29 @@ nightwatch_config = {
           'project' : 'eVisit Nightwatch',
           'browser': 'Chrome',
           'browser_version': '78.0 beta',
-          'resolution': '1920x1080'
-        }
-      }
+          'resolution': '1920x1080',
+          'goog:chromeOptions': {
+            'args': ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"],
+            prefs: {
+              // disable geolocation  - only required for browserstack
+              // 0 - Default, 1 - Allow, 2 - Block
+              'profile.managed_default_content_settings.geolocation' : 1
+            }
+          }
+      },
+      globals: {
+          env: "release",
+          handle: "omega",
+          email:"taylor+o14@evisit.com",
+          password:"Patient123!",
+          providerEmail: "taylor+provider@evisit.com",
+          providerPassword: "provider123"
+        },
     }
-  };
+  },
+  custom_commands_path: ["./commands"],
+  page_objects_path: ["pages"]
+};
 
   
   // Code to copy seleniumhost/port into test settings
