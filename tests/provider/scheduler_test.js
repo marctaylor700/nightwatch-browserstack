@@ -12,6 +12,14 @@ module.exports = {
         schedulerPage.scheduleExistingPatient()
     },
 
+    "Scheduling Test - New patient new schedule": function (browser) {
+        const schedulerPage = browser.page.provider.schedulerPage()
+
+        schedulerPage.accessSchedulerPage(browser.globals.providerEmail, browser.globals.providerPassword)
+        schedulerPage.clearVisits()
+        schedulerPage.scheduleNewPatient()
+    },
+
     afterEach: function (browser) {
         browser.end();
     }

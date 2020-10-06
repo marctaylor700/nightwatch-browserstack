@@ -1,12 +1,16 @@
 
+//to be used during scheduling
 const today = new Date()
-const tomorrow = new Date(today)
+const tomorrow = new Date()
 tomorrow.setDate(tomorrow.getDate() + 1)
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 tomorrow.setHours(1, 1, 1, 1)
 
+//to be used as asserts 
 var PatientName;
 var VisitTypeName;
 var ProviderName;
+var TimeSlot;
 
 const elements = {
     //user profile on top-right of the screen
@@ -33,16 +37,16 @@ const elements = {
     dateRangeFilterComboBox: `[data-test-id="visitDateRangeFilterTestID"]`,
     searchFilter: `[data-test-id="visitSearchFilterTestID"]`,
 
-    //scheduled visit actions buttons (first visit)
+    //scheduled visit actions buttons (first visit in the list)
     scheduledVisitDeclineButton: `[data-test-id="visitRowDecline0"]`,
     scheduledVisitRescheduleButton: `[data-test-id="visitRowReschedule0"]`,
     scheduledVisitDMoreButton: `[data-test-id="visitRowMoreLess0"]`,
 
-    //decline modal options
+    //decline visit modal options
     declineScheduledVisitDenyButton: `[data-test-id="confirmModalDeny"]`,
     declineScheduledVisitConfirmButton: `[data-test-id="confirmModalConfirm"]`,
 
-    //canceling modal and options
+    //reason to cancel visit modal and options
     cancelingModal: `.eVisitAppModal`,
     cancelingSurveyOption1: `[data-field="i_am_no_longer_available"]`,
     cancelingSurveyOption1RadioButton: `[data-field="i_am_no_longer_available"] .raTouchable`,
@@ -55,6 +59,17 @@ const elements = {
     //this required a chain of css selectors to guarantee the correct element. A ticket for adding propper data-test-id is in development
     firstItemPatientComboBox: `.eVisitAppListItem:nth-child(2) .eVisitAppPopupMenuItem:nth-child(1)`,
     secondItemPatientComboBox: `.eVisitAppListItem:nth-child(2) .eVisitAppPopupMenuItem:nth-child(1)`,
+    createNewPatientButton: `[data-test-id="createPatient"]`,
+
+    //the fields to create a new patient in the patients combobox
+    firstNameField: `[data-test-id="formFirstName"]`,
+    lastNameField: `[data-test-id="formLastName"]`,
+    dateBirthField: `[data-test-id="formDOB"]`,
+    emailField: `[data-test-id="formEmail"]`,
+
+    //the buttons to confirm or cancel the new patient creation
+    confirmNewPatientButton: `[data-test-id="createPatient"]`,
+    cancelNewPatientButton: `[data-test-id="cancelCreate"]`,
 
     //all options inside the visit type combobox
     firstItemVisitTypeComboBox: `[data-test-id="GeneralVisitOption"]`,
@@ -69,18 +84,18 @@ const elements = {
     tomorrowCalendar: '[data-test-id=calendarDay' + tomorrow.getDate() + ']',
     nextMonth: `[data-test-id='calendarNextMonth']`,
 
-    //the first timeslot available
+    //the first timeslot available in the list of timeslots
     firstTimeSlot: '[data-test-id*=timeSlot]',
 
     //a general spinner used throughout the page 
     spinner: `.eVisitAppLoadingSpinner`,
     popupSpinner: `.eVisitAppPopupContainer .eVisitAppLoadingSpinner`,
 
-    //the scheduled visits
+    //the scheduled visits list
     firstRowScheduledVisits: `[data-test-id='rowClick0']`,
     listScheduledVisits: `[data-test-id*='rowClick']`,
 
-    //general toast message
+    //general purpose toast message
     toast: `[data-test-id='toast']`,
     btnCloseToast: `[data-test-id='buttonCloseToast']`
 };
@@ -88,7 +103,7 @@ const elements = {
 const commands = [{
 
     /*
-    *   This function make sure the page is completelly loaded before continuing, using any specified element as a trait
+    *   This function will make sure the page is completelly loaded before continuing, using any specified element as a trait
     */
     accessSchedulerPage(email, password) {
         const loginPage = this.api.page.loginPage()
@@ -102,7 +117,7 @@ const commands = [{
     },
 
     /*
-    *   This function will decline any previous visit in the list in order to have a known state starting point
+    *   This function will decline any previous visits in the list in order to have a known state starting point
     */
     clearVisits() {
         this
@@ -125,7 +140,7 @@ const commands = [{
     },
 
     /*
-    *   This function will add a new appointment to a provider and check if the correct info was used
+    *   This function will add a new appointment to a provider and check if the correct info was used using a existing patient
     */
     scheduleExistingPatient() {
         this
@@ -145,6 +160,33 @@ const commands = [{
                 this.verify.containsText(`[data-test-id='rowClick0']`, PatientName)
                 this.verify.containsText(`[data-test-id='rowClick0']`, VisitTypeName)
                 this.verify.containsText(`[data-test-id='rowClick0']`, ProviderName)
+                this.verify.containsText(`[data-test-id='rowClick0']`, ("Scheduled for " + months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + TimeSlot))
+            })
+        return this
+    },
+
+    /*
+    *   This function will add a new appointment to a provider and check if the correct info was used using a newly created patient
+    */
+    scheduleNewPatient() {
+        this
+            .selectNewPatient()
+            .selectVisitType(0)
+            .selectProviderBySearch("Automation")
+            //ALSO AVAILABLE: .selectProviderInFirstPosition()
+            .selectDateTime()
+
+            //SAVING - save this schedule
+            .click('@scheduleVisitButton')
+
+            //FINAL ASSERTIONS - uses the values stored in previous callbacks to compare with the new scheduled entry
+            .waitForElementVisible('@toast', 25000)
+            .checkToastMessage("Visit successfully scheduled.")
+            .perform(function () {
+                this.verify.containsText(`[data-test-id='rowClick0']`, PatientName)
+                this.verify.containsText(`[data-test-id='rowClick0']`, VisitTypeName)
+                this.verify.containsText(`[data-test-id='rowClick0']`, ProviderName)
+                this.verify.containsText(`[data-test-id='rowClick0']`, ("Scheduled for " + months[tomorrow.getMonth()] + " " + tomorrow.getDate() + ", " + TimeSlot))
             })
         return this
     },
@@ -164,6 +206,41 @@ const commands = [{
                 PatientName = PatientName[2]
             })
             .click(`@firstItemPatientComboBox`)
+    },
+
+    /*
+    *   Generate new user email with today's date and random number as part of the text
+    */
+    createNewPatientEmail() {
+        var rando = Math.floor((Math.random() * 100000) + 1); // random number generator for email
+        var email = `automation+${today.getMonth() + 1}+${today.getDate()}+${rando}@evisit.com`; // email variable
+        return email;
+    },
+
+    /*
+    *   Add a new patient and use them for the schedule proccess
+    */
+    selectNewPatient() {
+        var email = this.createNewPatientEmail()
+        PatientName = "Automation"
+
+        return this
+            // PATIENT - create a new patient
+            .waitForElementVisible(`@patientComboBox`)
+            .click(`@patientComboBox`)
+            //click create new patient button
+            .waitForElementVisible(`@createNewPatientButton`)
+            .click(`@createNewPatientButton`)
+            //include new patient details
+            .setValue('@firstNameField', PatientName)
+            .setValue('@lastNameField', "Test")
+            .setValue('@dateBirthField', "01011992")
+            .setValue('@emailField', email)
+            //save new patient
+            .click('@confirmNewPatientButton')
+            //verify if new patient was successful
+            .waitForElementVisible('@toast', 25000)
+            .checkToastMessage("Patient successfully created.")
     },
 
     /*
@@ -189,7 +266,7 @@ const commands = [{
         this
             //PROVIDER - the provider combobox will not open unless the user focus on it with a click
             .click('@providerComboBox')
-            .setValue('@providerComboBox', 'Automation')
+            .setValue('@providerComboBox', providerName)
             .expect.element(`@firstItemProviderComboBox`).text.to.contain(providerName).before(10000);
         this.getText('@firstItemProviderComboBox', function (result) {
             //save a line of the value for future comparison
@@ -230,12 +307,17 @@ const commands = [{
         //in case tomorrow is a new month
         if (tomorrow.getDate() == 1) {
             this.click(`@nextMonth`)
+            tomorrow.setMonth(tomorrow.getMonth() + 1)
         }
         this.waitForElementVisible('@tomorrowCalendar')
             .click('@tomorrowCalendar')
 
             //TIME - the time will open automatically, this will select the first one
             .waitForElementVisible('@firstTimeSlot', 10000)
+        this.getText('@firstTimeSlot', function (result) {
+            //save the time displayed with the correct format to be used later
+            TimeSlot = (result.value.slice(0, 5) + " " + result.value.slice(5, 7)).toUpperCase()
+        })
             .click(`@firstTimeSlot`)
         return this
     }
