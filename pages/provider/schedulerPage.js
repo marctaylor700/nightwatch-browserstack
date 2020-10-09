@@ -10,7 +10,14 @@ tomorrow.setHours(1, 1, 1, 1)
 var PatientName;
 var VisitTypeName;
 var ProviderName;
+var DateMonthDay;
 var TimeSlot;
+
+var DrawerPatientName;
+var DrawerVisitTypeName;
+var DrawerProviderName;
+var DrawerDateMonthDay;
+var DrawerTimeSlot;
 
 const elements = {
     //user profile on top-right of the screen
@@ -28,7 +35,7 @@ const elements = {
     providerComboBox: `[data-test-id="editAppointmentProvider"]`,
     datePicker: `[data-test-id="editAppointmentDate"]`,
     timeComboBox: `[data-test-id="editAppointmentTime"]`,
-
+    
     //button to create a new scheduled visit
     scheduleVisitButton: `[data-test-id="scheduleEditedAppointment"]`,
 
@@ -40,7 +47,8 @@ const elements = {
     //scheduled visit actions buttons (first visit in the list)
     scheduledVisitDeclineButton: `[data-test-id="visitRowDecline0"]`,
     scheduledVisitRescheduleButton: `[data-test-id="visitRowReschedule0"]`,
-    scheduledVisitDMoreButton: `[data-test-id="visitRowMoreLess0"]`,
+    scheduledVisitMoreButton: `[data-test-id="visitRowMoreLess0"]`,
+    scheduledVisitLessButton: `[data-test-id="visitRowMoreLess0"]`,
 
     //decline visit modal options
     declineScheduledVisitDenyButton: `[data-test-id="confirmModalDeny"]`,
@@ -85,7 +93,8 @@ const elements = {
     nextMonth: `[data-test-id='calendarNextMonth']`,
 
     //the first timeslot available in the list of timeslots
-    firstTimeSlot: '[data-test-id*=timeSlot]',
+    firstTimeSlot: '[data-test-id*=timeSlot]:nth-child(1)',
+    secondTimeSlot: '[data-test-id*=timeSlot]:nth-child(3)',
 
     //a general spinner used throughout the page 
     spinner: `.eVisitAppLoadingSpinner`,
@@ -97,7 +106,27 @@ const elements = {
 
     //general purpose toast message
     toast: `[data-test-id='toast']`,
-    btnCloseToast: `[data-test-id='buttonCloseToast']`
+    btnCloseToast: `[data-test-id='buttonCloseToast']`,
+
+    //reschedule interface items before editing
+    rescheduleAppDrawer: `.eVisitAppDrawer`,
+    rescheduleVisitType: `.eVisitAppPagerEastPageContainer .eVisitAppPanelBase .RAText:nth-child(2)`,
+    rescheduleProvider: `.eVisitAppPagerEastPageContainer .eVisitAppPanelBase .RAText:nth-child(4)`,
+    rescheduleDate: `.eVisitAppPagerEastPageContainer .eVisitAppPanelBase .RAText:nth-child(6)`,
+    rescheduleTime: `.eVisitAppPagerEastPageContainer .eVisitAppPanelBase .RAText:nth-child(8)`,
+    rescheduleEditButton: `[data-test-id="editAppointment"]`,
+    rescheduleCancelButton: `[data-test-id="cancelAppointment"]`,
+
+    //reschedule combobox during editing of schedule
+    rescheduleProviderComboBox: `.eVisitAppSideBarContent [data-test-id="editAppointmentProvider`,
+
+    //options to save or cancel editing of schedule
+    saveRescheduleChangesButton: '.eVisitAppPagerEastPageContainer [data-test-id="scheduleEditedAppointment"]',
+    cancelRescheduleChangesButton: '.eVisitAppPagerEastPageContainer [data-test-id="cancelAppointmentEdit"]'
+
+    
+
+
 };
 
 const commands = [{
@@ -146,9 +175,9 @@ const commands = [{
         this
             .selectExistingPatient()
             .selectVisitType(0)
-            .selectProviderBySearch("Automation")
-            //ALSO AVAILABLE: .selectProviderInFirstPosition()
-            .selectDateTime()
+            .selectProviderBySearch('@providerComboBox', "Automation")
+            //ALSO AVAILABLE: .selectProviderInFirstPosition('@providerComboBox')
+            .selectDateTime('@firstTimeSlot')
 
             //SAVING - save this schedule
             .click('@scheduleVisitButton')
@@ -157,6 +186,7 @@ const commands = [{
             .waitForElementVisible('@toast', 25000)
             .checkToastMessage("Visit successfully scheduled.")
             .perform(function () {
+                console.log("- Comparing info from the visit row with the fields used during scheduling:")
                 this.verify.containsText(`[data-test-id='rowClick0']`, PatientName)
                 this.verify.containsText(`[data-test-id='rowClick0']`, VisitTypeName)
                 this.verify.containsText(`[data-test-id='rowClick0']`, ProviderName)
@@ -172,9 +202,9 @@ const commands = [{
         this
             .selectNewPatient()
             .selectVisitType(0)
-            .selectProviderBySearch("Automation")
-            //ALSO AVAILABLE: .selectProviderInFirstPosition()
-            .selectDateTime()
+            .selectProviderBySearch('@providerComboBox', "Automation")
+            //ALSO AVAILABLE: .selectProviderInFirstPosition('@providerComboBox')
+            .selectDateTime('@firstTimeSlot')
 
             //SAVING - save this schedule
             .click('@scheduleVisitButton')
@@ -183,6 +213,7 @@ const commands = [{
             .waitForElementVisible('@toast', 25000)
             .checkToastMessage("Visit successfully scheduled.")
             .perform(function () {
+                console.log("- Comparing info from the visit row with the fields used during scheduling:")
                 this.verify.containsText(`[data-test-id='rowClick0']`, PatientName)
                 this.verify.containsText(`[data-test-id='rowClick0']`, VisitTypeName)
                 this.verify.containsText(`[data-test-id='rowClick0']`, ProviderName)
@@ -203,7 +234,7 @@ const commands = [{
             .getText('@firstItemPatientComboBox', function (result) {
                 //save a line of the value for future comparison
                 PatientName = result.value.split("\n");
-                PatientName = PatientName[2]
+                PatientName = PatientName[1]
             })
             .click(`@firstItemPatientComboBox`)
     },
@@ -246,14 +277,14 @@ const commands = [{
     /*
     *   Select the first visit type in the list
     */
-    selectVisitType(position) {
+    selectVisitType(item) {
         return this
             //VISIT TYPE - the visit type combobox will automatically open
             .waitForElementVisible(`@firstItemVisitTypeComboBox`)
             .getText('@firstItemVisitTypeComboBox', function (result) {
                 //save a line of the value for future comparison
                 VisitTypeName = result.value.split("\n");
-                VisitTypeName = VisitTypeName[position]
+                VisitTypeName = VisitTypeName[item]
             })
             .click(`@firstItemVisitTypeComboBox`)
     },
@@ -262,12 +293,12 @@ const commands = [{
     *   Select the provider by keyword
     *   This provider must have availability configured beforehand
     */
-    selectProviderBySearch(providerName) {
+    selectProviderBySearch(locator, desiredText) {
         this
             //PROVIDER - the provider combobox will not open unless the user focus on it with a click
-            .click('@providerComboBox')
-            .setValue('@providerComboBox', providerName)
-            .expect.element(`@firstItemProviderComboBox`).text.to.contain(providerName).before(10000);
+            .click(locator)
+            .setValue(locator, desiredText)
+            .expect.element(`@firstItemProviderComboBox`).text.to.contain(desiredText).before(10000);
         this.getText('@firstItemProviderComboBox', function (result) {
             //save a line of the value for future comparison
             ProviderName = result.value.split("\n");
@@ -282,12 +313,12 @@ const commands = [{
     *   This provider must have availability configured beforehand
     *   In order to make sure the expected provider is the first in the list, change his name to "AAAA<NAME>"
     */
-    selectProviderInFirstPosition() {
+    selectProviderInFirstPosition(locator) {
         this
             //PROVIDER - the provider combobox will not open unless the user focus on it with a click
-            .click('@providerComboBox')
+            .click(locator)
             .waitForElementNotPresent('@popupSpinner', 10000)
-            .waitForElementVisible(`@firstItemProviderComboBox`)
+            .waitForElementVisible('@firstItemProviderComboBox')
         this.getText('@firstItemProviderComboBox', function (result) {
             //save a line of the value for future comparison
             ProviderName = result.value.split("\n");
@@ -300,7 +331,7 @@ const commands = [{
     /*
     *   Select the day of tomorrow (considering also the last day of the month) and also the first time slot available
     */
-    selectDateTime() {
+    selectDateTime(locator) {
         this
             //DATE - the calendar will open automatically, this will select the first day of next month
             .waitForElementNotPresent('@popupSpinner', 10000)
@@ -313,13 +344,81 @@ const commands = [{
             .click('@tomorrowCalendar')
 
             //TIME - the time will open automatically, this will select the first one
-            .waitForElementVisible('@firstTimeSlot', 10000)
-        this.getText('@firstTimeSlot', function (result) {
-            //save the time displayed with the correct format to be used later
-            TimeSlot = (result.value.slice(0, 5) + " " + result.value.slice(5, 7)).toUpperCase()
+            .waitForElementVisible(locator, 10000)
+        this.getText(locator, function (result) {
+            //save the time displayed with the correct format to be used later, including consideration of one or two digits and AM/PM
+            if(result.value[4] == 'p' || result.value[4] == 'a'){
+                TimeSlot = (result.value.slice(0, 4) + " " + result.value.slice(4, 6)).toUpperCase()
+            }else{
+                TimeSlot = (result.value.slice(0, 5) + " " + result.value.slice(5, 7)).toUpperCase()
+            }
+
         })
-            .click(`@firstTimeSlot`)
+            .click(locator)
         return this
+    },
+
+    rescheduleVisit(){
+        this
+            .waitForElementNotVisible('@spinner')
+            .getText('@firstRowScheduledVisits', function (result) {
+                //Will save all info from the the first visit in the list in variables to be used later
+                TimeSlot = result.value.split("\n"); //temporarily used to store an array
+                VisitTypeName = TimeSlot[3] //save the visit type from the first visit in the list
+                ProviderName = TimeSlot[4] //save the provider name from the first visit in the list
+                TimeSlot = TimeSlot[5] //temporarily receive the complete text from the timestamp line. (Line Example: Scheduled for Oct 8, 12:00 AM)
+                TimeSlot = TimeSlot.split(" ") //break the string into an array
+                DateMonthDay = (TimeSlot[2])//save the month corresponding item from the array. 
+                DateMonthDay = (new Date(Date.parse(DateMonthDay +" 1, 2012")).getMonth()+1) + "/" + TimeSlot[3].slice(0, -1) //transform the month from initials to number and add the day. Also removes the comma in the end
+                TimeSlot = TimeSlot[4] + " " + TimeSlot[5]//save the time related items from the array, overwriting it.
+            })
+
+
+            this.click('@scheduledVisitRescheduleButton')
+            .waitForElementVisible('@rescheduleEditButton')
+            //assert that the sidepanel have the same info as the visit
+            .perform(function () {
+                console.log("- Comparing visit row with reschedule drawer:")
+                this.verify.containsText('.eVisitAppPagerEastPageContainer .eVisitAppPanelBase .RAText:nth-child(2)', VisitTypeName);
+                this.verify.containsText('.eVisitAppPagerEastPageContainer .eVisitAppPanelBase .RAText:nth-child(4)', ProviderName);
+                this.verify.containsText('.eVisitAppPagerEastPageContainer .eVisitAppPanelBase .RAText:nth-child(6)', DateMonthDay);
+                this.verify.containsText('.eVisitAppPagerEastPageContainer .eVisitAppPanelBase .RAText:nth-child(8)', TimeSlot);
+            })
+
+            //start edit process
+            this.click('@rescheduleEditButton')
+
+            //change provider and visit time
+            .selectProviderBySearch('@rescheduleProviderComboBox', "AAAOmega")
+            .selectDateTime('@secondTimeSlot')
+
+            //save the changes
+            .click('@saveRescheduleChangesButton')
+            .waitForElementVisible('@toast', 25000)
+            .checkToastMessage("Visit has been successfully updated.")
+
+            //save the new info from the just updated visit directly from the reschedule interface
+            .getText('@rescheduleAppDrawer', function (result) {
+                DrawerTimeSlot = result.value.split("\n"); //temporarily used
+                DrawerPatientName = DrawerTimeSlot[1]
+                DrawerVisitTypeName = DrawerTimeSlot[5]
+                DrawerProviderName = DrawerTimeSlot[7]
+                DrawerDateMonthDay = DrawerTimeSlot[9].split("/")
+                DrawerDateMonthDay = months[DrawerDateMonthDay[0]-1] + " " + DrawerDateMonthDay[1]
+                DrawerTimeSlot = DrawerTimeSlot[11]
+            })
+
+            //Final Assetions - Compare the updated info with the info from the editing interface
+            .click('@scheduledVisitLessButton')
+            .perform(function () {
+                console.log("- Comparing reschedule drawer with updated visit row:")
+                this.verify.containsText(`[data-test-id='rowClick0']`, DrawerPatientName)
+                this.verify.containsText(`[data-test-id='rowClick0']`, DrawerVisitTypeName)
+                this.verify.containsText(`[data-test-id='rowClick0']`, DrawerProviderName)
+                this.verify.containsText(`[data-test-id='rowClick0']`, ("Scheduled for " + DrawerDateMonthDay + ", " + DrawerTimeSlot))
+            })
+
+            return this
     }
 }];
 
