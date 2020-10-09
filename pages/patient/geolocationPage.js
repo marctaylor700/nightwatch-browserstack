@@ -1,4 +1,8 @@
 const elements = {
+
+
+    selectStateField: `[data-test-id="stateSelect"]`,
+    FloridaOption: `[data-test-id="FloridaOption"]`,
     confirmCheckBox: `[data-test-id='confirmCheckBox']`,
     btnContinue: `[data-test-id='continue']`,
     btnUserProfile: `[data-test-id='userProfileButton']`,
@@ -7,23 +11,22 @@ const elements = {
 const commands = [{
 
     confirmGeolocation() {
-        let self = this;
         this
             .waitForElementVisible(`@btnUserProfile`, 15000)
-            .api.element('@confirmCheckBox', function (result) {
+            .api.element('@confirmCheckBox', (result) => {
                 //check if geolocation is requested
                 if (result.status != -1) {
                     console.log("Starting Geolocation Page")
                     //check and click confirm checkbox
-                    self
-                        .verify.elementPresent('@confirmCheckBox')
+                    this
+                        .click('@selectStateField')
+                        .click('@FloridaOption')
                         .click('@confirmCheckBox')
                         .pause(500)
-                        //check and click continue button
-                        .verify.elementPresent('@btnContinue')
                         .click('@btnContinue')
+                        .pause(1000)//not ideal but will make sure the page is properly loaded
                 } else {
-                    console.log("- Skipping Geolocation Page")
+                    console.log("- Skipping Geolocation Page Assertions")
                 }
             })
         return this
