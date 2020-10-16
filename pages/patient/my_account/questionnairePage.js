@@ -69,21 +69,20 @@ const commands = [{
     /*
     *   This function will test the toast message in case there are no responses yet in the questionnaire
     */
-    checkToastMessage() {
-        let self = this;
+    checkEventualToastMessage() {
         this
             .click('@btnEdit')
-            .api.element('css selector', `.eVisitAppDynamicFieldList [style*='background-color: rgb(42, 178, 188);']`, function (result) {
+            .api.element('css selector', `.eVisitAppDynamicFieldList [style*='background-color: rgb(42, 178, 188);']`, (result) => {
                 //in case there is no element selected yet
                 if (result.status == -1) {
-                    self.click('@btnSave')
-                    self.waitForElementVisible('@toast')
-                    self.expect.element('@toast').text.to.contain('There is more than one field that is required.')
-                    self.click('@btnCloseToast')
-                    self.click('@btnCancel')
+                    this.click('@btnSave')
+                    this.waitForElementVisible('@toast')
+                    this.expect.element('@toast').text.to.contain('There is more than one field that is required.')
+                    this.click('@btnCloseToast')
+                    this.click('@btnCancel')
                     //or else just ignore it and revert to previous state
                 } else {
-                    self.click('@btnCancel')
+                    this.click('@btnCancel')
                 }
             })
         return this
