@@ -27,7 +27,7 @@ const commands = [{
 
             loginPage
                 .goToPracticeLoginPage()
-                .patientLogin(this.api.globals.email, this.api.globals.password)
+                .userLogin(this.api.globals.email, this.api.globals.password)
             geolocationPage.confirmGeolocation()
             landingPage.selectMyAccount();
         this.verify.elementPresent('@personalInfoSection')

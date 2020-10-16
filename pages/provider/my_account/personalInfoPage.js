@@ -28,7 +28,7 @@ const commands = [{
 
             loginPage
                 .goToPracticeLoginPage()
-                .patientLogin(this.api.globals.providerEmail, this.api.globals.providerPassword)
+                .userLogin(this.api.globals.providerEmail, this.api.globals.providerPassword)
                 waitingRoomPage.selectMyAccount();
         this.verify.elementPresent('@personalInfoSection')
         return this

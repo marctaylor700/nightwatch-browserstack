@@ -29,7 +29,7 @@ const commands = [{
 
             loginPage
                 .goToPracticeLoginPage()
-                .patientLogin(email, password)
+                .userLogin(email, password)
             geolocationPage.confirmGeolocation()
             landingPage.selectMyAccount()
         this.accessSettingsSection()
