@@ -15,8 +15,6 @@ const commands = [{
             .verify.elementPresent('@btnUserProfile')
             .pause(500)
             .click('@btnUserProfile')
-            .click('@btnUserProfile')//When Geolocation page appears, this menu will not open correctly with only one try sometimes
-            .click('@btnUserProfile')
             .pause(500)
             //expect and click my account menu item
             .waitForElementVisible('@myAccountMenuItem')

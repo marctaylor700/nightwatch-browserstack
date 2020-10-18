@@ -66,7 +66,7 @@ module.exports = {
         //Open medications page
         questionnairePage.accessQuestionnairePage(browser.globals.email, browser.globals.password)
         //Check toats message in case there is no questions answered yet
-        questionnairePage.checkToastMessage()
+        questionnairePage.checkEventualToastMessage()
         //Change all answers to "YES"
         questionnairePage.setAnswersToYes()
         questionnairePage.verifyAnswersAreYes()

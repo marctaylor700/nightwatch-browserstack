@@ -56,21 +56,20 @@ const commands = [{
         return this
     },
     selectByList() {
-        let self = this;
         this
             .waitForElementVisible('@secondPharmacyOption')
             //get new pharmacy name to compare after
-            .getText('@secondPharmacyOptionName', function (result) {
+            .getText('@secondPharmacyOptionName', (result) => {
                 //new pharmacy name
                 const selectedPharmacy = result.value;
-                const settingsPage = self.api.page.patient.my_account.settingsPage();
+                const settingsPage = this.api.page.patient.my_account.settingsPage();
                 //select new pharmacy on the list
-                self.click('@secondPharmacyOption')
+                this.click('@secondPharmacyOption')
                     //update pharmacy
                     .click('@updateButton')
                 //switch section in order to check the change to new pharmacy
                 settingsPage.accessSettingsSection()
-                self.accessPharmacySection()
+                this.accessPharmacySection()
                     //check if selected pharmacy changed the icon color to 'selected' color
                     .verify.cssProperty('@firstPharmacyOptionIcon', 'background-color', 'rgba(42, 178, 188, 1)')
                     //check if the first position matches the selected pharmacy name
@@ -79,29 +78,28 @@ const commands = [{
         return this
     },
     selectByMap() {
-        let self = this;
         this
             .waitForElementVisible('@newPhamacyOfMap')
             //get new pharmacy name to compare after
-            .getAttribute('@newPhamacyOfMap', 'title', function (newPhamacyOfMapText) {
+            .getAttribute('@newPhamacyOfMap', 'title', (newPhamacyOfMapText) => {
                 //new pharmacy name
                 const selectedPharmacy = newPhamacyOfMapText.value;
-                const settingsPage = self.api.page.patient.my_account.settingsPage();
+                const settingsPage = this.api.page.patient.my_account.settingsPage();
                 //select new pharmacy on Map
-                self.click('@newPhamacyOfMap')
+                this.click('@newPhamacyOfMap')
                     //update pharmacy
                     .click('@updateButton')
                 //switch section in order to check the change to new pharmacy
                 settingsPage.accessSettingsSection()
-                self.accessPharmacySection()
+                this.accessPharmacySection()
                     //check if selected pharmacy is centralized on Map
                     .verify.cssProperty('@newPhamacyOfMap', 'left', '-10px')
                     .verify.cssProperty('@newPhamacyOfMap', 'top', '-8px')
                     //check if selected pharmacy changed the icon color to 'selected' color
                     .verify.cssProperty('@firstPharmacyOptionIcon', 'background-color', 'rgba(42, 178, 188, 1)')
                     //check if the first position matches the selected pharmacy name
-                    .getText('@firstPharmacyOptionName', function(firstPharmacyOptionNameText){
-                        self.verify.equal((firstPharmacyOptionNameText.value).toUpperCase(), selectedPharmacy.toUpperCase() )
+                    .getText('@firstPharmacyOptionName', (firstPharmacyOptionNameText) =>{
+                        this.verify.equal((firstPharmacyOptionNameText.value).toUpperCase(), selectedPharmacy.toUpperCase() )
                     })
             })
         return this

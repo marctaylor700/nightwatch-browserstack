@@ -73,7 +73,7 @@ const commands = [{
         const landingPage = this.api.page.patient.landingPage()
         loginPage
             .goToPracticeLoginPage()
-            .patientLogin(email, password)
+            .userLogin(email, password)
         geolocationPage.confirmGeolocation()
         landingPage.selectMyAccount();
         this

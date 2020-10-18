@@ -139,7 +139,7 @@ const commands = [{
         const waitingRoomPage = this.api.page.provider.waitingRoomPage()
         loginPage
             .goToPracticeLoginPage()
-            .providerLogin(email, password)
+            .userLogin(email, password)
         waitingRoomPage.openScheduling();
         this.waitForElementVisible('@patientComboBox') //trait
         return this

@@ -29,14 +29,10 @@ const commands = [{
 
             loginPage
                 .goToPracticeLoginPage()
-                .patientLogin(email, password)
+                .userLogin(email, password)
             geolocationPage.confirmGeolocation()
             landingPage.selectMyAccount()
-        this
-            .waitForElementVisible('@settingsSection')
-            .pause(3000)
-            .click('@settingsSection')
-            .waitForElementVisible('@settingsSectionSelected')
+        this.accessSettingsSection()
         return this
     },
     //Access Settings Section considering that My Account page is opened
