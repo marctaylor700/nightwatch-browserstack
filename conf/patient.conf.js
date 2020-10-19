@@ -12,6 +12,8 @@ nightwatch_config = {
         desiredCapabilities: {
           'browserstack.user': 'nick34',
           'browserstack.key': 'SBukT13jtljJiBWoBpHw',
+          //"browserstack.timezone" : "Sao_Paulo",
+          "browserstack.timezone" : "Phoenix",
           'os': 'OS X',
           'os_version': 'Mojave',
           'build' : 'Patient Tests',
