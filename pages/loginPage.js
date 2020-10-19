@@ -28,7 +28,7 @@ const commands = [{
     },
 
     userLogin(user_email, user_password) {
-        console.log("Starting Patient Login")
+        console.log("Starting Login")
         this
             //check and set email
             .waitForElementVisible('@email')
