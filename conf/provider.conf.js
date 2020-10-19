@@ -34,7 +34,7 @@ nightwatch_config = {
           email:"taylor+o14@evisit.com",
           password:"Patient123!",
           providerEmail: "taylor+provider@evisit.com",
-          providerPassword: "provider123"
+          providerPassword: "Provider123!"
         },
     }
   },
