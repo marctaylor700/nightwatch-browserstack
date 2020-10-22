@@ -198,12 +198,12 @@ const commands = [{
             .waitForElementVisible('@btnRegistration')
             .click('@btnRegistration')
             .waitForElementVisible('@btnRegister')
-            .editTextField('@email', this.createNewPatientEmail())
+            .editTextField('@email', usedEmail)
             .editTextField('@password', password)
-            .editTextField('@confirmPassword', (password + "123"))
+            .editTextField('@confirmPassword', password)
             .click('@termsCheckbox')
             .click('@btnRegister')
-            .expect.element(`@errorMessage`).text.to.contain("Passwords must match")
+            .expect.element(`@errorMessage`).text.to.contain("Email has already been taken")
 
         this.click('@btnAlreadyRegistered') // Return to login interface
             .waitForElementVisible('@btnRegistration')

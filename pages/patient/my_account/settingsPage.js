@@ -20,7 +20,7 @@ const elements = {
 };
 
 const commands = [{
-
+    //Access Settings Page from Patient login
     accessSettingsPage(email, password){
         this
             const loginPage = this.api.page.loginPage()
@@ -32,6 +32,19 @@ const commands = [{
                 .userLogin(email, password)
             geolocationPage.confirmGeolocation()
             landingPage.selectMyAccount()
+        this.accessSettingsSection()
+        return this
+    },
+    //Access Settings Page from Provider login
+    accessProviderSettingsPage(email, password){
+        this
+            const loginPage = this.api.page.loginPage()
+            const waitingRoomPage = this.api.page.provider.waitingRoomPage()
+
+            loginPage
+                .goToPracticeLoginPage()
+                .userLogin(email, password)
+                waitingRoomPage.selectMyAccount();
         this.accessSettingsSection()
         return this
     },
