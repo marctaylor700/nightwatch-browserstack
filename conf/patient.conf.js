@@ -37,8 +37,18 @@ nightwatch_config = {
         email:"taylor+o14@evisit.com",
         password:"Patient123!",
         providerEmail: "taylor+provider@evisit.com",
-        providerPassword: "Provider123!"
-      },
+        providerPassword: "Provider123!
+    }
+  },
+  custom_commands_path: ["./commands"],
+  page_objects_path: ["pages"]
+};
+  
+  // Code to copy seleniumhost/port into test settings
+  for(var i in nightwatch_config.test_settings){
+    var config = nightwatch_config.test_settings[i];
+    config['selenium_host'] = nightwatch_config.selenium.host;
+    config['selenium_port'] = nightwatch_config.selenium.port;
   }
 },
 custom_commands_path: ["./commands"],
