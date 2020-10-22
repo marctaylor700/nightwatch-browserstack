@@ -14,10 +14,10 @@ async function patientLogin(browser) {
   browser.useCss()
   //check and set email
   browser.expect.element(`[data-test-id='email']`).to.be.present;
-  browser.setValue(`[data-test-id='email']`, 'taylor+o13@evisit.com')
+  browser.setValue(`[data-test-id='email']`, 'taylor+o14@evisit.com')
   //check and set password
   browser.expect.element(`[data-test-id='password']`).to.be.present;
-  browser.setValue(`[data-test-id='password']`, 'patient123')
+  browser.setValue(`[data-test-id='password']`, 'Patient123!')
   //expect and click login button
   browser.expect.element(`[data-test-id='loginButton']`).to.be.present;
   browser.click(`[data-test-id='loginButton']`)
@@ -33,6 +33,9 @@ async function geoLocationPage(browser) {
       console.log("starting geolocation page")
       //check and click confirm checkbox
       browser.expect.element(`[data-test-id=confirmCheckBox]`).to.be.present;
+      browser.click('[data-test-id="stateSelect"]')
+      browser.pause(1000)
+      browser.click('[data-test-id="FloridaOption"]')
       browser.click(`[data-test-id='confirmCheckBox']`)
       //check and click continue button
       browser.expect.element(`[data-test-id='continue']`).to.be.present;
