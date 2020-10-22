@@ -3,6 +3,7 @@ const today = new Date()
 
 const elements = {
     // Login items
+    loginForm: `.eVisitAppLoginPageForm`,
     email: `[data-test-id='email']`,
     password: `[data-test-id='password']`,
     btnLogin: `[data-test-id='loginButton']`,
@@ -39,6 +40,14 @@ const commands = [{
     },
 
     /*
+    *   This function will be used to make sure the specific page is the one opened
+    *   Input: None
+    */
+   isOnPage() {
+    return this.waitForElementVisible("@email", 15000)
+    },
+
+    /*
     *   Will log in a provider or patient account
     *   Input: Valid email and password 
     */
@@ -55,6 +64,46 @@ const commands = [{
             .waitForElementVisible('@btnLogin')
             .click('@btnLogin')
 
+        return this
+    },
+
+    /*
+    *   Will try to login using a invalid email
+    *   Input: A valid password
+    */
+    loginInvalidEmail(user_password) {
+        console.log("Starting Login")
+        this
+            // Set email
+            .waitForElementVisible('@email')
+            .editTextField('@email', "InvalidEmail")
+            // Set password
+            .waitForElementVisible('@password')
+            .editTextField('@password', user_password)
+            // Click login button
+            .waitForElementVisible('@btnLogin')
+            .click('@btnLogin')
+            .expect.element(`@loginForm`).text.to.contain("Invalid email address")
+        return this
+    },
+
+    /*
+    *   Will try to login using a wrong email
+    *   Input: Valid email
+    */
+    loginWrongPassword(user_email) {
+        console.log("Starting Login")
+        this
+            // Set email
+            .waitForElementVisible('@email')
+            .editTextField('@email', user_email)
+            // Set password
+            .waitForElementVisible('@password')
+            .editTextField('@password', "WrongPassword123!")
+            // Click login button
+            .waitForElementVisible('@btnLogin')
+            .click('@btnLogin')
+            .expect.element(`@loginForm`).text.to.contain("Invalid email or password.")
         return this
     },
 
@@ -149,12 +198,12 @@ const commands = [{
             .waitForElementVisible('@btnRegistration')
             .click('@btnRegistration')
             .waitForElementVisible('@btnRegister')
-            .editTextField('@email', this.createNewPatientEmail())
+            .editTextField('@email', usedEmail)
             .editTextField('@password', password)
-            .editTextField('@confirmPassword', (password + "123"))
+            .editTextField('@confirmPassword', password)
             .click('@termsCheckbox')
             .click('@btnRegister')
-            .expect.element(`@errorMessage`).text.to.contain("Passwords must match")
+            .expect.element(`@errorMessage`).text.to.contain("Email has already been taken")
 
         this.click('@btnAlreadyRegistered') // Return to login interface
             .waitForElementVisible('@btnRegistration')
