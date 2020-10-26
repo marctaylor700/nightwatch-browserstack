@@ -4,6 +4,34 @@ module.exports = {
         '@tags:'['test']
     },
 
+    "Edit Medication Allergies - Health Records Successfully": function (browser) {
+        const allergiesPage = browser.page.patient.my_account.allergiesPage()
+
+        //Open allergies page
+        allergiesPage.accessAllergiesPage(browser.globals.email, browser.globals.password)
+        //Delete any itens already in the list
+        allergiesPage.cleanList('medicationAllergies', 'No known medication allergies')
+        //Add one of the default itens and one custom
+        allergiesPage.addDefaultEntry('medicationAllergies')
+        allergiesPage.addCustomEntry('medicationAllergies', "Medication Allergies - Auto")
+        // //make sure the number of items in the list correspond to the amount added
+        allergiesPage.count('medicationAllergies', 2)
+    },
+
+    "Edit General Allergies - Health Records Successfully": function (browser) {
+        const allergiesPage = browser.page.patient.my_account.allergiesPage()
+
+        //Open allergies page
+        allergiesPage.accessAllergiesPage(browser.globals.email, browser.globals.password)
+        //Delete any itens already in the list
+        allergiesPage.cleanList('generalAllergies', 'No known general allergies')
+        //Add one of the default itens and one custom
+        allergiesPage.addDefaultEntry('generalAllergies')
+        allergiesPage.addCustomEntry('generalAllergies', "General Allergies - Auto")
+        // //make sure the number of items in the list correspond to the amount added
+        allergiesPage.count('generalAllergies', 2)
+    },
+
     "Edit Medications - Health Records Successfully": function (browser) {
         const medicationsPage = browser.page.patient.my_account.medicationsPage()
 
