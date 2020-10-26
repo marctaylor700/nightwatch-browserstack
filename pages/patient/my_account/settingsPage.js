@@ -13,10 +13,13 @@ const elements = {
     emailNotifField: `[name*="default.email"]`,
     phoneNotifField: `[name*="default.voice"]`,
     textNotifField: `[name*="default.sms"]`,
-    emailNotifToggle: `[data-test-id="emailToggle"]`,
-    phoneNotifToggle: `[data-test-id="voiceToggle"]`,
-    textNotifToggle: `[data-test-id="smsToggle"]`,
-    saveChangesButton: `[data-test-id="saveNotificationChanges"]`
+
+    emailNotifToggle: `[data-test-id="emailToggle"] [class="RAView eVisitAppSwitchFieldKnob"]`,
+    phoneNotifToggle: `[data-test-id="voiceToggle"] [class="RAView eVisitAppSwitchFieldKnob"]`,
+    textNotifToggle: `[data-test-id="smsToggle"] [class="RAView eVisitAppSwitchFieldKnob"]`,
+
+    saveChangesButton: `[data-test-id="saveNotificationChanges"]`,
+    saveChangesSpinner: `[class="applicationActivityIndicator"]`
 };
 
 const commands = [{
@@ -81,13 +84,29 @@ const commands = [{
             .verify.attributeEquals('@phoneNotifField', 'value', phoneNotifValue)
             .verify.attributeEquals('@textNotifField', 'value', textNotifValue)
     },
-    
-    toggleNotifChannels(){
-        return this
-            .click('@emailNotifToggle')
-            .click('@phoneNotifToggle')
-            .click('@textNotifToggle')
-            .click('@saveChangesButton')
+
+    /* Check status of toggle
+    Where value = 'right' means enabled, value = 'left' means disabled */
+    checkToggleStatus(toggleLocator, value){
+        return this.verify.attributeContains(toggleLocator, 'style', value)
+    },
+
+    //Toggle channel and verify if the toggle has the new status after saving
+    toggleNotifChannelandCheck(toggleLocator){
+        return this.getAttribute(toggleLocator, 'style', (result) => {
+            if(result.value.includes('right')){ //it means channel is enabled
+                this.click(toggleLocator) //toggle channel OFF
+                    .click('@saveChangesButton')
+                    .waitForElementNotVisible('@saveChangesSpinner')
+                    .checkToggleStatus(toggleLocator, 'left') //check if channel is disabled
+            }
+            else if(result.value.includes('left')){ //it means channel is disabled
+                this.click(toggleLocator) //toggle channel ON
+                    .click('@saveChangesButton')
+                    .waitForElementNotVisible('@saveChangesSpinner')
+                    .checkToggleStatus(toggleLocator, 'right') //check if channel is enabled
+           }
+        })
     }
 }];
 

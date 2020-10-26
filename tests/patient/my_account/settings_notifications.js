@@ -26,9 +26,12 @@ module.exports = {
     //TODO: Add new notification channel
 
     "Toogle Notification Channels": function (browser) {
-        settingsPage.toggleNotifChannels()
+        settingsPage.toggleNotifChannelandCheck('@textNotifToggle')
+        settingsPage.toggleNotifChannelandCheck('@phoneNotifToggle')
+        settingsPage.toggleNotifChannelandCheck('@emailNotifToggle')
+
         //TODO: check confirmation toast when it exists - Bug #8aka6k
-        //TODO: check persistence - Depends on #275v9m
+        //TODO: check persistence - Depends on #275v9m - Verified with CSS workaround
     },
 
     after: function (browser) {
