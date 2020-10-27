@@ -24,9 +24,8 @@ module.exports = {
         const schedulerPage = browser.page.provider.schedulerPage()
 
         schedulerPage.accessSchedulerPage(browser.globals.providerEmail, browser.globals.providerPassword)
-        // The commands below can be used if you want to execute only this test instead of the complete suite
-        // schedulerPage.clearVisits()
-        // schedulerPage.scheduleExistingPatient()
+        schedulerPage.clearVisits()
+        schedulerPage.scheduleNewPatient()
         schedulerPage.rescheduleVisit()
 
     },

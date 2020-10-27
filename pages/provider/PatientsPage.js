@@ -579,7 +579,7 @@ const commands = [{
         this.click("//*[contains(text(), '" + visitHistoryDate + "')]")
         this.useCss()
 
-            .expect.element(`@visitHistoryPanel`).text.to.contain('Visit Details').before(10000);
+            .expect.element(`@visitHistoryPanel`).text.to.contain('Visit Details').before(20000);
 
         this.getText('@visitHistoryPanel', (result) => {
             // Save all text in the visit history panel as an array

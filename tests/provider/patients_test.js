@@ -66,12 +66,12 @@ module.exports = {
         PatientsPage.checkHealthRecordsSidepanel()
         // Edit each type of health record with default and custom entries
         // Will validate the update time and the number of elements in the list
-        PatientsPage.editHealthRecordAnyType('GeneralAllergies', 1, 'Visit History - GeneralAllergies - Aut')
-        PatientsPage.editHealthRecordAnyType('MedicationAllergies', 2, 'Visit History - MedicationAllergies - Aut')
-        PatientsPage.editHealthRecordAnyType('Medications', 3, 'Visit History - Medications - Aut')
-        PatientsPage.editHealthRecordAnyType('Conditions', 4, 'Visit History - Conditions - Aut')
-        PatientsPage.editHealthRecordAnyType('Procedures', 5, 'Visit History - Procedures - Aut')
-        PatientsPage.editHealthRecordAnyType('FamilyHistory', 1, 'Visit History - FamilyHistory - Aut')
+        PatientsPage.editHealthRecordAnyType('GeneralAllergies', 1, 'Patients - GeneralAllergies - Aut')
+        PatientsPage.editHealthRecordAnyType('MedicationAllergies', 2, 'Patients - MedicationAllergies - Aut')
+        PatientsPage.editHealthRecordAnyType('Medications', 3, 'Patients - Medications - Aut')
+        PatientsPage.editHealthRecordAnyType('Conditions', 4, 'Patients - Conditions - Aut')
+        PatientsPage.editHealthRecordAnyType('Procedures', 5, 'Patients - Procedures - Aut')
+        PatientsPage.editHealthRecordAnyType('FamilyHistory', 1, 'Patients - FamilyHistory - Aut')
         // Specific function for the questionnaire page since it works differently
         PatientsPage.checkQuestionnaire('No', 'No')
     },
