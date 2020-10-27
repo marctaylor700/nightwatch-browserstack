@@ -18,11 +18,19 @@ const elements = {
     // Patients page filters
     patientStatusFilter: `[data-test-id="patientStatusFilterTestID"]`,
     patientActivityFilter: `[data-test-id="patientActivityFilter"]`,
-    // dateFilter: `[data-test-id="visitDateRangeFilterTestID"] [type="text"]`,
     searchFilter: `[data-test-id="patientSearchFilterTestID"]`,
 
+    patientStatusAllOption: `[data-test-id="allStatusOptionTestID"]`,
+    patientStatusPendingOption: `[data-test-id="pendingStatusOptionTestID"]`,
+    patientStatusRegisteredOption: `[data-test-id="registeredStatusOptionTestID"]`,
+
+    patientActivityAllOption: `[data-test-id="allOrderOptionTestID"]`,
+    patientActivityRecentlyRegisteredOption: `[data-test-id="recentlyRegisteredOrderOptionTestID"]`,
+    patientActivityRecentlySeenOption: `[data-test-id="recentlySeenOrderOptionTestID"]`,
+
     // The first patient row in the patients page
-    firstVisitRow: `[data-test-id="rowClick0"]`,
+    firstPatientRow: `[data-test-id="rowClick0"]`,
+    firstPatientRowIcon: `[data-test-id="patientRowMoreLess0"]`,
 
     // Sidepanel showing information about the patient
     patientSidePanel: `.eVisitAppDrawer`,
@@ -122,9 +130,23 @@ const commands = [{
             .goToPracticeLoginPage()
             .userLogin(email, password)
         waitingRoomPage.openPatients();
-        this.waitForElementVisible('@firstVisitRow') //trait
+        this.waitForElementVisible('@firstPatientRow') //trait
         return this
     },
+
+    /*
+    *   This function will change the combobox filters
+    *   Input: The combobox and option that should be selected
+    */
+   changeFilters(combobox, option) {
+    return this
+        .waitForElementNotPresent('@spinner')
+        .click('@' + combobox + 'Filter')
+        .waitForElementVisible('@' + combobox + option + 'Option')
+        .click('@' + combobox + option + 'Option')
+        // The visit that will be used is a known visit expected to be available in the selected date
+        .waitForElementPresent('@firstPatientRow', 15000)
+},
 
     /*
     *   This function will search for a specific patient's name
@@ -133,9 +155,10 @@ const commands = [{
     searchName(name) {
         return this
             .waitForElementNotPresent('@spinner')
+            .click('@searchFilter')
             .editTextField('@searchFilter', name)
             // The visit that will be used is a known visit expected to be available in the selected date
-            .waitForElementPresent('@firstVisitRow', 15000)
+            .waitForElementPresent('@firstPatientRow', 15000)
     },
 
     /*
@@ -145,17 +168,42 @@ const commands = [{
     *       - Patient's gender and age
     *       - Patient Status
     */
-    checkFirstRow(patientName, genderAge, patientStatus) {
-        return this
+    checkFirstRow(patientName, patientStatus) {
+        // Make sure the patient icon has the correct text
+        this.expect.element(`@firstPatientRowIcon`).text.to.contain('More').before(10000);
             // The perform function used several times in this file will make sure, among other things, that the text log is displayed at the same time as the results in order to make the logs easier to read
-            .perform(() => {
+        this.perform(() => {
                 console.log("- Comparing info from the patient with expected values:")
 
                 // Each of the meaningful information in the visit row is verified
-                this.expect.element(`@firstVisitRow`).text.to.contain(patientName)
-                this.expect.element(`@firstVisitRow`).text.to.contain(genderAge)
-                this.expect.element(`@firstVisitRow`).text.to.contain(patientStatus)
+                this.expect.element(`@firstPatientRow`).text.to.contain(patientName)
+                this.expect.element(`@firstPatientRow`).text.to.contain(patientStatus)
             })
+        return this
+    },
+
+    /*
+    *   Search for a specific patient using all available filters
+    *   Input: 
+    *       - Patient Status Option in combobox
+    *       - Patient Activity Option in combobox
+    *       - Keyword to be used in the search field
+    *       - Name of the patient that should appear
+    *       - Status of the patient that should appear
+    */
+    findPatient(patientStatusOption, PatientActivityOption, searchKeyword, patientName, patientStatus){
+        // Set all the filter fields
+        this.changeFilters('patientStatus', patientStatusOption) 
+        this.changeFilters('patientActivity', PatientActivityOption) 
+        this.searchName(searchKeyword)
+
+        // Verify the first row information
+        this.checkFirstRow(patientName, patientStatus)
+
+        // Erase the search field for the next search
+        .editTextField('@searchFilter', "")
+
+        return this
     },
 
     /*
@@ -164,9 +212,11 @@ const commands = [{
     */
     checkPatientProfile() {
         this
-            .click('@firstVisitRow')
+            .click('@firstPatientRow')
             .waitForElementPresent['@patientProfileIcon']
-        // this.click('@patientProfileIcon')
+            // Make sure the More/Less icon changes as expected
+            this.expect.element(`@firstPatientRowIcon`).text.to.contain('Less').before(10000);
+            
         // This assertion not only verified the title but also give it time to load in a single line of code
         this.expect.element(`@patientSidePanel`).text.to.contain('Patient Profile').before(10000);
         this.perform(() => {
@@ -177,7 +227,9 @@ const commands = [{
             this.expect.element(`@patientProfileHealthRecords`).text.to.contain('Health Records')
             this.expect.element(`@patientProfileVisitHistory`).text.to.contain('Visit History')
         })
-        this.click('@firstVisitRow') // Close panel
+        this.click('@firstPatientRow') // Close panel
+        // Make sure the More/Less icon changes as expected
+        this.expect.element(`@firstPatientRowIcon`).text.to.contain('More').before(10000);
         return this
     },
 
@@ -201,7 +253,7 @@ const commands = [{
         personalInfoTimezone = 'America/Noronha (-02 -0200)'
     ) {
         this
-            .click('@firstVisitRow')
+            .click('@firstPatientRow')
             .waitForElementPresent['@patientProfileIcon']
         this.expect.element(`@patientSidePanel`).text.to.contain('Patient Profile').before(10000);
         this.click('@patientProfilePersonalInfo')
@@ -223,7 +275,7 @@ const commands = [{
             this.expect.element(`@personalInfoTimezone`).value.to.contain(personalInfoTimezone)
         })
         this.click('@personalInfoBackButton') // Back button
-        this.click('@firstVisitRow') // Close panel
+        this.click('@firstPatientRow') // Close panel
         return this
     },
 
@@ -241,7 +293,7 @@ const commands = [{
         insurancePhone = '5555555555'
     ) {
         this
-            .click('@firstVisitRow')
+            .click('@firstPatientRow')
             .waitForElementPresent['@patientProfileIcon']
         this.expect.element(`@patientSidePanel`).text.to.contain('Patient Profile').before(10000);
         this.click('@patientProfileInsurance')
@@ -257,7 +309,7 @@ const commands = [{
             this.expect.element(`@insurancePhone`).value.to.contain(insurancePhone)
         })
         this.click('@insuranceBackButton') // Back button
-        this.click('@firstVisitRow') // Close panel
+        this.click('@firstPatientRow') // Close panel
         return this
     },
 
@@ -267,7 +319,7 @@ const commands = [{
     */
     checkHealthRecordsSidepanel() {
         this
-            .click('@firstVisitRow')
+            .click('@firstPatientRow')
             .waitForElementPresent['@patientProfileIcon']
         this.expect.element(`@patientSidePanel`).text.to.contain('Patient Profile').before(10000);
         this.click('@patientProfileHealthRecords')
@@ -283,7 +335,7 @@ const commands = [{
             this.expect.element(`@healthRecordsQuestionnaire`).text.to.contain('Questionnaire')
         })
 
-        this.click('@firstVisitRow') // Close panel
+        this.click('@firstPatientRow') // Close panel
         return this
     },
 
@@ -420,7 +472,7 @@ const commands = [{
     */
     editHealthRecordAnyType(type, defaultEntriesQuantity, customEntryText) {
         this
-            .click('@firstVisitRow')
+            .click('@firstPatientRow')
             .waitForElementPresent['@patientProfileIcon']
         this.expect.element(`@patientSidePanel`).text.to.contain('Patient Profile').before(10000);
         this.click('@patientProfileHealthRecords')
@@ -449,7 +501,7 @@ const commands = [{
             this.checkLastUpdated(healthRecordsAnyLastUpdated)
         })
         this.click('@healthRecordsAnyBackButton') // Back button
-            .click('@firstVisitRow') // Close panel
+            .click('@firstPatientRow') // Close panel
         return this
     },
 
@@ -459,7 +511,7 @@ const commands = [{
     */
     checkQuestionnaire(healthRecordsExpectedQuestionnaireAnswer1, healthRecordsExpectedQuestionnaireAnswer2) {
         this
-            .click('@firstVisitRow')
+            .click('@firstPatientRow')
             .waitForElementPresent['@patientProfileIcon']
         this.expect.element(`@patientSidePanel`).text.to.contain('Patient Profile').before(10000);
         this.click('@patientProfileHealthRecords')
@@ -478,7 +530,7 @@ const commands = [{
             this.assert.equal(healthRecordsQuestionnaireAnswer2, healthRecordsExpectedQuestionnaireAnswer2);
         })
             .click('@healthRecordsAnyBackButton') // Back button
-            .click('@firstVisitRow') // Close panel
+            .click('@firstPatientRow') // Close panel
         return this
     },
 
@@ -517,7 +569,7 @@ const commands = [{
         attachmentsExpectedQuantity
     ) {
         this
-            .click('@firstVisitRow')
+            .click('@firstPatientRow')
             .waitForElementPresent['@patientProfileIcon']
         this.expect.element(`@patientSidePanel`).text.to.contain('Patient Profile').before(10000);
         this.click('@patientProfileVisitHistory')
@@ -569,7 +621,7 @@ const commands = [{
             this.assert.equal(visitHistoryPanelArray[ChatIndex + 1], chatMessage)
         })
 
-        this.click('@firstVisitRow') // Close panel
+        this.click('@firstPatientRow') // Close panel
         return this
     },
 

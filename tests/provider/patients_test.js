@@ -14,6 +14,17 @@ module.exports = {
         '@tags:'['test']
     },
 
+    "Check Patient's tab Information - Page Filters": function (browser) {
+        const PatientsPage = browser.page.provider.PatientsPage()
+
+        // Login as a provider and go to the patients page
+        PatientsPage.accessPatientsPage(browser.globals.providerEmail, browser.globals.providerPassword)
+        // Search for specific patients in order to test the filters available
+        PatientsPage.findPatient('Pending', 'All', '34317', 'registration+10+21+34317@evisit.com', 'Pending')
+        PatientsPage.findPatient('Registered', 'RecentlySeen', 'Alexander', 'Alexander Telegin', 'Registered')
+        PatientsPage.findPatient('Registered', 'RecentlyRegistered', 'marc+mptestishforhotfix@evisit.com', 'Marc Taylor', 'Registered')
+    },
+
     "Check Patient's tab Information - Patient Profile > Personal Info": function (browser) {
         const PatientsPage = browser.page.provider.PatientsPage()
 
@@ -22,7 +33,7 @@ module.exports = {
         // Search for a specific patient already configured to be used in the automation proccess
         PatientsPage.searchName("First Name Edited")
         // Verify all information in the patient found with the filter
-        PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Female, 30 yrs', 'Registered')
+        PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Registered')
         // Make sure the Patient Profile show all the expected options
         PatientsPage.checkPatientProfile()
         // Compare the provided values with the ones expected for the patient profile based in the patient's settings test (should be default for this patient)
@@ -37,7 +48,7 @@ module.exports = {
         // Search for a specific patient already configured to be used in the automation proccess
         PatientsPage.searchName("First Name Edited")
         // Verify all information in the patient found with the filter
-        PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Female, 30 yrs', 'Registered')
+        PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Registered')
         // Compare the insurance on screen with expected values based in the patient's settings test (should be default for this patient)
         PatientsPage.checkInsurance('Automation Insurance Test', 'Self', '123', '321', 'Other', '5555555555')
     },
@@ -50,7 +61,7 @@ module.exports = {
         // Search for a specific patient already configured to be used in the automation proccess
         PatientsPage.searchName("First Name Edited")
         // Verify all information in the patient found with the filter
-        PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Female, 30 yrs', 'Registered')
+        PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Registered')
         // Check if all expected health records types are visible as options
         PatientsPage.checkHealthRecordsSidepanel()
         // Edit each type of health record with default and custom entries
@@ -73,7 +84,7 @@ module.exports = {
         // Search for a specific patient already configured to be used in the automation proccess
         PatientsPage.searchName("First Name Edited")
         // Verify all information in the patient found with the filter
-        PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Female, 30 yrs', 'Registered')
+        PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Registered')
         // Select a visit based in a known date and compare the info displayed with the expected values
         PatientsPage.checkVisitHistoryListed('September 15, 2020', 'test', 'test', 'No prescriptions have been submitted.', '$50.00', 'Chat was not utilized in this visit.', 2)
     },
