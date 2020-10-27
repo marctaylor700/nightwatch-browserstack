@@ -89,6 +89,30 @@ const commands = [{
     },
 
     /*
+    *   Open the patients tab in the main menu
+    *   Input: None
+    */
+   openPatients() {
+    this
+        .waitForElementVisible('@tabWaitingRoom')
+        .waitForElementNotVisible('.eVisitAppLoadingSpinner')
+        .click('@tabPatients')
+    return this
+},
+
+    /*
+    *   Open the visit history tab in the main menu
+    *   Input: None
+    */
+   openVisitHistory() {
+    this
+        .waitForElementVisible('@tabWaitingRoom')
+        .waitForElementNotVisible('.eVisitAppLoadingSpinner')
+        .click('@tabVisitHistory')
+    return this
+},
+
+    /*
     *   Open the scheduling tab in the main menu
     *   Input: None
     */
