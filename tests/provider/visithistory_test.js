@@ -88,14 +88,14 @@ async function providerLogin(browser) {
 
   // Basically the below stuff runs everything. 
 module.exports = {
-    before : async function (browser) {
-      browser.resizeWindow(1920, 1080);
-      '@tags:' ['test']
-    },
-    'Provider Login - Verify Visit History Tab' : async function(browser) {
-      goToPracticeLoginPage(browser, "ewellness")
-        .then(providerLogin(browser))
-        .then(visitHistoryTab(browser))
-        .then(browser.end());
-    }, 
+    // before : async function (browser) {
+    //   browser.resizeWindow(1920, 1080);
+    //   '@tags:' ['test']
+    // },
+    // 'Provider Login - Verify Visit History Tab' : async function(browser) {
+    //   goToPracticeLoginPage(browser, "ewellness")
+    //     .then(providerLogin(browser))
+    //     .then(visitHistoryTab(browser))
+    //     .then(browser.end());
+    // }, 
   };
