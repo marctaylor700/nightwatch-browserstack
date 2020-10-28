@@ -1,4 +1,9 @@
-let settingsPage;
+/*
+*   REQUIREMENTS TO RUN:
+*
+* - At least one notification toggle must be enabled and at least one must be disabled (otherwise the test will fail
+* if try to save changes when none of them be enabled after toggle changes).
+*/
 
 module.exports = {
     
@@ -14,7 +19,7 @@ module.exports = {
             //edit notification fields
             .editTextField('@emailNotifField', "test@evisit.com")
             .editTextField('@phoneNotifField', "555-555-5555")
-            .editTextField('@textNotifField', "555-555-5555")
+            .editTextField('@smsNotifField', "555-555-5555")
             .click('@saveChangesButton')
         
         //TODO: check confirmation toast when it exists - Bug #8aka6k
@@ -26,9 +31,7 @@ module.exports = {
     //TODO: Add new notification channel
 
     "Toogle Notification Channels": function (browser) {
-        settingsPage.toggleNotifChannelandCheck('@textNotifToggle')
-        settingsPage.toggleNotifChannelandCheck('@phoneNotifToggle')
-        settingsPage.toggleNotifChannelandCheck('@emailNotifToggle')
+        settingsPage.toggleNotifChannelsAndCheck()
 
         //TODO: check confirmation toast when it exists - Bug #8aka6k
         //TODO: check persistence - Depends on #275v9m - Verified with CSS workaround
