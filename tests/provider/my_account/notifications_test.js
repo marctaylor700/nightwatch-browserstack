@@ -1,5 +1,14 @@
+/*
+*   REQUIREMENTS TO RUN:
+*
+* - At least one notification toggle must be enabled and at least one must be disabled (otherwise the test will fail
+* if try to save changes when none of them be enabled after toggle changes).
+* - It shouldn't have any custom notification previously added
+*/
+
 module.exports = {
     
+    //To run only one test, change this before function to 'beforeEach'
     before: function (browser) {
         browser.resizeWindow(1920, 1300);
         '@tags:'['test']
@@ -20,9 +29,8 @@ module.exports = {
     },
 
     "Toogle Notification Channels": function (browser) {
-        notificationsPage.toggleNotifChannelandCheck('@smsNotifToggle')
-        notificationsPage.toggleNotifChannelandCheck('@phoneNotifToggle')
-        notificationsPage.toggleNotifChannelandCheck('@emailNotifToggle')
+        notificationsPage.toggleNotifChannelsAndCheck()
+        
         //TODO: check confirmation toast when it exists - Bug #8aka6k
         //TODO: check persistence - Depends on #275v9m - Verified with CSS workaround
     },
@@ -39,7 +47,8 @@ module.exports = {
         //TODO: check confirmation toast when it exists - Bug #8aka6k
     },
 
-    "Test Select All Notify Me When Checkboxes": function (browser) {
+    "Select All Notify Me When Checkboxes": function (browser) {
+        //Check the changed status of "Select All" according to the previous status
         notificationsPage.selectAll('@selectAllNotifyMe',  isSelected => {
             //Logout, login and access Notifications Page again to check persistence
             notificationsPage.accessNotificationsSectionAfterLogout(browser.globals.providerEmail, browser.globals.providerPassword)
@@ -48,7 +57,8 @@ module.exports = {
         })
     },
 
-    "Test Select All Notify My Patients Checkboxes": function (browser) {
+    "Select All Notify My Patients Checkboxes": function (browser) {
+        //Check the changed status of "Select All" according to the previous status
         notificationsPage.selectAll('@selectAllNotifyMyPatients',  isSelected => {
             //Logout, login and access Notifications Page again to check persistence
             notificationsPage.accessNotificationsSectionAfterLogout(browser.globals.providerEmail, browser.globals.providerPassword)
@@ -57,7 +67,7 @@ module.exports = {
         })
     },
 
-    "Test Select Only One of Notify Me When Checkboxes": function (browser) {
+    "Select Only One of Notify Me When Checkboxes": function (browser) {
         notificationsPage.selectOnlyOne('@leftCheckbox1', '@selectAllNotifyMe')
         //Logout, login and access Notifications Page again to check persistence
         notificationsPage.accessNotificationsSectionAfterLogout(browser.globals.providerEmail, browser.globals.providerPassword)
@@ -65,7 +75,7 @@ module.exports = {
         notificationsPage.checkPersistenceOfSelectOnlyOneNotifyMe()
     },
 
-    "Test Select Only One of Notify My Patients Checkboxes": function (browser) {
+    "Select Only One of Notify My Patients Checkboxes": function (browser) {
         notificationsPage.selectOnlyOne('@rightCheckbox1', '@selectAllNotifyMyPatients')
         //Logout, login and access Notifications Page again to check persistence
         notificationsPage.accessNotificationsSectionAfterLogout(browser.globals.providerEmail, browser.globals.providerPassword)
