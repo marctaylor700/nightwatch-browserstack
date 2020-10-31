@@ -109,7 +109,7 @@ const commands = [{
             .click(`[data-test-id='toggleSuggestions']`) //show
             .click('@addEntry')
             .click('@btnSave')
-            .waitForElementVisible(`@btnEdit`)
+            .waitForElementVisible(`@btnEdit`,10000)
     },
 
     /*
@@ -122,7 +122,7 @@ const commands = [{
             .setValue('@inputField', newCustomText)
             .click('@btnInput')
             .click('@btnSave')
-            .waitForElementVisible(`@btnEdit`)
+            .waitForElementVisible(`@btnEdit`,10000)
     },
 
     /*
