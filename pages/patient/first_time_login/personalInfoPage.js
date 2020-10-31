@@ -103,43 +103,43 @@ const commands = [{
             // State combobox without answer
             .checkPersonalInfoFailureMessage("First Name Edited", "Middle Name Edited", "Last Name Edited",
                 "Address 1 Edited", "Address 2 Edited", "City Edited", "", "12345",
-                "123-456-7891", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
+                "480-289-1576", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
                 "State required.")
 
             // First name empty
             .checkPersonalInfoFailureMessage("", "Middle Name Edited", "Last Name Edited",
                 "Address 1 Edited", "Address 2 Edited", "City Edited", "WyomingOption", "12345",
-                "123-456-7891", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
+                "480-289-1576", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
                 "Value required for First Name.")
 
             // Address 1 empty
             .checkPersonalInfoFailureMessage("First Name Edited", "Middle Name Edited", "Last Name Edited",
                 "", "Address 2 Edited", "City Edited", "WyomingOption", "12345",
-                "123-456-7891", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
+                "480-289-1576", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
                 "Address required.")
 
             // Zip code empty
             .checkPersonalInfoFailureMessage("First Name Edited", "Middle Name Edited", "Last Name Edited",
                 "Address 1 Edited", "Address 2 Edited", "City Edited", "WyomingOption", "",
-                "123-456-7891", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
+                "480-289-1576", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
                 "ZIP Code required.")
 
             // Zip code with wrong number of digits (3 instead of 5 or 8)
             .checkPersonalInfoFailureMessage("First Name Edited", "Middle Name Edited", "Last Name Edited",
                 "Address 1 Edited", "Address 2 Edited", "City Edited", "WyomingOption", "123",
-                "123-456-7891", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
+                "480-289-1576", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
                 "Zip code must be 5 or 9 digits long.")
 
             // Phone number with invalid number
             .checkPersonalInfoFailureMessage("First Name Edited", "Middle Name Edited", "Last Name Edited",
                 "Address 1 Edited", "Address 2 Edited", "City Edited", "WyomingOption", "12345",
-                "123-456-789", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
+                " 480-289-15", "09/06/1990", "femaleOption", "AmericaNoronha020200Option",
                 "Invalid phone number.")
 
             // Age corresponding to under age person
             .checkPersonalInfoFailureMessage("First Name Edited", "Middle Name Edited", "Last Name Edited",
                 "Address 1 Edited", "Address 2 Edited", "City Edited", "WyomingOption", "12345",
-                "123-456-7891", "09/06/2015", "femaleOption", "AmericaNoronha020200Option",
+                "480-289-1576", "09/06/2015", "femaleOption", "AmericaNoronha020200Option",
                 "Age must be 18 or above.")
 
         return this

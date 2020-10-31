@@ -28,7 +28,7 @@ module.exports = {
         // Add all valid information as personal info and continue
         personalInfoPage.confirmPersonalInfo("First Name Edited", "Middle Name Edited","Last Name Edited", 
         "Address 1 Edited", "Address 2 Edited", "City Edited", "WyomingOption", "12345", 
-        "123-456-7891", "09/06/1990", "femaleOption", "")
+        "480-289-1576", "09/06/1990", "femaleOption", "")
         // Skip the profile picture step
         profilePicturePage.skipProfilePicture()
         // Add new valid information as insurance
@@ -97,7 +97,7 @@ module.exports = {
         // Add all valid information as personal info and continue
         personalInfoPage.confirmPersonalInfo("First Name Edited", "Middle Name Edited","Last Name Edited", 
         "Address 1 Edited", "Address 2 Edited", "City Edited", "WyomingOption", "12345", 
-        "123-456-7891", "09/06/1990", "femaleOption", "")
+        "480-289-1576", "09/06/1990", "femaleOption", "")
         // Skip the profile picture step
         profilePicturePage.skipProfilePicture()
         // Verify if insurance page was reached
@@ -121,7 +121,7 @@ module.exports = {
         // Add all valid information as personal info and continue
         personalInfoPage.confirmPersonalInfo("First Name Edited", "Middle Name Edited","Last Name Edited", 
         "Address 1 Edited", "Address 2 Edited", "City Edited", "WyomingOption", "12345", 
-        "123-456-7891", "09/06/1990", "femaleOption", "")
+        "480-289-1576", "09/06/1990", "femaleOption", "")
         // Skip the profile picture step
         profilePicturePage.skipProfilePicture()
         // Check different failure scenarios of filling in insurance information
