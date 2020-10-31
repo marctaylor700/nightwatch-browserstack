@@ -7,6 +7,9 @@ const elements = {
     myAccountMenuItem: `[data-test-id='myAccountMenuItem']`,
     logoutMenuItem: `[data-test-id="logoutMenuItem"]`,
 
+    // General spinner
+    spinner: `.eVisitAppLoadingSpinner`,
+
     // General modal locator for any modal on screen
     Modal: `.eVisitAppModal`,
 
@@ -95,7 +98,8 @@ const commands = [{
    openPatients() {
     this
         .waitForElementVisible('@tabWaitingRoom')
-        .waitForElementNotVisible('.eVisitAppLoadingSpinner')
+        .pause(500) // The spinner below always take a second to start loading
+        .waitForElementNotVisible('@spinner')
         .click('@tabPatients')
     return this
 },
@@ -107,7 +111,8 @@ const commands = [{
    openVisitHistory() {
     this
         .waitForElementVisible('@tabWaitingRoom')
-        .waitForElementNotVisible('.eVisitAppLoadingSpinner')
+        .pause(500) // The spinner below always take a second to start loading
+        .waitForElementNotVisible('@spinner')
         .click('@tabVisitHistory')
     return this
 },
@@ -119,7 +124,8 @@ const commands = [{
     openScheduling() {
         this
             .waitForElementVisible('@tabWaitingRoom')
-            .waitForElementNotVisible('.eVisitAppLoadingSpinner')
+            .pause(500) // The spinner below always take a second to start loading
+            .waitForElementNotVisible('@spinner')
             .click('@tabScheduling')
         return this
     },
