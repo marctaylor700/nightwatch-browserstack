@@ -105,7 +105,7 @@ const commands = [{
             .click(`[data-test-id='toggleSuggestions']`) //show
             .click('@addEntry')
             .click('@btnSave')
-            .waitForElementVisible(('@' + allergyType + 'EditButton'))
+            .waitForElementVisible(('@' + allergyType + 'EditButton'),10000)
     },
 
     /*
@@ -117,7 +117,7 @@ const commands = [{
             .setValue('@inputField', customText)
             .click('@btnInput')
             .click('@btnSave')
-            .waitForElementVisible(('@' + allergyType + 'EditButton'))
+            .waitForElementVisible(('@' + allergyType + 'EditButton'),10000)
     },
 
     /*

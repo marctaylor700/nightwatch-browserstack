@@ -37,7 +37,7 @@ module.exports = {
         // Make sure the Patient Profile show all the expected options
         PatientsPage.checkPatientProfile()
         // Compare the provided values with the ones expected for the patient profile based in the patient's settings test (should be default for this patient)
-        PatientsPage.checkPersonalInfo('First Name Edited', 'Middle Name Edited', 'Last Name Edited', 'Address 1 Edited', 'Address 2 Edited', 'City Edited', 'Wyoming', '12345', '123-456-7891', '09/06/1990', 'Female', 'America/Noronha (-02 -0200)')
+        PatientsPage.checkPersonalInfo('First Name Edited', 'Middle Name Edited', 'Last Name Edited', 'Address 1 Edited', 'Address 2 Edited', 'City Edited', 'Wyoming', '12345', '480-289-1576', '09/06/1990', 'Female', 'America/Noronha (-02 -0200)')
     },
 
     "Check Patient's tab information - Patient Profile > Insurance": function (browser) {
