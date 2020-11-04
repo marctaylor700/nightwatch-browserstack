@@ -19,7 +19,10 @@ const elements = {
     smsNotifToggle: `[data-test-id="smsToggle"] [class="RAView eVisitAppSwitchFieldKnob"]`,
 
     saveChangesButton: `[data-test-id="saveNotificationChanges"]`,
-    saveChangesSpinner: `[class="applicationActivityIndicator"]`
+    saveChangesSpinner: `[class="applicationActivityIndicator"]`,
+
+    toast: `[data-test-id='toast']`,
+    btnCloseToast: `[data-test-id='buttonCloseToast']`,
 };
 
 const commands = [{
@@ -65,12 +68,14 @@ const commands = [{
     accessSettingsSectionAfterLogout(email, password){
         this
             const loginPage = this.api.page.loginPage()
+            const geolocationPage = this.api.page.patient.geolocationPage()
             const landingPage = this.api.page.patient.landingPage()
             // Logout and Login again to check persistence
             landingPage.selectLogout()
             landingPage.acceptLogout()
             this.pause(2000) //waits login page to load
             loginPage.userLogin(email, password)
+            geolocationPage.confirmGeolocation()
 
             //access Settings Page
             landingPage.selectMyAccount()
