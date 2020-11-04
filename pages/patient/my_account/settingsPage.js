@@ -64,7 +64,7 @@ const commands = [{
         return this
     },
 
-    //Perform the logout, login and access Settings Page again
+    //Perform the logout, login and access Patient Settings Page again
     accessSettingsSectionAfterLogout(email, password){
         this
             const loginPage = this.api.page.loginPage()
@@ -79,6 +79,23 @@ const commands = [{
 
             //access Settings Page
             landingPage.selectMyAccount()
+            this.accessSettingsSection()
+        return this
+    },
+
+    //Perform the logout, login and access Provider Settings Page again
+    accessProviderSettingsSectionAfterLogout(email, password){
+        this
+            const loginPage = this.api.page.loginPage()
+            const waitingRoomPage = this.api.page.provider.waitingRoomPage()
+            // Logout and Login again to check persistence
+            waitingRoomPage.selectLogout()
+            waitingRoomPage.acceptLogout()
+            this.pause(2000) //waits login page to load
+            loginPage.userLogin(email, password)
+
+            //access Settings Page
+            waitingRoomPage.selectMyAccount()
             this.accessSettingsSection()
         return this
     },
