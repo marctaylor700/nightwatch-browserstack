@@ -2,6 +2,7 @@
 *   REQUIREMENTS TO RUN:
 *
 * - The user "Omega Provider 2" must be available
+* - The user "Omega Provider 2" should not have any availability block added
 */
 
 module.exports = {
