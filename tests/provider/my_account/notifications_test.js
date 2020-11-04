@@ -47,6 +47,7 @@ module.exports = {
         //TODO: check confirmation toast when it exists - Bug #8aka6k
     },
 
+    //This test is failing due to the bug of not saving after logout
     "Select All Notify Me When Checkboxes": function (browser) {
         //Check the changed status of "Select All" according to the previous status
         notificationsPage.selectAll('@selectAllNotifyMe',  isSelected => {
@@ -67,6 +68,7 @@ module.exports = {
         })
     },
 
+    //This test is failing due to the bug of not saving after logout
     "Select Only One of Notify Me When Checkboxes": function (browser) {
         notificationsPage.selectOnlyOne('@leftCheckbox1', '@selectAllNotifyMe')
         //Logout, login and access Notifications Page again to check persistence

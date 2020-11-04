@@ -81,7 +81,7 @@ const commands = [{
     selectLogout() {
         this
             //verify and click user profile button
-            .waitForElementVisible('@SelectPatient')
+            //.waitForElementVisible('@SelectPatient')
             .waitForElementVisible('@btnUserProfile')
             .verify.elementPresent('@btnUserProfile')
             .pause(1000)
