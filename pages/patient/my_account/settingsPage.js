@@ -61,6 +61,23 @@ const commands = [{
         return this
     },
 
+    //Perform the logout, login and access Settings Page again
+    accessSettingsSectionAfterLogout(email, password){
+        this
+            const loginPage = this.api.page.loginPage()
+            const landingPage = this.api.page.patient.landingPage()
+            // Logout and Login again to check persistence
+            landingPage.selectLogout()
+            landingPage.acceptLogout()
+            this.pause(2000) //waits login page to load
+            loginPage.userLogin(email, password)
+
+            //access Settings Page
+            landingPage.selectMyAccount()
+            this.accessSettingsSection()
+        return this
+    },
+
     changeEmail(new_email, password){
         return this
             .editTextField('@emailField', new_email)
