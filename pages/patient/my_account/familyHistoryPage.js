@@ -105,7 +105,7 @@ const commands = [{
     */
     addDefaultEntry() {
         return this.click(`@btnEdit`)
-            .waitForElementVisible(`@btnToggle`)
+            .waitForElementVisible(`@btnToggle`,10000)
             .click(`[data-test-id='toggleSuggestions']`) //show
             .click('@addEntry')
             .click('@btnSave')
@@ -118,7 +118,7 @@ const commands = [{
     addCustomEntry() {
         var newCustomText = "Family History - Automation"
         return this.click(`@btnEdit`)
-            .waitForElementVisible(`@btnToggle`)
+            .waitForElementVisible(`@btnToggle`,10000)
             .setValue('@inputField', newCustomText)
             .click('@btnInput')
             .click('@btnSave')

@@ -99,10 +99,10 @@ module.exports = {
       '@tags:' ['test']
     },
     'Visit request by current patient' : async function(browser) {
-      goToPracticeLoginPage(browser, "ewellness")
-        .then(patientLogin(browser))
-        .then(geoLocationPage(browser))
-        .then(requestVisit(browser))
-        .then(browser.end());
+      // goToPracticeLoginPage(browser, "ewellness")
+      //   .then(patientLogin(browser))
+      //   .then(geoLocationPage(browser))
+      //   .then(requestVisit(browser))
+      //   .then(browser.end());
     }, 
   };

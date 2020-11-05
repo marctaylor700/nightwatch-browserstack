@@ -68,6 +68,7 @@ const commands = [{
             .waitForElementVisible(`@btnAddInsuranceYes`, 15000)
             .click('@btnAddInsuranceYes')
             .waitForElementVisible('@insuranceCompanyField', 5000)
+            .pause(500)
             .click('@btnUpdate')
 
             // The expected toast message

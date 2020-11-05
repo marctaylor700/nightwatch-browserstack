@@ -114,7 +114,7 @@ const commands = [{
     *   This function will make sure all questions have "Yes" as answer
     */
     verifyAnswersAreYes() {
-        this.waitForElementVisible('@btnEdit')
+        this.waitForElementVisible('@btnEdit',10000)
         this.click('@btnEdit')
         this.expect.element('@firstQuestionNoColoredDiv').to.have.css('background-color').which.equals('rgba(255, 255, 255, 1)')
         this.expect.element('@firstQuestionYesColoredDiv').to.have.css('background-color').which.equals('rgba(42, 178, 188, 1)')
@@ -128,7 +128,7 @@ const commands = [{
     *   This function will make sure all questions have "No" as answer
     */
     verifyAnswersAreNo() {
-        this.waitForElementVisible('@btnEdit')
+        this.waitForElementVisible('@btnEdit',10000)
         this.click('@btnEdit')
         this.expect.element('@firstQuestionNoColoredDiv').to.have.css('background-color').which.equals('rgba(42, 178, 188, 1)')
         this.expect.element('@firstQuestionYesColoredDiv').to.have.css('background-color').which.equals('rgba(255, 255, 255, 1)')

@@ -173,9 +173,7 @@ const commands = [{
         this.click('@btnContinue')
 
             .checkToastMessage("Personal Info updated.")
-            .pause(500)
-            .click('@btnCloseToast')
-            .waitForElementNotPresent('@toast')
+            .waitForElementNotPresent('@toast',10000)
 
         return this
     },
