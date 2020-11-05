@@ -101,7 +101,7 @@ const commands = [{
     */
     addDefaultEntry(allergyType) {
         return this.click(('@' + allergyType + 'EditButton'))
-            .waitForElementVisible(`@btnToggle`)
+            .waitForElementVisible(`@btnToggle`,10000)
             .click(`[data-test-id='toggleSuggestions']`) //show
             .click('@addEntry')
             .click('@btnSave')
@@ -113,7 +113,7 @@ const commands = [{
     */
     addCustomEntry(allergyType, customText) {
         return this.click(('@' + allergyType + 'EditButton'))
-            .waitForElementVisible(`@btnToggle`)
+            .waitForElementVisible(`@btnToggle`,10000)
             .setValue('@inputField', customText)
             .click('@btnInput')
             .click('@btnSave')

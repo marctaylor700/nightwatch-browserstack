@@ -127,7 +127,8 @@ const commands = [{
             .click('@updateInsuranceButton')
             .waitForElementVisible('@toast', 15000)
             .checkToastMessage("Successfully updated information!")
-            .click('@btnCloseToast')
+            //.click('@btnCloseToast')
+            .waitForElementNotPresent('@toast', 15000)
     },
 
     /*
@@ -144,7 +145,8 @@ const commands = [{
             .click('@updateInsuranceButton')
             .waitForElementVisible('@toast', 15000)
             .checkToastMessage("Successfully updated information!")
-            .click('@btnCloseToast')
+            //.click('@btnCloseToast')
+            .waitForElementNotPresent('@toast', 15000)
     },
 
     /*
