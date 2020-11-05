@@ -9,6 +9,7 @@ nightwatch_config = {
 
   test_settings: {
     default: {
+      skip_testcases_on_fail: false, //Do not skip remaining tests in case one of them fail
       desiredCapabilities: {
         'browserstack.user': 'nick34',
         'browserstack.key': 'SBukT13jtljJiBWoBpHw',
