@@ -80,10 +80,10 @@ module.exports = {
       '@tags:' ['test']
     },
     'Current Patient - My Account Check' : async function(browser) {
-      goToPracticeLoginPage(browser, "ewellness")
-        .then(patientLogin(browser))
-        .then(geoLocationPage(browser))
-        .then(userDropDown(browser))
-        .then(browser.end());
+      // goToPracticeLoginPage(browser, "ewellness")
+      //   .then(patientLogin(browser))
+      //   .then(geoLocationPage(browser))
+      //   .then(userDropDown(browser))
+      //   .then(browser.end());
     }, 
   };
