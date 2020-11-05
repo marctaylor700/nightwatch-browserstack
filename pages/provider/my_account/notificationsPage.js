@@ -124,6 +124,7 @@ const commands = [{
             var element = toggles[i];
             ( (elementVar) => { //start wrapper code (anonymous function)
             this.getAttribute(elementVar, 'style', (result) => {
+                this.pause(1000)
                 if (result.value.includes('right')) { //it means channel is enabled
                     togglesStatus.push('left');
                     this.click(elementVar) //toggle channel OFF

@@ -18,12 +18,12 @@ module.exports = {
             pharmacyPage.checkAddressInputByPatient(address.value)
         })
         pharmacyPage
-            //search by new address
-            .searchBy("Test")
+            //search by new address (by zipcode)
+            .searchBy("47374")
             //select new pharmacy by List
             .selectByList()
-            //search by new address
-            .searchBy("Test Road")
+            //search by new address (by zipcode)
+            .searchBy("47374")
             //select new pharmacy by Map
             .selectByMap()
     },
