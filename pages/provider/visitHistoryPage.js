@@ -707,7 +707,7 @@ const commands = [{
             .click('@healthRecords' + type)
             // Pause needed because sometimes the loading spinner don't appear right away
             .pause(1000)
-            .waitForElementNotPresent('@healthRecordsAnySpinner')
+            .waitForElementNotPresent('@healthRecordsAnySpinner',15000)
         this.cleanList()
         // List should have 0 elements after cleanup
         this.countListEntries(0)
@@ -939,7 +939,7 @@ const commands = [{
         this.expect.element(`@visitHistoryPanel`).text.to.contain('ePrescribe').before(10000);
 
         // Wait for the page to load
-        this.waitForElementNotPresent('@healthRecordsAnySpinner')
+        this.waitForElementNotPresent('@healthRecordsAnySpinner',15000)
             // Click on edit button from the saved pharmacy
             .click('@savedPharmacyEditIcon')
 
@@ -1088,7 +1088,7 @@ const commands = [{
         this.expect.element(`@visitHistoryPanel`).text.to.contain('ePrescribe').before(10000);
 
         // Wait for the page to load
-        this.waitForElementNotPresent('@healthRecordsAnySpinner', 10000)
+        this.waitForElementNotPresent('@healthRecordsAnySpinner', 15000)
             .click('@addPrescription')
 
         // Use the correct fields for either medication or supply entry
@@ -1129,7 +1129,7 @@ const commands = [{
         this.expect.element(`@visitHistoryPanel`).text.to.contain('ePrescribe').before(10000);
 
         // Wait for the page to load
-        this.waitForElementNotPresent('@healthRecordsAnySpinner')
+        this.waitForElementNotPresent('@healthRecordsAnySpinner',15000)
 
         this.api.elements(('@savedPrescriptionEntryEditButton'), result => {
             const numElements = result.value.length;
