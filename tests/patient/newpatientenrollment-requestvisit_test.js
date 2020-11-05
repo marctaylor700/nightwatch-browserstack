@@ -52,16 +52,21 @@ async function registerNewPatient(browser, newUserCredentials) {
 //Geolocation page
 async function geoLocationPage(browser) {
   browser.waitForElementVisible(`[data-test-id='userProfileButton']`, 10000)
-  browser.pause(800)
   browser.element('css selector', '[data-test-id=confirmCheckBox]', function (result) {
     //validation to confirm geolocation is required during test execution
     if (result.status != -1) {
-      //check and click confirm checkbox
       browser.expect.element(`[data-test-id=confirmCheckBox]`).to.be.present;
+      //select a state
+      browser.click('[data-test-id="stateSelect"]')
+      browser.pause(500)
+      browser.click('[data-test-id="FloridaOption"]')
+      //click confirm checkbox
       browser.click(`[data-test-id='confirmCheckBox']`)
+      browser.pause(500)
       //check and click continue button
       browser.expect.element(`[data-test-id='continue']`).to.be.present;
       browser.click(`[data-test-id='continue']`)
+      browser.pause(1000)
       //pause
     } else {
       console.log("Skipping Geolocation Page")
@@ -178,9 +183,9 @@ async function welcomePage(browser) {
 //Select the main patient
 //In order to use dependent, the index is the only thing that requires change
 async function selectPatient(browser) {
-  browser.waitForElementVisible({ selector: '[data-test-id=rowClick]', index: 0 })
-  browser.expect.element({ selector: '[data-test-id=rowClick]', index: 0 }).to.be.present;
-  browser.click({ selector: '[data-test-id=rowClick]', index: 0 })
+  browser.waitForElementVisible(`[data-test-id='rowClick'] .eVisitAppButton div`)
+  browser.expect.element(`[data-test-id='rowClick'] .eVisitAppButton div`).to.be.present;
+  browser.click(`[data-test-id='rowClick'] .eVisitAppButton div`)
 }
 
 
@@ -241,6 +246,8 @@ async function HealthRecords(browser, includeHealthRecords) {
     browser.click(`[data-test-id='yes']`)
 
     //Verify allergy empty page
+    browser.waitForElementVisible(`[data-test-id="editMedicalRecord"]`,10000)
+    browser.click(`[data-test-id="editMedicalRecord"]`)
     browser.waitForElementVisible(`[data-test-id="listInput"]`)
     browser.expect.element('[data-field=please_list_any_known_allergies]').text.to.contain('Please list any known allergies')
     browser.expect.element(`[data-test-id='toggleSuggestions']`).text.to.contain('Show list')
@@ -282,6 +289,8 @@ async function HealthRecords(browser, includeHealthRecords) {
     browser.click(`[data-test-id='yes']`)
 
     //Verify medication allergy empty page
+    browser.waitForElementVisible(`[data-test-id="editMedicalRecord"]`,10000)
+    browser.click(`[data-test-id="editMedicalRecord"]`)
     browser.waitForElementVisible(`[data-test-id="listInput"]`)
     browser.expect.element('[data-field=please_list_any_known_medication_allergies]').text.to.contain('Please list any known medication allergies')
     browser.expect.element(`[data-test-id='toggleSuggestions']`).text.to.contain('Show list')
@@ -323,6 +332,8 @@ async function HealthRecords(browser, includeHealthRecords) {
     browser.click(`[data-test-id='yes']`)
 
     //Verify medical condition empty page
+    browser.waitForElementVisible(`[data-test-id="editMedicalRecord"]`,10000)
+    browser.click(`[data-test-id="editMedicalRecord"]`)
     browser.waitForElementVisible(`[data-test-id="listInput"]`)
     browser.expect.element('[data-field=please_list_any_known_medical_conditions]').text.to.contain('Please list any known medical conditions')
     browser.expect.element(`[data-test-id='toggleSuggestions']`).text.to.contain('Show list')
@@ -364,6 +375,8 @@ async function HealthRecords(browser, includeHealthRecords) {
     browser.click(`[data-test-id='yes']`)
 
     //Verify family history empty page
+    browser.waitForElementVisible(`[data-test-id="editMedicalRecord"]`,10000)
+    browser.click(`[data-test-id="editMedicalRecord"]`)
     browser.waitForElementVisible(`[data-test-id="listInput"]`)
     browser.expect.element('[data-field=please_list_any_known_family_history]').text.to.contain('Please list any known family history')
     browser.expect.element(`[data-test-id='toggleSuggestions']`).text.to.contain('Show list')
@@ -405,6 +418,8 @@ async function HealthRecords(browser, includeHealthRecords) {
     browser.click(`[data-test-id='yes']`)
 
     //Verify medications empty page
+    browser.waitForElementVisible(`[data-test-id="editMedicalRecord"]`,10000)
+    browser.click(`[data-test-id="editMedicalRecord"]`)
     browser.waitForElementVisible(`[data-test-id="listInput"]`)
     browser.expect.element('[data-field=please_list_any_known_medications]').text.to.contain('Please list any known medications')
     browser.expect.element(`[data-test-id='toggleSuggestions']`).text.to.contain('Show list')
@@ -446,6 +461,8 @@ async function HealthRecords(browser, includeHealthRecords) {
     browser.click(`[data-test-id='yes']`)
 
     //Verify procedures empty page
+    browser.waitForElementVisible(`[data-test-id="editMedicalRecord"]`,10000)
+    browser.click(`[data-test-id="editMedicalRecord"]`)
     browser.waitForElementVisible(`[data-test-id="listInput"]`)
     browser.expect.element('[data-field=please_list_any_known_procedures]').text.to.contain('Please list any known procedures')
     browser.expect.element(`[data-test-id='toggleSuggestions']`).text.to.contain('Show list')
