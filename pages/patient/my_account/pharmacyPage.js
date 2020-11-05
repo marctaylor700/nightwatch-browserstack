@@ -14,16 +14,17 @@ const elements = {
         index: 0
     },
 
-    // Second option of pharmacy returned by the list (to check the action of selecting a new one)
-    secondPharmacyOption: `[data-test-id="pharmacyRow1"]`,
-    secondPharmacyOptionName: `[data-test-id="pharmacyRow1"] [class="RAText"]:nth-child(1)`,
-    // First pharmacy of list
+    // First option of pharmacy returned by the list   
+    firstPharmacyOption: `[data-test-id="pharmacyRow0"]`,
+    // Icon of pharmacy to check if it is selected
     firstPharmacyOptionIcon: `[data-test-id="pharmacyRow0"] div[class*="RAView eVisitAppIcon eVisitAppIconContainer"]`,
+    // Name of the pharmacy (excluding the address)
     firstPharmacyOptionName: `[data-test-id="pharmacyRow0"] [class="RAText"]:nth-child(1)`,
 
     updateButton: `[data-test-id="updateEditPharmacy"]`,
 
-    newPhamacyOfMap: `[title="PHILLIPS DRUGS WEST"]`
+    //New pharmacy selected on the Map
+    newPhamacyOfMap: `[title="Phillips Drugs East"]`
 
 };
 
@@ -48,23 +49,25 @@ const commands = [{
     },
     searchBy(value) {
         this
+            .pause(1000)
             .editTextField('@searchField', value)
             //wait for popup with address options appears
-            .waitForElementVisible('@addressOption', 10000)
+            .waitForElementVisible(`[data-test-id="ZIPCODE` + value + `Option"]`,50000)
             //select the first address option
             .click('@addressOption')
+            .pause(2000) //necessary to wait the list of pharmacies update
         return this
     },
     selectByList() {
         this
-            .waitForElementVisible('@secondPharmacyOption')
+            .waitForElementVisible('@firstPharmacyOption')
             //get new pharmacy name to compare after
-            .getText('@secondPharmacyOptionName', (result) => {
+            .getText('@firstPharmacyOptionName', (result) => {
                 //new pharmacy name
                 const selectedPharmacy = result.value;
                 const settingsPage = this.api.page.patient.my_account.settingsPage();
                 //select new pharmacy on the list
-                this.click('@secondPharmacyOption')
+                this.click('@firstPharmacyOption')
                     //update pharmacy
                     .click('@updateButton')
                 //switch section in order to check the change to new pharmacy
@@ -93,14 +96,12 @@ const commands = [{
                 settingsPage.accessSettingsSection()
                 this.accessPharmacySection()
                     //check if selected pharmacy is centralized on Map
-                    .verify.cssProperty('@newPhamacyOfMap', 'left', '-10px')
-                    .verify.cssProperty('@newPhamacyOfMap', 'top', '-8px')
+                    .verify.cssProperty('@newPhamacyOfMap', 'left', '-16px') //previously -10
+                    .verify.cssProperty('@newPhamacyOfMap', 'top', '-14px') //previously -8
                     //check if selected pharmacy changed the icon color to 'selected' color
                     .verify.cssProperty('@firstPharmacyOptionIcon', 'background-color', 'rgba(42, 178, 188, 1)')
                     //check if the first position matches the selected pharmacy name
-                    .getText('@firstPharmacyOptionName', (firstPharmacyOptionNameText) =>{
-                        this.verify.equal((firstPharmacyOptionNameText.value).toUpperCase(), selectedPharmacy.toUpperCase() )
-                    })
+                    .expect.element('@firstPharmacyOptionName').text.to.equal(selectedPharmacy)
             })
         return this
 
