@@ -14,7 +14,7 @@ async function patientLogin(browser) {
   browser.useCss()
   //check and set email
   browser.expect.element(`[data-test-id='email']`).to.be.present;
-  browser.setValue(`[data-test-id='email']`, 'taylor+o14@evisit.com')
+  browser.setValue(`[data-test-id='email']`, 'taylor+o13@evisit.com')
   //check and set password
   browser.expect.element(`[data-test-id='password']`).to.be.present;
   browser.setValue(`[data-test-id='password']`, 'Patient123!')
@@ -85,8 +85,8 @@ async function requestScheduledVisit(browser) {
     if (result.status != -1) {
       //select the main patient
       //In order to use dependent, the index is the only thing that requires change
-      browser.expect.element({ selector: '[data-test-id=rowClick]', index: 0 }).to.be.present;
-      browser.click({ selector: '[data-test-id=rowClick]', index: 0 })
+      browser.expect.element(`[data-test-id='rowClick'] .eVisitAppButton div`).to.be.present;
+      browser.click(`[data-test-id='rowClick'] .eVisitAppButton div`)
       browser.pause(4000)
 
       //select the schedule option button of the first provider in the list
@@ -114,8 +114,8 @@ async function requestScheduledVisit(browser) {
   });
 
   //calendar day - Will pick today's date
-  browser.expect.element('[data-test-id=calendarDay' + d.getDate() + ']').to.be.present;
-  browser.click('[data-test-id=calendarDay' + d.getDate() + ']')
+  browser.expect.element('[data-test-id=calendarDay' + (d.getDate()+1) + ']').to.be.present;
+  browser.click('[data-test-id=calendarDay' + (d.getDate()+1) + ']')
   browser.pause(4000)
 
   //select 1st time available
