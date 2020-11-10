@@ -17,6 +17,8 @@ nightwatch_config = {
         "browserstack.timezone" : "Phoenix",
         "browserstack.geoLocation" : "BR",    // Force geolocation page to appear for patient
         'os': 'OS X',
+        'debug': true,
+        'networkLogs': true,
         'os_version': 'Mojave',
         'build' : 'Patient Tests',
         'project' : 'eVisit Nightwatch',
