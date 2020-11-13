@@ -4,7 +4,7 @@ nightwatch_config = {
   selenium : {
     "start_process" : false,
     "host" : "hub-cloud.browserstack.com",
-    "port" : 80
+    "port" : 443 //HTTP - Port 80 / SSL - Port 443
   },
 
   test_settings: {
@@ -15,7 +15,7 @@ nightwatch_config = {
         'browserstack.key': 'SBukT13jtljJiBWoBpHw',
         //"browserstack.timezone" : "Sao_Paulo",
         "browserstack.timezone" : "Phoenix",
-        //"browserstack.geoLocation" : "BR",    // Force geolocation page to appear for patient
+        //"browserstack.geoLocation" : "BR",    // Force geolocation page to appear for patient. We can also force geo via active admin. 
         'os': 'OS X',
         'os_version': 'Mojave',
         'build' : 'Provider Tests',
@@ -26,7 +26,7 @@ nightwatch_config = {
         'goog:chromeOptions': {
           'args': ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"],
           prefs: {
-            // disable geolocation  - only required for browserstack
+            // disable geolocation  - only required for browserstack. not applicable if running locally. 
             // 0 - Default, 1 - Allow, 2 - Block
             'profile.managed_default_content_settings.geolocation' : 1
           }
