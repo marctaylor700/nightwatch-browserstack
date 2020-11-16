@@ -9,15 +9,17 @@
 * Update `*.conf.js` files inside the `conf/` directory with your BrowserStack Username and Access Key(https://www.browserstack.com/accounts/settings)
 
 ## Running your tests
-Get started 
+Get started
+
 In order to run the tests, you need to have the local environment configured in your machine and all necessary node packages installed. To do so, follow these steps: 
-1 - Go to the Github repository and clone it on your machine; 
-2 - Open the root directory of the cloned repository on the terminal; 
-3 - Execute npm install to install all required packages (it should create a new folder called 'node_modules' with all the dependencies inside. 
-4 - Create a local execution file (next section will talk about this file in more detail) With all of this, you should be able to run any specific test or all tests directly on your machine.
+
+1. - Go to the Github repository and clone it on your machine; 
+1. - Open the root directory of the cloned repository on the terminal; 
+1. - Execute npm install to install all required packages (it should create a new folder called `node_modules` with all the dependencies inside. 
+1. - Create a local execution file (next section will talk about this file in more detail) With all of this, you should be able to run any specific test or all tests directly on your machine.
 
 ## Local execution 
-To execute any test using Nightwatch you will require a configuration file that describes the capabilities and variables used by the framework to run the test. Our automation suite has a few configurations already created in the ./conf/ folder, but they are specific for BrowserStack (next section). The local file will need to be created in your root directory with the name nightwatch.conf.js to be used. 
+To execute any test using Nightwatch you will require a configuration file that describes the capabilities and variables used by the framework to run the test. Our automation suite has a few configurations already created in the `./conf/` folder, but they are specific for BrowserStack (next section). The local file will need to be created in your root directory with the name `nightwatch.conf.js` to be used. 
 
 To facilitate this process, here is an example of a local configuration file that can be used (with commentaries for a few important details): 
 ``` javascript
@@ -82,7 +84,7 @@ Starting Login
 OK. 15 assertions passed. (56.952s)
 ``` 
 ## Browserstack execution 
-As commented before, the local conf file is not the only option to run our tests. Already included in the ./conf/ folder of the repository you will find some configuration files exclusively created for BrowserStack. Some of the files available were included by the BrowserStack team in the original repository that originated our fork, and they can serve as examples if needed. For our testing, we mainly use patient.conf.js and provider.conf.js since we opted to separate the test suites by those two categories. Below you can find the patient version of the configuration file (The provider version is very similar):
+As commented before, the local conf file is not the only option to run our tests. Already included in the `./conf/` folder of the repository you will find some configuration files exclusively created for BrowserStack. Some of the files available were included by the BrowserStack team in the original repository that originated our fork, and they can serve as examples if needed. For our testing, we mainly use patient.conf.js and provider.conf.js since we opted to separate the test suites by those two categories. Below you can find the patient version of the configuration file (The provider version is very similar):
 ``` javascript
 nightwatch_config = { 
 src_folders : [ "tests/patient" ], // This will result in only running tests inside './tests/patient' instead of all tests 
