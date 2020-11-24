@@ -22,7 +22,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "chromedriver": "^85.0.0",
+    "chromedriver": "^87.0.0",
     "geckodriver": "^1.19.1",
     "nightwatch": "^1.4.2"
   }
