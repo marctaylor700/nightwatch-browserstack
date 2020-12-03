@@ -69,7 +69,7 @@ module.exports = {
          // Search for a known visit
          visitHistoryPage.findVisitByDateAndSearch('9/15/2020', 'First Name Edited')
         // Compare the insurance on screen with expected values based in the settings test (should be default for this patient)
-        visitHistoryPage.checkInsurance('Automation Insurance Test', 'Self', '123', '321', 'Other', '5555555555')
+        visitHistoryPage.checkInsurance('Automation Insurance Test', 'Self', '123', '321', 'Other', '555-555-5555')
     },
 
     "Check Visit History tab Information - Patient Profile > Health Records": function (browser) {

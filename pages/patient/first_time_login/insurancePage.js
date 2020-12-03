@@ -138,7 +138,7 @@ const commands = [{
             .editTextField('@idNumberField', "123")
             .editTextField('@groupNumerField', "321")
             .editComboboxField('@policyTypeComboBox', '@policyTypeOption1')
-            .editTextField('@insurancePhoneField', "5555555555")
+            .editTextField('@insurancePhoneField', "555-555-5555")
 
             .click('@agreementCheckBox')
             .click('@btnUpdate')

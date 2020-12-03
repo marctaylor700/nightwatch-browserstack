@@ -290,7 +290,7 @@ const commands = [{
         insuranceID = '123',
         insuranceGroup = '321',
         insurancePolicyType = 'Other',
-        insurancePhone = '5555555555'
+        insurancePhone = '555-555-5555'
         ) {
         this
             .click('@firstVisitRow')
