@@ -54,7 +54,7 @@ module.exports = {
         // Make sure the Patient Profile show all the expected options
         visitHistoryPage.checkPatientProfile()
         // Compare the insurance on screen with expected values based in the settings test (should be default for this user)
-        visitHistoryPage.checkInsurance('Automation Insurance Test', 'Self', '123', '321', 'Other', '5555555555')
+        visitHistoryPage.checkInsurance('Automation Insurance Test', 'Self', '123', '321', 'Other', '555-555-5555')
     },
 
     "Check Patient's Visit History information - Patient Profile > Health Records": function (browser) {

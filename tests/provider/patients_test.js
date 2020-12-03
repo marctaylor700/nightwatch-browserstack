@@ -50,7 +50,7 @@ module.exports = {
         // Verify all information in the patient found with the filter
         PatientsPage.checkFirstRow('First Name Edited Last Name Edited', 'Registered')
         // Compare the insurance on screen with expected values based in the patient's settings test (should be default for this patient)
-        PatientsPage.checkInsurance('Automation Insurance Test', 'Self', '123', '321', 'Other', '5555555555')
+        PatientsPage.checkInsurance('Automation Insurance Test', 'Self', '123', '321', 'Other', '555-555-5555')
     },
 
     "Check Patient's tab information - Patient Profile > Health Records": function (browser) {
