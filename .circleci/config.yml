@@ -16,4 +16,4 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: ./node_modules/.bin/nightwatch -c conf/core_regression.conf.js
+      - run: nightwatch -c ./conf/patient.conf.js
